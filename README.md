@@ -62,10 +62,10 @@ This guide provides a quick way to get started with our project. Please see our 
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
+pip install git+https://github.com/unity-sds/unity-sps-ogc-processes-api-client-python.git
 ```
 
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git`)
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/unity-sds/unity-sps-ogc-processes-api-client-python.git`)
 
 Then import the package:
 
