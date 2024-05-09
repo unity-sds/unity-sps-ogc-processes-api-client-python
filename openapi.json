@@ -1,1 +1,1517 @@
-{"openapi":"3.1.0","info":{"title":"Unity Processing API conforming to the OGC API - Processes - Part 1 standard","description":"This document is an API definition document provided alongside the OGC API - Processes standard. The OGC API - Processes Standard specifies a processing interface to communicate over a RESTful protocol using JavaScript Object Notation (JSON) encodings. The specification allows for the wrapping of computational tasks into executable processes that can be offered by a server and be invoked by a client application.","version":"1.0.0"},"paths":{"/":{"get":{"summary":"Landing page of this API","description":"The landing page provides links to the:\n- API Definition (no fixed path),\n- Conformance Statements (`/conformance`),\n- Processes Metadata (`/processes`),\n- Endpoint for Job Monitoring (`/jobs`).\n\nFor more information, see [Section 7.2](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_landing_page).","operationId":"landing_page__get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/LandingPage"}}}}}}},"/health":{"get":{"summary":"Perform a Health Check","description":"Endpoint to perform a healthcheck on. This endpoint can primarily be used Docker\nto ensure a robust container orchestration and management is in place. Other\nservices which rely on proper functioning of the API service will not deploy if this\nendpoint returns any other HTTP status code except 200 (OK).\nReturns:\n    HealthCheck: Returns a JSON response with the health status","operationId":"get_health_health_get","responses":{"200":{"description":"Return HTTP Status Code 200 (OK)","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HealthCheck"}}}}}}},"/conformance":{"get":{"summary":"Information about standards that this API conforms to","description":"A list of all conformance classes, specified in a standard, that the server conforms to.\n\n| Conformance class | URI |\n| -------- | ------- |\n| Core | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/core |\n| OGC Process Description | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/ogc-process-description |\n| JSON | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/json |\n| HTML | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/html |\n| OpenAPI | Specification 3.0       http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/oas30 |\n| Job list | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/job-list |\n| Callback | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/callback |\n| Dismiss | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/dismiss |\n\nFor more information, see [Section 7.4](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_conformance_classes).","operationId":"conformance_declaration_conformance_get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ConfClasses"}}}}}}},"/processes":{"get":{"summary":"Retrieve the list of available processes","description":"The list of processes contains a summary of each process the OGC API - Processes offers, including the link to a more detailed description of the process.\n\nFor more information, see [Section 7.9](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_process_list).","operationId":"process_list_processes_get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProcessList"}}}}}},"post":{"summary":"Register a process","description":"Register a new process.\n\n**Note:** This is not an officially supported endpoint in the OGC Processes specification.","operationId":"register_process_processes_post","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Process-Input"}}},"required":true},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Process-Output"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HTTPValidationError"}}}}}}},"/processes/{process_id}":{"delete":{"summary":"Unregister a process","description":"Unregister an existing process.\n\n**Note:** This is not an officially supported endpoint in the OGC Processes specification.","operationId":"unregister_process_processes__process_id__delete","parameters":[{"name":"process_id","in":"path","required":true,"schema":{"type":"string","title":"Process Id"}}],"responses":{"204":{"description":"Successful Response"},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HTTPValidationError"}}}}}},"get":{"summary":"Retrieve a process description","description":"The process description contains information about inputs and outputs and a link to the execution-endpoint for the process. The Core does not mandate the use of a specific process description to specify the interface of a process. That said, the Core requirements class makes the following recommendation:\n\nImplementations SHOULD consider supporting the OGC process description.\n\nFor more information, see [Section 7.10](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_process_description).","operationId":"process_description_processes__process_id__get","parameters":[{"name":"process_id","in":"path","required":true,"schema":{"type":"string","title":"Process Id"}}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Process-Output"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HTTPValidationError"}}}}}}},"/jobs":{"get":{"summary":"Retrieve the list of jobs","description":"Lists available jobs.\n\nFor more information, see [Section 11](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_job_list).","operationId":"job_list_jobs_get","responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/JobList"}}}}}}},"/processes/{process_id}/execution":{"post":{"summary":"Execute a process","description":"Create a new job.\n\nFor more information, see [Section 7.11](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_create_job).","operationId":"execute_processes__process_id__execution_post","parameters":[{"name":"process_id","in":"path","required":true,"schema":{"type":"string","title":"Process Id"}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Execute"}}}},"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/StatusInfo"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HTTPValidationError"}}}}}}},"/jobs/{job_id}":{"get":{"summary":"Retrieve the status of a job","description":"Shows the status of a job.\n\nFor more information, see [Section 7.12](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_retrieve_status_info).","operationId":"status_jobs__job_id__get","parameters":[{"name":"job_id","in":"path","required":true,"schema":{"type":"string","title":"Job Id"}}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/StatusInfo"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HTTPValidationError"}}}}}},"delete":{"summary":"Cancel a job execution, remove a finished job","description":"Cancel a job execution and remove it from the jobs list.\n\nFor more information, see [Section 13](https://docs.ogc.org/is/18-062r2/18-062r2.html#Dismiss).","operationId":"dismiss_jobs__job_id__delete","parameters":[{"name":"job_id","in":"path","required":true,"schema":{"type":"string","title":"Job Id"}}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/StatusInfo"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HTTPValidationError"}}}}}}},"/jobs/{job_id}/results":{"get":{"summary":"Retrieve the result(s) of a job","description":"Lists available results of a job. In case of a failure, lists exceptions instead.\n\nFor more information, see [Section 7.13](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_retrieve_job_results).","operationId":"results_jobs__job_id__results_get","parameters":[{"name":"job_id","in":"path","required":true,"schema":{"type":"string","title":"Job Id"}}],"responses":{"200":{"description":"Successful Response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Results"}}}},"422":{"description":"Validation Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/HTTPValidationError"}}}}}}}},"components":{"schemas":{"Bbox":{"properties":{"bbox":{"items":{"type":"number"},"type":"array","title":"Bbox"},"crs":{"anyOf":[{"$ref":"#/components/schemas/Crs5"},{"type":"string","minLength":1,"format":"uri"},{"type":"null"}],"title":"Crs","default":"http://www.opengis.net/def/crs/OGC/1.3/CRS84"}},"type":"object","required":["bbox"],"title":"Bbox"},"BinaryInputValue":{"type":"string","title":"BinaryInputValue"},"ConfClasses":{"properties":{"conformsTo":{"items":{"type":"string"},"type":"array","title":"Conformsto"}},"type":"object","required":["conformsTo"],"title":"ConfClasses"},"Crs5":{"type":"string","enum":["http://www.opengis.net/def/crs/OGC/1.3/CRS84","http://www.opengis.net/def/crs/OGC/0/CRS84h"],"title":"Crs5"},"Exception":{"properties":{"type":{"type":"string","title":"Type"},"title":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Title"},"status":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Status"},"detail":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Detail"},"instance":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Instance"}},"additionalProperties":true,"type":"object","required":["type"],"title":"Exception"},"Execute":{"properties":{"inputs":{"anyOf":[{},{"type":"null"}],"title":"Inputs"},"outputs":{"anyOf":[{},{"type":"null"}],"title":"Outputs"},"subscriber":{"anyOf":[{"$ref":"#/components/schemas/Subscriber"},{"type":"null"}]}},"type":"object","title":"Execute"},"HTTPValidationError":{"properties":{"detail":{"items":{"$ref":"#/components/schemas/ValidationError"},"type":"array","title":"Detail"}},"type":"object","title":"HTTPValidationError"},"HealthCheck":{"properties":{"status":{"type":"string","title":"Status","default":"OK"}},"type":"object","title":"HealthCheck","description":"Response model to validate and return when performing a health check."},"InputValue-Input":{"anyOf":[{"$ref":"#/components/schemas/InputValueNoObject-Input"},{"type":"object"}],"title":"InputValue"},"InputValue-Output":{"anyOf":[{"$ref":"#/components/schemas/InputValueNoObject-Output"},{"type":"object"}],"title":"InputValue"},"InputValueNoObject-Input":{"anyOf":[{"type":"string"},{"type":"number"},{"type":"integer"},{"type":"boolean"},{"items":{},"type":"array"},{"$ref":"#/components/schemas/BinaryInputValue"},{"$ref":"#/components/schemas/Bbox"}],"title":"InputValueNoObject"},"InputValueNoObject-Output":{"anyOf":[{"type":"string"},{"type":"number"},{"type":"integer"},{"type":"boolean"},{"items":{},"type":"array"},{"$ref":"#/components/schemas/BinaryInputValue"},{"$ref":"#/components/schemas/Bbox"}],"title":"InputValueNoObject"},"JobControlOptions":{"type":"string","enum":["sync-execute","async-execute","dismiss"],"title":"JobControlOptions"},"JobList":{"properties":{"jobs":{"items":{"$ref":"#/components/schemas/StatusInfo"},"type":"array","title":"Jobs"},"links":{"items":{"$ref":"#/components/schemas/Link"},"type":"array","title":"Links"}},"type":"object","required":["jobs","links"],"title":"JobList"},"LandingPage":{"properties":{"title":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Title","example":"Example processing server"},"description":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Description","example":"Example server implementing the OGC API - Processes 1.0 Standard"},"attribution":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"attribution for the Processes API","description":"The `attribution` should be short and intended for presentation to a user, for example, in a corner of a map. Parts of the text can be links to other resources if additional information is needed. The string can include HTML markup."},"links":{"items":{"$ref":"#/components/schemas/Link"},"type":"array","title":"Links"}},"type":"object","required":["links"],"title":"LandingPage"},"Link":{"properties":{"href":{"type":"string","title":"Href"},"rel":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Rel","example":"service"},"type":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Type","example":"application/json"},"hreflang":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Hreflang","example":"en"},"title":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Title"}},"type":"object","required":["href"],"title":"Link"},"Metadata":{"anyOf":[{"$ref":"#/components/schemas/Metadata1"},{"$ref":"#/components/schemas/Metadata2"}],"title":"Metadata"},"Metadata1":{"properties":{"href":{"type":"string","title":"Href"},"rel":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Rel","example":"service"},"type":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Type","example":"application/json"},"hreflang":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Hreflang","example":"en"},"title":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Title"},"role":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Role"}},"type":"object","required":["href"],"title":"Metadata1"},"Metadata2":{"properties":{"role":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Role"},"title":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Title"},"lang":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Lang"},"value":{"anyOf":[{"type":"string"},{"type":"object"},{"type":"null"}],"title":"Value"}},"type":"object","title":"Metadata2"},"Process-Input":{"properties":{"title":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Title"},"description":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Description"},"keywords":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"title":"Keywords"},"metadata":{"anyOf":[{"items":{"$ref":"#/components/schemas/Metadata"},"type":"array"},{"type":"null"}],"title":"Metadata"},"id":{"type":"string","title":"Id"},"version":{"type":"string","title":"Version"},"jobControlOptions":{"anyOf":[{"items":{"$ref":"#/components/schemas/JobControlOptions"},"type":"array"},{"type":"null"}],"title":"Jobcontroloptions"},"links":{"anyOf":[{"items":{"$ref":"#/components/schemas/Link"},"type":"array"},{"type":"null"}],"title":"Links"},"inputs":{"anyOf":[{"items":{"$ref":"#/components/schemas/InputValue-Input"},"type":"array"},{"type":"null"}],"title":"Inputs"},"outputs":{"anyOf":[{"items":{"$ref":"#/components/schemas/InputValue-Input"},"type":"array"},{"type":"null"}],"title":"Outputs"}},"type":"object","required":["id","version"],"title":"Process"},"Process-Output":{"properties":{"title":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Title"},"description":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Description"},"keywords":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"title":"Keywords"},"metadata":{"anyOf":[{"items":{"$ref":"#/components/schemas/Metadata"},"type":"array"},{"type":"null"}],"title":"Metadata"},"id":{"type":"string","title":"Id"},"version":{"type":"string","title":"Version"},"jobControlOptions":{"anyOf":[{"items":{"$ref":"#/components/schemas/JobControlOptions"},"type":"array"},{"type":"null"}],"title":"Jobcontroloptions"},"links":{"anyOf":[{"items":{"$ref":"#/components/schemas/Link"},"type":"array"},{"type":"null"}],"title":"Links"},"inputs":{"anyOf":[{"items":{"$ref":"#/components/schemas/InputValue-Output"},"type":"array"},{"type":"null"}],"title":"Inputs"},"outputs":{"anyOf":[{"items":{"$ref":"#/components/schemas/InputValue-Output"},"type":"array"},{"type":"null"}],"title":"Outputs"}},"type":"object","required":["id","version"],"title":"Process"},"ProcessList":{"properties":{"processes":{"items":{"$ref":"#/components/schemas/ProcessSummary"},"type":"array","title":"Processes"},"links":{"items":{"$ref":"#/components/schemas/Link"},"type":"array","title":"Links"}},"type":"object","required":["processes","links"],"title":"ProcessList"},"ProcessSummary":{"properties":{"title":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Title"},"description":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Description"},"keywords":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"title":"Keywords"},"metadata":{"anyOf":[{"items":{"$ref":"#/components/schemas/Metadata"},"type":"array"},{"type":"null"}],"title":"Metadata"},"id":{"type":"string","title":"Id"},"version":{"type":"string","title":"Version"},"jobControlOptions":{"anyOf":[{"items":{"$ref":"#/components/schemas/JobControlOptions"},"type":"array"},{"type":"null"}],"title":"Jobcontroloptions"},"links":{"anyOf":[{"items":{"$ref":"#/components/schemas/Link"},"type":"array"},{"type":"null"}],"title":"Links"}},"type":"object","required":["id","version"],"title":"ProcessSummary"},"Results":{"title":"Results"},"StatusCode":{"type":"string","enum":["accepted","running","successful","failed","dismissed"],"title":"StatusCode"},"StatusInfo":{"properties":{"processID":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Processid"},"type":{"$ref":"#/components/schemas/Type2"},"jobID":{"type":"string","title":"Jobid"},"status":{"$ref":"#/components/schemas/StatusCode"},"message":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Message"},"exception":{"anyOf":[{"$ref":"#/components/schemas/Exception"},{"type":"null"}]},"created":{"anyOf":[{"type":"string","format":"date-time"},{"type":"null"}],"title":"Created"},"started":{"anyOf":[{"type":"string","format":"date-time"},{"type":"null"}],"title":"Started"},"finished":{"anyOf":[{"type":"string","format":"date-time"},{"type":"null"}],"title":"Finished"},"updated":{"anyOf":[{"type":"string","format":"date-time"},{"type":"null"}],"title":"Updated"},"progress":{"anyOf":[{"type":"integer","maximum":100.0,"minimum":0.0},{"type":"null"}],"title":"Progress"},"links":{"anyOf":[{"items":{"$ref":"#/components/schemas/Link"},"type":"array"},{"type":"null"}],"title":"Links"}},"type":"object","required":["type","jobID","status"],"title":"StatusInfo"},"Subscriber":{"properties":{"successUri":{"type":"string","minLength":1,"format":"uri","title":"Successuri"},"inProgressUri":{"anyOf":[{"type":"string","minLength":1,"format":"uri"},{"type":"null"}],"title":"Inprogressuri"},"failedUri":{"anyOf":[{"type":"string","minLength":1,"format":"uri"},{"type":"null"}],"title":"Faileduri"}},"type":"object","required":["successUri"],"title":"Subscriber"},"Type2":{"const":"process","title":"Type2"},"ValidationError":{"properties":{"loc":{"items":{"anyOf":[{"type":"string"},{"type":"integer"}]},"type":"array","title":"Location"},"msg":{"type":"string","title":"Message"},"type":{"type":"string","title":"Error Type"}},"type":"object","required":["loc","msg","type"],"title":"ValidationError"}}}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Unity Processing API conforming to the OGC API - Processes - Part 1 standard",
+    "description": "This document is an API definition document provided alongside the OGC API - Processes standard. The OGC API - Processes Standard specifies a processing interface to communicate over a RESTful protocol using JavaScript Object Notation (JSON) encodings. The specification allows for the wrapping of computational tasks into executable processes that can be offered by a server and be invoked by a client application.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Landing page of this API",
+        "description": "The landing page provides links to the:\n- API Definition (no fixed path),\n- Conformance Statements (`/conformance`),\n- Processes Metadata (`/processes`),\n- Endpoint for Job Monitoring (`/jobs`).\n\nFor more information, see [Section 7.2](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_landing_page).",
+        "operationId": "landing_page__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LandingPage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Perform a Health Check",
+        "description": "Endpoint to perform a healthcheck on. This endpoint can primarily be used Docker\nto ensure a robust container orchestration and management is in place. Other\nservices which rely on proper functioning of the API service will not deploy if this\nendpoint returns any other HTTP status code except 200 (OK).\nReturns:\n    HealthCheck: Returns a JSON response with the health status",
+        "operationId": "get_health_health_get",
+        "responses": {
+          "200": {
+            "description": "Return HTTP Status Code 200 (OK)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthCheck"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conformance": {
+      "get": {
+        "summary": "Information about standards that this API conforms to",
+        "description": "A list of all conformance classes, specified in a standard, that the server conforms to.\n\n| Conformance class | URI |\n| -------- | ------- |\n| Core | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/core |\n| OGC Process Description | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/ogc-process-description |\n| JSON | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/json |\n| HTML | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/html |\n| OpenAPI | Specification 3.0       http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/oas30 |\n| Job list | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/job-list |\n| Callback | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/callback |\n| Dismiss | http://www.opengis.net/spec/ogcapi-processes-1/1.0/conf/dismiss |\n\nFor more information, see [Section 7.4](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_conformance_classes).",
+        "operationId": "conformance_declaration_conformance_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfClasses"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/processes": {
+      "get": {
+        "summary": "Retrieve the list of available processes",
+        "description": "The list of processes contains a summary of each process the OGC API - Processes offers, including the link to a more detailed description of the process.\n\nFor more information, see [Section 7.9](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_process_list).",
+        "operationId": "process_list_processes_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Register a process",
+        "description": "Register a new process.\n\n**Note:** This is not an officially supported endpoint in the OGC Processes specification.",
+        "operationId": "register_process_processes_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Process-Input"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Process-Output"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/processes/{process_id}": {
+      "delete": {
+        "summary": "Unregister a process",
+        "description": "Unregister an existing process.\n\n**Note:** This is not an officially supported endpoint in the OGC Processes specification.",
+        "operationId": "unregister_process_processes__process_id__delete",
+        "parameters": [
+          {
+            "name": "process_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Process Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve a process description",
+        "description": "The process description contains information about inputs and outputs and a link to the execution-endpoint for the process. The Core does not mandate the use of a specific process description to specify the interface of a process. That said, the Core requirements class makes the following recommendation:\n\nImplementations SHOULD consider supporting the OGC process description.\n\nFor more information, see [Section 7.10](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_process_description).",
+        "operationId": "process_description_processes__process_id__get",
+        "parameters": [
+          {
+            "name": "process_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Process Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Process-Output"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs": {
+      "get": {
+        "summary": "Retrieve the list of jobs",
+        "description": "Lists available jobs.\n\nFor more information, see [Section 11](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_job_list).",
+        "operationId": "job_list_jobs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/processes/{process_id}/execution": {
+      "post": {
+        "summary": "Execute a process",
+        "description": "Create a new job.\n\nFor more information, see [Section 7.11](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_create_job).",
+        "operationId": "execute_processes__process_id__execution_post",
+        "parameters": [
+          {
+            "name": "process_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Process Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Execute"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusInfo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}": {
+      "get": {
+        "summary": "Retrieve the status of a job",
+        "description": "Shows the status of a job.\n\nFor more information, see [Section 7.12](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_retrieve_status_info).",
+        "operationId": "status_jobs__job_id__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusInfo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Cancel a job execution, remove a finished job",
+        "description": "Cancel a job execution and remove it from the jobs list.\n\nFor more information, see [Section 13](https://docs.ogc.org/is/18-062r2/18-062r2.html#Dismiss).",
+        "operationId": "dismiss_jobs__job_id__delete",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusInfo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/results": {
+      "get": {
+        "summary": "Retrieve the result(s) of a job",
+        "description": "Lists available results of a job. In case of a failure, lists exceptions instead.\n\nFor more information, see [Section 7.13](https://docs.ogc.org/is/18-062r2/18-062r2.html#sc_retrieve_job_results).",
+        "operationId": "results_jobs__job_id__results_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Results"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {            
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat":"JWT"    
+      }
+    },
+    "schemas": {
+      "Bbox": {
+        "properties": {
+          "bbox": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Bbox"
+          },
+          "crs": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Crs5"
+              },
+              {
+                "type": "string",
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crs",
+            "default": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bbox"
+        ],
+        "title": "Bbox"
+      },
+      "BinaryInputValue": {
+        "type": "string",
+        "title": "BinaryInputValue"
+      },
+      "ConfClasses": {
+        "properties": {
+          "conformsTo": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Conformsto"
+          }
+        },
+        "type": "object",
+        "required": [
+          "conformsTo"
+        ],
+        "title": "ConfClasses"
+      },
+      "Crs5": {
+        "type": "string",
+        "enum": [
+          "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+          "http://www.opengis.net/def/crs/OGC/0/CRS84h"
+        ],
+        "title": "Crs5"
+      },
+      "Exception": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          },
+          "instance": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instance"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "Exception"
+      },
+      "Execute": {
+        "properties": {
+          "inputs": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inputs"
+          },
+          "outputs": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outputs"
+          },
+          "subscriber": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Subscriber"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "Execute"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthCheck": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "OK"
+          }
+        },
+        "type": "object",
+        "title": "HealthCheck",
+        "description": "Response model to validate and return when performing a health check."
+      },
+      "InputValue-Input": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/InputValueNoObject-Input"
+          },
+          {
+            "type": "object"
+          }
+        ],
+        "title": "InputValue"
+      },
+      "InputValue-Output": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/InputValueNoObject-Output"
+          },
+          {
+            "type": "object"
+          }
+        ],
+        "title": "InputValue"
+      },
+      "InputValueNoObject-Input": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "items": {},
+            "type": "array"
+          },
+          {
+            "$ref": "#/components/schemas/BinaryInputValue"
+          },
+          {
+            "$ref": "#/components/schemas/Bbox"
+          }
+        ],
+        "title": "InputValueNoObject"
+      },
+      "InputValueNoObject-Output": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "items": {},
+            "type": "array"
+          },
+          {
+            "$ref": "#/components/schemas/BinaryInputValue"
+          },
+          {
+            "$ref": "#/components/schemas/Bbox"
+          }
+        ],
+        "title": "InputValueNoObject"
+      },
+      "JobControlOptions": {
+        "type": "string",
+        "enum": [
+          "sync-execute",
+          "async-execute",
+          "dismiss"
+        ],
+        "title": "JobControlOptions"
+      },
+      "JobList": {
+        "properties": {
+          "jobs": {
+            "items": {
+              "$ref": "#/components/schemas/StatusInfo"
+            },
+            "type": "array",
+            "title": "Jobs"
+          },
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "type": "array",
+            "title": "Links"
+          }
+        },
+        "type": "object",
+        "required": [
+          "jobs",
+          "links"
+        ],
+        "title": "JobList"
+      },
+      "LandingPage": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title",
+            "example": "Example processing server"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description",
+            "example": "Example server implementing the OGC API - Processes 1.0 Standard"
+          },
+          "attribution": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "attribution for the Processes API",
+            "description": "The `attribution` should be short and intended for presentation to a user, for example, in a corner of a map. Parts of the text can be links to other resources if additional information is needed. The string can include HTML markup."
+          },
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "type": "array",
+            "title": "Links"
+          }
+        },
+        "type": "object",
+        "required": [
+          "links"
+        ],
+        "title": "LandingPage"
+      },
+      "Link": {
+        "properties": {
+          "href": {
+            "type": "string",
+            "title": "Href"
+          },
+          "rel": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rel",
+            "example": "service"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "example": "application/json"
+          },
+          "hreflang": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hreflang",
+            "example": "en"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "type": "object",
+        "required": [
+          "href"
+        ],
+        "title": "Link"
+      },
+      "Metadata": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Metadata1"
+          },
+          {
+            "$ref": "#/components/schemas/Metadata2"
+          }
+        ],
+        "title": "Metadata"
+      },
+      "Metadata1": {
+        "properties": {
+          "href": {
+            "type": "string",
+            "title": "Href"
+          },
+          "rel": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rel",
+            "example": "service"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "example": "application/json"
+          },
+          "hreflang": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hreflang",
+            "example": "en"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "href"
+        ],
+        "title": "Metadata1"
+      },
+      "Metadata2": {
+        "properties": {
+          "role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "lang": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lang"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "title": "Metadata2"
+      },
+      "Process-Input": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "keywords": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Keywords"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Metadata"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "jobControlOptions": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/JobControlOptions"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Jobcontroloptions"
+          },
+          "links": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Link"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Links"
+          },
+          "inputs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/InputValue-Input"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inputs"
+          },
+          "outputs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/InputValue-Input"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outputs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "version"
+        ],
+        "title": "Process"
+      },
+      "Process-Output": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "keywords": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Keywords"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Metadata"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "jobControlOptions": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/JobControlOptions"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Jobcontroloptions"
+          },
+          "links": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Link"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Links"
+          },
+          "inputs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/InputValue-Output"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inputs"
+          },
+          "outputs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/InputValue-Output"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outputs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "version"
+        ],
+        "title": "Process"
+      },
+      "ProcessList": {
+        "properties": {
+          "processes": {
+            "items": {
+              "$ref": "#/components/schemas/ProcessSummary"
+            },
+            "type": "array",
+            "title": "Processes"
+          },
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "type": "array",
+            "title": "Links"
+          }
+        },
+        "type": "object",
+        "required": [
+          "processes",
+          "links"
+        ],
+        "title": "ProcessList"
+      },
+      "ProcessSummary": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "keywords": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Keywords"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Metadata"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "jobControlOptions": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/JobControlOptions"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Jobcontroloptions"
+          },
+          "links": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Link"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Links"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "version"
+        ],
+        "title": "ProcessSummary"
+      },
+      "Results": {
+        "title": "Results"
+      },
+      "StatusCode": {
+        "type": "string",
+        "enum": [
+          "accepted",
+          "running",
+          "successful",
+          "failed",
+          "dismissed"
+        ],
+        "title": "StatusCode"
+      },
+      "StatusInfo": {
+        "properties": {
+          "processID": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Processid"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Type2"
+          },
+          "jobID": {
+            "type": "string",
+            "title": "Jobid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/StatusCode"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "exception": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Exception"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created"
+          },
+          "started": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Started"
+          },
+          "finished": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished"
+          },
+          "updated": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated"
+          },
+          "progress": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 100.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progress"
+          },
+          "links": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Link"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Links"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "jobID",
+          "status"
+        ],
+        "title": "StatusInfo"
+      },
+      "Subscriber": {
+        "properties": {
+          "successUri": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri",
+            "title": "Successuri"
+          },
+          "inProgressUri": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inprogressuri"
+          },
+          "failedUri": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Faileduri"
+          }
+        },
+        "type": "object",
+        "required": [
+          "successUri"
+        ],
+        "title": "Subscriber"
+      },
+      "Type2": {
+        "const": "process",
+        "title": "Type2"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  },
+  "security": [
+   { "bearerAuth":[] }
+  ] 
+}
