@@ -1,4 +1,3 @@
-<!-- Header block for project -->
 <hr>
 
 <div align="center">
@@ -11,9 +10,6 @@
 </div>
 
 <pre align="center">A Python Client for the Unity SPS OGC Processes API</pre>
-
-<!-- Header block for project -->
-
 ![Version](https://img.shields.io/github/v/tag/unity-sds/unity-sps-ogc-processes-api-client-python?label=version) ![License](https://img.shields.io/github/license/unity-sds/unity-sps) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md) [![SLIM](https://img.shields.io/badge/Best%20Practices%20from-SLIM-blue)](https://nasa-ammos.github.io/slim/)
 
 [Website](https://unity-sds.gitbook.io) | [Docs](https://unity-sds.gitbook.io/docs/developer-docs/science-processing)
@@ -109,6 +105,16 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -148,7 +154,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**status_jobs_job_id_get**](docs/DefaultApi.md#status_jobs_job_id_get) | **GET** /jobs/{job_id} | Retrieve the status of a job
 *DefaultApi* | [**unregister_process_processes_process_id_delete**](docs/DefaultApi.md#unregister_process_processes_process_id_delete) | **DELETE** /processes/{process_id} | Unregister a process
 
-#### Documentation For Models
+## Documentation For Models
 
 * [Bbox](docs/Bbox.md)
 * [ConfClasses](docs/ConfClasses.md)
@@ -184,11 +190,14 @@ Class | Method | HTTP request | Description
 * [ValidationErrorLocInner](docs/ValidationErrorLocInner.md)
 * [Value](docs/Value.md)
 
-<a id="documentation-for-authorization"></a>
+## Documentation For Authorization
 
-#### Documentation For Authorization
+Authentication schemes defined for the API:
+<a id="bearerAuth"></a>
 
-Endpoints do not require authorization.
+### bearerAuth
+
+* **Type**: Bearer authentication (JWT)
 
 <!-- ☝️ Replace with a list of your usage examples, including screenshots if possible, and link to external documentation for details ☝️ -->
 
