@@ -13,17 +13,17 @@
 
 
 from __future__ import annotations
-from inspect import getfullargspec
+
 import json
 import pprint
 import re  # noqa: F401
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
-from typing import Any, Dict, Optional
-from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
-from typing_extensions import Literal, Self
-from pydantic import Field
+from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Union
+
+from pydantic import BaseModel, StrictStr, ValidationError, field_validator
+from typing_extensions import Self
 
 VALUE_ANY_OF_SCHEMAS = ["object", "str"]
+
 
 class Value(BaseModel):
     """
@@ -38,7 +38,7 @@ class Value(BaseModel):
         actual_instance: Optional[Union[object, str]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "object", "str" }
+    any_of_schemas: Set[str] = {"object", "str"}
 
     model_config = {
         "validate_assignment": True,
@@ -48,14 +48,18 @@ class Value(BaseModel):
     def __init__(self, *args, **kwargs) -> None:
         if args:
             if len(args) > 1:
-                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+                raise ValueError(
+                    "If a position argument is used, only 1 is allowed to set `actual_instance`"
+                )
             if kwargs:
-                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+                raise ValueError(
+                    "If a position argument is used, keyword arguments cannot be used."
+                )
             super().__init__(actual_instance=args[0])
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @field_validator("actual_instance")
     def actual_instance_must_validate_anyof(cls, v):
         if v is None:
             return v
@@ -76,7 +80,10 @@ class Value(BaseModel):
             error_messages.append(str(e))
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in Value with anyOf schemas: object, str. Details: " + ", ".join(error_messages))
+            raise ValueError(
+                "No match found when setting the actual_instance in Value with anyOf schemas: object, str. Details: "
+                + ", ".join(error_messages)
+            )
         else:
             return v
 
@@ -113,7 +120,10 @@ class Value(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Value with anyOf schemas: object, str. Details: " + ", ".join(error_messages))
+            raise ValueError(
+                "No match found when deserializing the JSON string into Value with anyOf schemas: object, str. Details: "
+                + ", ".join(error_messages)
+            )
         else:
             return instance
 
@@ -122,7 +132,9 @@ class Value(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        if hasattr(self.actual_instance, "to_json") and callable(
+            self.actual_instance.to_json
+        ):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
@@ -132,7 +144,9 @@ class Value(BaseModel):
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        if hasattr(self.actual_instance, "to_dict") and callable(
+            self.actual_instance.to_dict
+        ):
             return self.actual_instance.to_dict()
         else:
             return self.actual_instance
@@ -140,5 +154,3 @@ class Value(BaseModel):
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
-
-

@@ -13,20 +13,23 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from unity_sps_ogc_processes_api_python_client.models.value import Value
-from typing import Optional, Set
 from typing_extensions import Self
+
+from unity_sps_ogc_processes_api_python_client.models.value import Value
+
 
 class Metadata2(BaseModel):
     """
     Metadata2
-    """ # noqa: E501
+    """  # noqa: E501
+
     role: Optional[StrictStr] = None
     title: Optional[StrictStr] = None
     lang: Optional[StrictStr] = None
@@ -38,7 +41,6 @@ class Metadata2(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -64,8 +66,7 @@ class Metadata2(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -74,26 +75,26 @@ class Metadata2(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
-            _dict['value'] = self.value.to_dict()
+            _dict["value"] = self.value.to_dict()
         # set to None if role (nullable) is None
         # and model_fields_set contains the field
         if self.role is None and "role" in self.model_fields_set:
-            _dict['role'] = None
+            _dict["role"] = None
 
         # set to None if title (nullable) is None
         # and model_fields_set contains the field
         if self.title is None and "title" in self.model_fields_set:
-            _dict['title'] = None
+            _dict["title"] = None
 
         # set to None if lang (nullable) is None
         # and model_fields_set contains the field
         if self.lang is None and "lang" in self.model_fields_set:
-            _dict['lang'] = None
+            _dict["lang"] = None
 
         # set to None if value (nullable) is None
         # and model_fields_set contains the field
         if self.value is None and "value" in self.model_fields_set:
-            _dict['value'] = None
+            _dict["value"] = None
 
         return _dict
 
@@ -106,12 +107,16 @@ class Metadata2(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "role": obj.get("role"),
-            "title": obj.get("title"),
-            "lang": obj.get("lang"),
-            "value": Value.from_dict(obj["value"]) if obj.get("value") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "role": obj.get("role"),
+                "title": obj.get("title"),
+                "lang": obj.get("lang"),
+                "value": (
+                    Value.from_dict(obj["value"])
+                    if obj.get("value") is not None
+                    else None
+                ),
+            }
+        )
         return _obj
-
-

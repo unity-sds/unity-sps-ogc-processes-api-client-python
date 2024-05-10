@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**href** | **str** |  | 
-**rel** | **str** |  | [optional] 
-**type** | **str** |  | [optional] 
-**hreflang** | **str** |  | [optional] 
-**title** | **str** |  | [optional] 
+**href** | **str** |  |
+**rel** | **str** |  | [optional]
+**type** | **str** |  | [optional]
+**hreflang** | **str** |  | [optional]
+**title** | **str** |  | [optional]
 
 ## Example
 
@@ -29,5 +29,3 @@ link_dict = link_instance.to_dict()
 link_from_dict = Link.from_dict(link_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

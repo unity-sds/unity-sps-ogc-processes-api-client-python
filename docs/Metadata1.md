@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**href** | **str** |  | 
-**rel** | **str** |  | [optional] 
-**type** | **str** |  | [optional] 
-**hreflang** | **str** |  | [optional] 
-**title** | **str** |  | [optional] 
-**role** | **str** |  | [optional] 
+**href** | **str** |  |
+**rel** | **str** |  | [optional]
+**type** | **str** |  | [optional]
+**hreflang** | **str** |  | [optional]
+**title** | **str** |  | [optional]
+**role** | **str** |  | [optional]
 
 ## Example
 
@@ -30,5 +30,3 @@ metadata1_dict = metadata1_instance.to_dict()
 metadata1_from_dict = Metadata1.from_dict(metadata1_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

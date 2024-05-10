@@ -13,37 +13,45 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Self
+
 from unity_sps_ogc_processes_api_python_client.models.detail import Detail
 from unity_sps_ogc_processes_api_python_client.models.instance import Instance
 from unity_sps_ogc_processes_api_python_client.models.status import Status
 from unity_sps_ogc_processes_api_python_client.models.title import Title
-from typing import Optional, Set
-from typing_extensions import Self
+
 
 class Exception(BaseModel):
     """
     Exception
-    """ # noqa: E501
+    """  # noqa: E501
+
     type: Optional[Any]
     title: Optional[Title] = None
     status: Optional[Status] = None
     detail: Optional[Detail] = None
     instance: Optional[Instance] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["type", "title", "status", "detail", "instance"]
+    __properties: ClassVar[List[str]] = [
+        "type",
+        "title",
+        "status",
+        "detail",
+        "instance",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -70,9 +78,11 @@ class Exception(BaseModel):
           are ignored.
         * Fields in `self.additional_properties` are added to the output dict.
         """
-        excluded_fields: Set[str] = set([
-            "additional_properties",
-        ])
+        excluded_fields: Set[str] = set(
+            [
+                "additional_properties",
+            ]
+        )
 
         _dict = self.model_dump(
             by_alias=True,
@@ -81,16 +91,16 @@ class Exception(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of title
         if self.title:
-            _dict['title'] = self.title.to_dict()
+            _dict["title"] = self.title.to_dict()
         # override the default output from pydantic by calling `to_dict()` of status
         if self.status:
-            _dict['status'] = self.status.to_dict()
+            _dict["status"] = self.status.to_dict()
         # override the default output from pydantic by calling `to_dict()` of detail
         if self.detail:
-            _dict['detail'] = self.detail.to_dict()
+            _dict["detail"] = self.detail.to_dict()
         # override the default output from pydantic by calling `to_dict()` of instance
         if self.instance:
-            _dict['instance'] = self.instance.to_dict()
+            _dict["instance"] = self.instance.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -99,7 +109,7 @@ class Exception(BaseModel):
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
         if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
+            _dict["type"] = None
 
         return _dict
 
@@ -112,18 +122,34 @@ class Exception(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "type": obj.get("type"),
-            "title": Title.from_dict(obj["title"]) if obj.get("title") is not None else None,
-            "status": Status.from_dict(obj["status"]) if obj.get("status") is not None else None,
-            "detail": Detail.from_dict(obj["detail"]) if obj.get("detail") is not None else None,
-            "instance": Instance.from_dict(obj["instance"]) if obj.get("instance") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "type": obj.get("type"),
+                "title": (
+                    Title.from_dict(obj["title"])
+                    if obj.get("title") is not None
+                    else None
+                ),
+                "status": (
+                    Status.from_dict(obj["status"])
+                    if obj.get("status") is not None
+                    else None
+                ),
+                "detail": (
+                    Detail.from_dict(obj["detail"])
+                    if obj.get("detail") is not None
+                    else None
+                ),
+                "instance": (
+                    Instance.from_dict(obj["instance"])
+                    if obj.get("instance") is not None
+                    else None
+                ),
+            }
+        )
         # store additional fields in additional_properties
         for _key in obj.keys():
             if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj
-
-

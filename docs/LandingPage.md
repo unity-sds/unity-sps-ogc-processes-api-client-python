@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**attribution** | **str** |  | [optional] 
-**links** | [**List[Link]**](Link.md) |  | 
+**title** | **str** |  | [optional]
+**description** | **str** |  | [optional]
+**attribution** | **str** |  | [optional]
+**links** | [**List[Link]**](Link.md) |  |
 
 ## Example
 
@@ -28,5 +28,3 @@ landing_page_dict = landing_page_instance.to_dict()
 landing_page_from_dict = LandingPage.from_dict(landing_page_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

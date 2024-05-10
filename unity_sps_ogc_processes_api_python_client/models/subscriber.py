@@ -13,23 +13,30 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from typing import Optional, Set
-from typing_extensions import Self
+from typing_extensions import Annotated, Self
+
 
 class Subscriber(BaseModel):
     """
     Subscriber
-    """ # noqa: E501
-    success_uri: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="successUri")
-    in_progress_uri: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, alias="inProgressUri")
-    failed_uri: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, alias="failedUri")
+    """  # noqa: E501
+
+    success_uri: Annotated[str, Field(min_length=1, strict=True)] = Field(
+        alias="successUri"
+    )
+    in_progress_uri: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
+        default=None, alias="inProgressUri"
+    )
+    failed_uri: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
+        default=None, alias="failedUri"
+    )
     __properties: ClassVar[List[str]] = ["successUri", "inProgressUri", "failedUri"]
 
     model_config = ConfigDict(
@@ -37,7 +44,6 @@ class Subscriber(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +69,7 @@ class Subscriber(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -74,12 +79,12 @@ class Subscriber(BaseModel):
         # set to None if in_progress_uri (nullable) is None
         # and model_fields_set contains the field
         if self.in_progress_uri is None and "in_progress_uri" in self.model_fields_set:
-            _dict['inProgressUri'] = None
+            _dict["inProgressUri"] = None
 
         # set to None if failed_uri (nullable) is None
         # and model_fields_set contains the field
         if self.failed_uri is None and "failed_uri" in self.model_fields_set:
-            _dict['failedUri'] = None
+            _dict["failedUri"] = None
 
         return _dict
 
@@ -92,11 +97,11 @@ class Subscriber(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "successUri": obj.get("successUri"),
-            "inProgressUri": obj.get("inProgressUri"),
-            "failedUri": obj.get("failedUri")
-        })
+        _obj = cls.model_validate(
+            {
+                "successUri": obj.get("successUri"),
+                "inProgressUri": obj.get("inProgressUri"),
+                "failedUri": obj.get("failedUri"),
+            }
+        )
         return _obj
-
-

@@ -13,20 +13,23 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List, Optional
-from unity_sps_ogc_processes_api_python_client.models.subscriber import Subscriber
-from typing import Optional, Set
 from typing_extensions import Self
+
+from unity_sps_ogc_processes_api_python_client.models.subscriber import Subscriber
+
 
 class Execute(BaseModel):
     """
     Execute
-    """ # noqa: E501
+    """  # noqa: E501
+
     inputs: Optional[Any] = None
     outputs: Optional[Any] = None
     subscriber: Optional[Subscriber] = None
@@ -37,7 +40,6 @@ class Execute(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +65,7 @@ class Execute(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -73,27 +74,27 @@ class Execute(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of inputs
         if self.inputs:
-            _dict['inputs'] = self.inputs.to_dict()
+            _dict["inputs"] = self.inputs.to_dict()
         # override the default output from pydantic by calling `to_dict()` of outputs
         if self.outputs:
-            _dict['outputs'] = self.outputs.to_dict()
+            _dict["outputs"] = self.outputs.to_dict()
         # override the default output from pydantic by calling `to_dict()` of subscriber
         if self.subscriber:
-            _dict['subscriber'] = self.subscriber.to_dict()
+            _dict["subscriber"] = self.subscriber.to_dict()
         # set to None if inputs (nullable) is None
         # and model_fields_set contains the field
         if self.inputs is None and "inputs" in self.model_fields_set:
-            _dict['inputs'] = None
+            _dict["inputs"] = None
 
         # set to None if outputs (nullable) is None
         # and model_fields_set contains the field
         if self.outputs is None and "outputs" in self.model_fields_set:
-            _dict['outputs'] = None
+            _dict["outputs"] = None
 
         # set to None if subscriber (nullable) is None
         # and model_fields_set contains the field
         if self.subscriber is None and "subscriber" in self.model_fields_set:
-            _dict['subscriber'] = None
+            _dict["subscriber"] = None
 
         return _dict
 
@@ -106,9 +107,23 @@ class Execute(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "inputs": AnyOf.from_dict(obj["inputs"]) if obj.get("inputs") is not None else None, # noqa: F821
-            "outputs": AnyOf.from_dict(obj["outputs"]) if obj.get("outputs") is not None else None, # noqa: F821
-            "subscriber": Subscriber.from_dict(obj["subscriber"]) if obj.get("subscriber") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "inputs": (
+                    AnyOf.from_dict(obj["inputs"])
+                    if obj.get("inputs") is not None
+                    else None
+                ),  # noqa: F821
+                "outputs": (
+                    AnyOf.from_dict(obj["outputs"])
+                    if obj.get("outputs") is not None
+                    else None
+                ),  # noqa: F821
+                "subscriber": (
+                    Subscriber.from_dict(obj["subscriber"])
+                    if obj.get("subscriber") is not None
+                    else None
+                ),
+            }
+        )
         return _obj

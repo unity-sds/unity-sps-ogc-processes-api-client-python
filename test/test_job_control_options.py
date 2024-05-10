@@ -14,7 +14,6 @@
 
 import unittest
 
-from unity_sps_ogc_processes_api_python_client.models.job_control_options import JobControlOptions
 
 class TestJobControlOptions(unittest.TestCase):
     """JobControlOptions unit test stubs"""
@@ -29,5 +28,6 @@ class TestJobControlOptions(unittest.TestCase):
         """Test JobControlOptions"""
         # inst = JobControlOptions()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

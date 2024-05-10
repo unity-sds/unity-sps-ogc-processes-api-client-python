@@ -13,19 +13,21 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Optional, Set
 from typing_extensions import Self
+
 
 class Link(BaseModel):
     """
     Link
-    """ # noqa: E501
+    """  # noqa: E501
+
     href: StrictStr
     rel: Optional[StrictStr] = None
     type: Optional[StrictStr] = None
@@ -38,7 +40,6 @@ class Link(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -64,8 +65,7 @@ class Link(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -75,22 +75,22 @@ class Link(BaseModel):
         # set to None if rel (nullable) is None
         # and model_fields_set contains the field
         if self.rel is None and "rel" in self.model_fields_set:
-            _dict['rel'] = None
+            _dict["rel"] = None
 
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
         if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
+            _dict["type"] = None
 
         # set to None if hreflang (nullable) is None
         # and model_fields_set contains the field
         if self.hreflang is None and "hreflang" in self.model_fields_set:
-            _dict['hreflang'] = None
+            _dict["hreflang"] = None
 
         # set to None if title (nullable) is None
         # and model_fields_set contains the field
         if self.title is None and "title" in self.model_fields_set:
-            _dict['title'] = None
+            _dict["title"] = None
 
         return _dict
 
@@ -103,13 +103,13 @@ class Link(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "href": obj.get("href"),
-            "rel": obj.get("rel"),
-            "type": obj.get("type"),
-            "hreflang": obj.get("hreflang"),
-            "title": obj.get("title")
-        })
+        _obj = cls.model_validate(
+            {
+                "href": obj.get("href"),
+                "rel": obj.get("rel"),
+                "type": obj.get("type"),
+                "hreflang": obj.get("hreflang"),
+                "title": obj.get("title"),
+            }
+        )
         return _obj
-
-

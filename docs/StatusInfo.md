@@ -5,18 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**process_id** | **str** |  | [optional] 
-**type** | **object** |  | 
-**job_id** | **str** |  | 
-**status** | [**StatusCode**](StatusCode.md) |  | 
-**message** | **str** |  | [optional] 
-**exception** | [**Exception**](Exception.md) |  | [optional] 
-**created** | **datetime** |  | [optional] 
-**started** | **datetime** |  | [optional] 
-**finished** | **datetime** |  | [optional] 
-**updated** | **datetime** |  | [optional] 
-**progress** | **int** |  | [optional] 
-**links** | [**List[Link]**](Link.md) |  | [optional] 
+**process_id** | **str** |  | [optional]
+**type** | **object** |  |
+**job_id** | **str** |  |
+**status** | [**StatusCode**](StatusCode.md) |  |
+**message** | **str** |  | [optional]
+**exception** | [**Exception**](Exception.md) |  | [optional]
+**created** | **datetime** |  | [optional]
+**started** | **datetime** |  | [optional]
+**finished** | **datetime** |  | [optional]
+**updated** | **datetime** |  | [optional]
+**progress** | **int** |  | [optional]
+**links** | [**List[Link]**](Link.md) |  | [optional]
 
 ## Example
 
@@ -36,5 +36,3 @@ status_info_dict = status_info_instance.to_dict()
 status_info_from_dict = StatusInfo.from_dict(status_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

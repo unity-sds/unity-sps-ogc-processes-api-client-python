@@ -13,24 +13,26 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
-
 from datetime import datetime
+from typing import Any, ClassVar, Dict, List, Optional, Set
+
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Self
+
 from unity_sps_ogc_processes_api_python_client.models.exception import Exception
 from unity_sps_ogc_processes_api_python_client.models.link import Link
 from unity_sps_ogc_processes_api_python_client.models.status_code import StatusCode
-from typing import Optional, Set
-from typing_extensions import Self
+
 
 class StatusInfo(BaseModel):
     """
     StatusInfo
-    """ # noqa: E501
+    """  # noqa: E501
+
     process_id: Optional[StrictStr] = Field(default=None, alias="processID")
     type: Optional[Any]
     job_id: StrictStr = Field(alias="jobID")
@@ -43,14 +45,26 @@ class StatusInfo(BaseModel):
     updated: Optional[datetime] = None
     progress: Optional[Annotated[int, Field(le=100, strict=True, ge=0)]] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["processID", "type", "jobID", "status", "message", "exception", "created", "started", "finished", "updated", "progress", "links"]
+    __properties: ClassVar[List[str]] = [
+        "processID",
+        "type",
+        "jobID",
+        "status",
+        "message",
+        "exception",
+        "created",
+        "started",
+        "finished",
+        "updated",
+        "progress",
+        "links",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -76,8 +90,7 @@ class StatusInfo(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -86,63 +99,63 @@ class StatusInfo(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of exception
         if self.exception:
-            _dict['exception'] = self.exception.to_dict()
+            _dict["exception"] = self.exception.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
             for _item in self.links:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['links'] = _items
+            _dict["links"] = _items
         # set to None if process_id (nullable) is None
         # and model_fields_set contains the field
         if self.process_id is None and "process_id" in self.model_fields_set:
-            _dict['processID'] = None
+            _dict["processID"] = None
 
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
         if self.type is None and "type" in self.model_fields_set:
-            _dict['type'] = None
+            _dict["type"] = None
 
         # set to None if message (nullable) is None
         # and model_fields_set contains the field
         if self.message is None and "message" in self.model_fields_set:
-            _dict['message'] = None
+            _dict["message"] = None
 
         # set to None if exception (nullable) is None
         # and model_fields_set contains the field
         if self.exception is None and "exception" in self.model_fields_set:
-            _dict['exception'] = None
+            _dict["exception"] = None
 
         # set to None if created (nullable) is None
         # and model_fields_set contains the field
         if self.created is None and "created" in self.model_fields_set:
-            _dict['created'] = None
+            _dict["created"] = None
 
         # set to None if started (nullable) is None
         # and model_fields_set contains the field
         if self.started is None and "started" in self.model_fields_set:
-            _dict['started'] = None
+            _dict["started"] = None
 
         # set to None if finished (nullable) is None
         # and model_fields_set contains the field
         if self.finished is None and "finished" in self.model_fields_set:
-            _dict['finished'] = None
+            _dict["finished"] = None
 
         # set to None if updated (nullable) is None
         # and model_fields_set contains the field
         if self.updated is None and "updated" in self.model_fields_set:
-            _dict['updated'] = None
+            _dict["updated"] = None
 
         # set to None if progress (nullable) is None
         # and model_fields_set contains the field
         if self.progress is None and "progress" in self.model_fields_set:
-            _dict['progress'] = None
+            _dict["progress"] = None
 
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
-            _dict['links'] = None
+            _dict["links"] = None
 
         return _dict
 
@@ -155,20 +168,28 @@ class StatusInfo(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "processID": obj.get("processID"),
-            "type": obj.get("type"),
-            "jobID": obj.get("jobID"),
-            "status": obj.get("status"),
-            "message": obj.get("message"),
-            "exception": Exception.from_dict(obj["exception"]) if obj.get("exception") is not None else None,
-            "created": obj.get("created"),
-            "started": obj.get("started"),
-            "finished": obj.get("finished"),
-            "updated": obj.get("updated"),
-            "progress": obj.get("progress"),
-            "links": [Link.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "processID": obj.get("processID"),
+                "type": obj.get("type"),
+                "jobID": obj.get("jobID"),
+                "status": obj.get("status"),
+                "message": obj.get("message"),
+                "exception": (
+                    Exception.from_dict(obj["exception"])
+                    if obj.get("exception") is not None
+                    else None
+                ),
+                "created": obj.get("created"),
+                "started": obj.get("started"),
+                "finished": obj.get("finished"),
+                "updated": obj.get("updated"),
+                "progress": obj.get("progress"),
+                "links": (
+                    [Link.from_dict(_item) for _item in obj["links"]]
+                    if obj.get("links") is not None
+                    else None
+                ),
+            }
+        )
         return _obj
-
-

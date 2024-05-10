@@ -16,6 +16,7 @@ import unittest
 
 from unity_sps_ogc_processes_api_python_client.models.landing_page import LandingPage
 
+
 class TestLandingPage(unittest.TestCase):
     """LandingPage unit test stubs"""
 
@@ -27,9 +28,9 @@ class TestLandingPage(unittest.TestCase):
 
     def make_instance(self, include_optional) -> LandingPage:
         """Test LandingPage
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included"""
         # uncomment below to create an instance of `LandingPage`
         """
         model = LandingPage()
@@ -40,10 +41,10 @@ class TestLandingPage(unittest.TestCase):
                 attribution = '',
                 links = [
                     unity_sps_ogc_processes_api_python_client.models.link.Link(
-                        href = '', 
-                        rel = '', 
-                        type = '', 
-                        hreflang = '', 
+                        href = '',
+                        rel = '',
+                        type = '',
+                        hreflang = '',
                         title = '', )
                     ]
             )
@@ -51,10 +52,10 @@ class TestLandingPage(unittest.TestCase):
             return LandingPage(
                 links = [
                     unity_sps_ogc_processes_api_python_client.models.link.Link(
-                        href = '', 
-                        rel = '', 
-                        type = '', 
-                        hreflang = '', 
+                        href = '',
+                        rel = '',
+                        type = '',
+                        hreflang = '',
                         title = '', )
                     ],
         )
@@ -65,5 +66,6 @@ class TestLandingPage(unittest.TestCase):
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

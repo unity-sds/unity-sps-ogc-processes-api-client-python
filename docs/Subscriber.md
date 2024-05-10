@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success_uri** | **str** |  | 
-**in_progress_uri** | **str** |  | [optional] 
-**failed_uri** | **str** |  | [optional] 
+**success_uri** | **str** |  |
+**in_progress_uri** | **str** |  | [optional]
+**failed_uri** | **str** |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ subscriber_dict = subscriber_instance.to_dict()
 subscriber_from_dict = Subscriber.from_dict(subscriber_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

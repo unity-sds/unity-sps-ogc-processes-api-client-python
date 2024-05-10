@@ -130,7 +130,7 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    process_input = unity_sps_ogc_processes_api_python_client.ProcessInput() # ProcessInput | 
+    process_input = unity_sps_ogc_processes_api_python_client.ProcessInput() # ProcessInput |
 
     try:
         # Deploy a process
@@ -148,7 +148,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **process_input** | [**ProcessInput**](ProcessInput.md)|  | 
+ **process_input** | [**ProcessInput**](ProcessInput.md)|  |
 
 ### Return type
 
@@ -209,7 +209,7 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    job_id = 'job_id_example' # str | 
+    job_id = 'job_id_example' # str |
 
     try:
         # Cancel a job execution, remove a finished job
@@ -227,7 +227,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **job_id** | **str**|  | 
+ **job_id** | **str**|  |
 
 ### Return type
 
@@ -289,8 +289,8 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    process_id = 'process_id_example' # str | 
-    execute = unity_sps_ogc_processes_api_python_client.Execute() # Execute | 
+    process_id = 'process_id_example' # str |
+    execute = unity_sps_ogc_processes_api_python_client.Execute() # Execute |
 
     try:
         # Execute a process
@@ -308,8 +308,8 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **process_id** | **str**|  | 
- **execute** | [**Execute**](Execute.md)|  | 
+ **process_id** | **str**|  |
+ **execute** | [**Execute**](Execute.md)|  |
 
 ### Return type
 
@@ -592,7 +592,7 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    process_id = 'process_id_example' # str | 
+    process_id = 'process_id_example' # str |
 
     try:
         # Retrieve a process description
@@ -610,7 +610,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **process_id** | **str**|  | 
+ **process_id** | **str**|  |
 
 ### Return type
 
@@ -744,7 +744,7 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    job_id = 'job_id_example' # str | 
+    job_id = 'job_id_example' # str |
 
     try:
         # Retrieve the result(s) of a job
@@ -762,7 +762,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **job_id** | **str**|  | 
+ **job_id** | **str**|  |
 
 ### Return type
 
@@ -823,7 +823,7 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    job_id = 'job_id_example' # str | 
+    job_id = 'job_id_example' # str |
 
     try:
         # Retrieve the status of a job
@@ -841,7 +841,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **job_id** | **str**|  | 
+ **job_id** | **str**|  |
 
 ### Return type
 
@@ -901,7 +901,7 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    process_id = 'process_id_example' # str | 
+    process_id = 'process_id_example' # str |
 
     try:
         # Undeploy a process
@@ -917,7 +917,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **process_id** | **str**|  | 
+ **process_id** | **str**|  |
 
 ### Return type
 
@@ -940,4 +940,3 @@ void (empty response body)
 **422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

@@ -13,20 +13,23 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from unity_sps_ogc_processes_api_python_client.models.link import Link
-from typing import Optional, Set
 from typing_extensions import Self
+
+from unity_sps_ogc_processes_api_python_client.models.link import Link
+
 
 class LandingPage(BaseModel):
     """
     LandingPage
-    """ # noqa: E501
+    """  # noqa: E501
+
     title: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
     attribution: Optional[StrictStr] = None
@@ -38,7 +41,6 @@ class LandingPage(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -64,8 +66,7 @@ class LandingPage(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -78,21 +79,21 @@ class LandingPage(BaseModel):
             for _item in self.links:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['links'] = _items
+            _dict["links"] = _items
         # set to None if title (nullable) is None
         # and model_fields_set contains the field
         if self.title is None and "title" in self.model_fields_set:
-            _dict['title'] = None
+            _dict["title"] = None
 
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
-            _dict['description'] = None
+            _dict["description"] = None
 
         # set to None if attribution (nullable) is None
         # and model_fields_set contains the field
         if self.attribution is None and "attribution" in self.model_fields_set:
-            _dict['attribution'] = None
+            _dict["attribution"] = None
 
         return _dict
 
@@ -105,12 +106,16 @@ class LandingPage(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "title": obj.get("title"),
-            "description": obj.get("description"),
-            "attribution": obj.get("attribution"),
-            "links": [Link.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "title": obj.get("title"),
+                "description": obj.get("description"),
+                "attribution": obj.get("attribution"),
+                "links": (
+                    [Link.from_dict(_item) for _item in obj["links"]]
+                    if obj.get("links") is not None
+                    else None
+                ),
+            }
+        )
         return _obj
-
-

@@ -24,5 +24,3 @@ title_dict = title_instance.to_dict()
 title_from_dict = Title.from_dict(title_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

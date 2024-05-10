@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**jobs** | [**List[StatusInfo]**](StatusInfo.md) |  | 
-**links** | [**List[Link]**](Link.md) |  | 
+**jobs** | [**List[StatusInfo]**](StatusInfo.md) |  |
+**links** | [**List[Link]**](Link.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ job_list_dict = job_list_instance.to_dict()
 job_list_from_dict = JobList.from_dict(job_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
