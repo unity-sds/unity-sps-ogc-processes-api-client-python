@@ -110,15 +110,15 @@ class Execute(BaseModel):
         _obj = cls.model_validate(
             {
                 "inputs": (
-                    AnyOf.from_dict(obj["inputs"])
+                    AnyOf.from_dict(obj["inputs"]) # noqa: F821
                     if obj.get("inputs") is not None
                     else None
-                ),  # noqa: F821
+                ),
                 "outputs": (
-                    AnyOf.from_dict(obj["outputs"])
+                    AnyOf.from_dict(obj["outputs"]) # noqa: F821
                     if obj.get("outputs") is not None
                     else None
-                ),  # noqa: F821
+                ),
                 "subscriber": (
                     Subscriber.from_dict(obj["subscriber"])
                     if obj.get("subscriber") is not None
