@@ -142,6 +142,7 @@ All URIs are relative to *<http://localhost>*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**conformance_declaration_conformance_get**](docs/DefaultApi.md#conformance_declaration_conformance_get) | **GET** /conformance | Information about standards that this API conforms to
+*DefaultApi* | [**deploy_process_processes_post**](docs/DefaultApi.md#deploy_process_processes_post) | **POST** /processes | Deploy a process
 *DefaultApi* | [**dismiss_jobs_job_id_delete**](docs/DefaultApi.md#dismiss_jobs_job_id_delete) | **DELETE** /jobs/{job_id} | Cancel a job execution, remove a finished job
 *DefaultApi* | [**execute_processes_process_id_execution_post**](docs/DefaultApi.md#execute_processes_process_id_execution_post) | **POST** /processes/{process_id}/execution | Execute a process
 *DefaultApi* | [**get_health_health_get**](docs/DefaultApi.md#get_health_health_get) | **GET** /health | Perform a Health Check
@@ -149,12 +150,11 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**landing_page_get**](docs/DefaultApi.md#landing_page_get) | **GET** / | Landing page of this API
 *DefaultApi* | [**process_description_processes_process_id_get**](docs/DefaultApi.md#process_description_processes_process_id_get) | **GET** /processes/{process_id} | Retrieve a process description
 *DefaultApi* | [**process_list_processes_get**](docs/DefaultApi.md#process_list_processes_get) | **GET** /processes | Retrieve the list of available processes
-*DefaultApi* | [**register_process_processes_post**](docs/DefaultApi.md#register_process_processes_post) | **POST** /processes | Register a process
 *DefaultApi* | [**results_jobs_job_id_results_get**](docs/DefaultApi.md#results_jobs_job_id_results_get) | **GET** /jobs/{job_id}/results | Retrieve the result(s) of a job
 *DefaultApi* | [**status_jobs_job_id_get**](docs/DefaultApi.md#status_jobs_job_id_get) | **GET** /jobs/{job_id} | Retrieve the status of a job
-*DefaultApi* | [**unregister_process_processes_process_id_delete**](docs/DefaultApi.md#unregister_process_processes_process_id_delete) | **DELETE** /processes/{process_id} | Unregister a process
+*DefaultApi* | [**undeploy_process_processes_process_id_delete**](docs/DefaultApi.md#undeploy_process_processes_process_id_delete) | **DELETE** /processes/{process_id} | Undeploy a process
 
-## Documentation For Models
+#### Documentation For Models
 
 * [Bbox](docs/Bbox.md)
 * [ConfClasses](docs/ConfClasses.md)
@@ -190,12 +190,11 @@ Class | Method | HTTP request | Description
 * [ValidationErrorLocInner](docs/ValidationErrorLocInner.md)
 * [Value](docs/Value.md)
 
-## Documentation For Authorization
+#### Documentation For Authorization
 
 Authentication schemes defined for the API:
-<a id="bearerAuth"></a>
 
-### bearerAuth
+##### bearerAuth
 
 * **Type**: Bearer authentication (JWT)
 
