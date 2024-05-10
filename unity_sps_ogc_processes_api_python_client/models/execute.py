@@ -107,10 +107,8 @@ class Execute(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "inputs": AnyOf.from_dict(obj["inputs"]) if obj.get("inputs") is not None else None,
-            "outputs": AnyOf.from_dict(obj["outputs"]) if obj.get("outputs") is not None else None,
+            "inputs": AnyOf.from_dict(obj["inputs"]) if obj.get("inputs") is not None else None, # noqa: F821
+            "outputs": AnyOf.from_dict(obj["outputs"]) if obj.get("outputs") is not None else None, # noqa: F821
             "subscriber": Subscriber.from_dict(obj["subscriber"]) if obj.get("subscriber") is not None else None
         })
         return _obj
-
-
