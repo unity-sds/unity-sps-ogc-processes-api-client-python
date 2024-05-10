@@ -64,7 +64,7 @@ class Metadata(BaseModel):
 
     @field_validator("actual_instance")
     def actual_instance_must_validate_anyof(cls, v):
-        instance = Metadata.model_construct()
+        instance = Metadata.model_construct()  # noqa: F841
         error_messages = []
         # validate data type: Metadata1
         if not isinstance(v, Metadata1):
