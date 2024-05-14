@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**processes** | [**List[ProcessSummary]**](ProcessSummary.md) |  |
 **links** | [**List[Link]**](Link.md) |  |
+**processes** | [**List[ProcessSummary]**](ProcessSummary.md) |  |
 
 ## Example
 

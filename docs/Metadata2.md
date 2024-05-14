@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**lang** | **str** |  | [optional]
 **role** | **str** |  | [optional]
 **title** | **str** |  | [optional]
-**lang** | **str** |  | [optional]
 **value** | [**Value**](Value.md) |  | [optional]
 
 ## Example

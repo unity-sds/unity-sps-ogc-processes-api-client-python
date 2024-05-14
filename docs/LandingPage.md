@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **str** |  | [optional]
-**description** | **str** |  | [optional]
 **attribution** | **str** |  | [optional]
+**description** | **str** |  | [optional]
 **links** | [**List[Link]**](Link.md) |  |
+**title** | **str** |  | [optional]
 
 ## Example
 

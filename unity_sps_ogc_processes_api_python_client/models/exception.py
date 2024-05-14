@@ -19,13 +19,8 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing_extensions import Self
-
-from unity_sps_ogc_processes_api_python_client.models.detail import Detail
-from unity_sps_ogc_processes_api_python_client.models.instance import Instance
-from unity_sps_ogc_processes_api_python_client.models.status import Status
-from unity_sps_ogc_processes_api_python_client.models.title import Title
 
 
 class Exception(BaseModel):
@@ -33,18 +28,18 @@ class Exception(BaseModel):
     Exception
     """  # noqa: E501
 
-    type: Optional[Any]
-    title: Optional[Title] = None
-    status: Optional[Status] = None
-    detail: Optional[Detail] = None
-    instance: Optional[Instance] = None
+    detail: Optional[StrictStr] = None
+    instance: Optional[StrictStr] = None
+    status: Optional[StrictInt] = None
+    title: Optional[StrictStr] = None
+    type: StrictStr
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = [
-        "type",
-        "title",
-        "status",
         "detail",
         "instance",
+        "status",
+        "title",
+        "type",
     ]
 
     model_config = ConfigDict(
@@ -89,27 +84,30 @@ class Exception(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of title
-        if self.title:
-            _dict["title"] = self.title.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of status
-        if self.status:
-            _dict["status"] = self.status.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of detail
-        if self.detail:
-            _dict["detail"] = self.detail.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of instance
-        if self.instance:
-            _dict["instance"] = self.instance.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if type (nullable) is None
+        # set to None if detail (nullable) is None
         # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict["type"] = None
+        if self.detail is None and "detail" in self.model_fields_set:
+            _dict["detail"] = None
+
+        # set to None if instance (nullable) is None
+        # and model_fields_set contains the field
+        if self.instance is None and "instance" in self.model_fields_set:
+            _dict["instance"] = None
+
+        # set to None if status (nullable) is None
+        # and model_fields_set contains the field
+        if self.status is None and "status" in self.model_fields_set:
+            _dict["status"] = None
+
+        # set to None if title (nullable) is None
+        # and model_fields_set contains the field
+        if self.title is None and "title" in self.model_fields_set:
+            _dict["title"] = None
 
         return _dict
 
@@ -124,27 +122,11 @@ class Exception(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "detail": obj.get("detail"),
+                "instance": obj.get("instance"),
+                "status": obj.get("status"),
+                "title": obj.get("title"),
                 "type": obj.get("type"),
-                "title": (
-                    Title.from_dict(obj["title"])
-                    if obj.get("title") is not None
-                    else None
-                ),
-                "status": (
-                    Status.from_dict(obj["status"])
-                    if obj.get("status") is not None
-                    else None
-                ),
-                "detail": (
-                    Detail.from_dict(obj["detail"])
-                    if obj.get("detail") is not None
-                    else None
-                ),
-                "instance": (
-                    Instance.from_dict(obj["instance"])
-                    if obj.get("instance") is not None
-                    else None
-                ),
             }
         )
         # store additional fields in additional_properties

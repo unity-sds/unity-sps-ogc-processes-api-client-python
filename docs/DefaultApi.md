@@ -866,7 +866,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **undeploy_process_processes_process_id_delete**
-> undeploy_process_processes_process_id_delete(process_id)
+> undeploy_process_processes_process_id_delete(process_id, force=force)
 
 Undeploy a process
 
@@ -902,10 +902,11 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
     process_id = 'process_id_example' # str |
+    force = False # bool |  (optional) (default to False)
 
     try:
         # Undeploy a process
-        api_instance.undeploy_process_processes_process_id_delete(process_id)
+        api_instance.undeploy_process_processes_process_id_delete(process_id, force=force)
     except Exception as e:
         print("Exception when calling DefaultApi->undeploy_process_processes_process_id_delete: %s\n" % e)
 ```
@@ -918,6 +919,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **process_id** | **str**|  |
+ **force** | **bool**|  | [optional] [default to False]
 
 ### Return type
 

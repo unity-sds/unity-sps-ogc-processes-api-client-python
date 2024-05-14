@@ -13,7 +13,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from unity_sps_ogc_processes_api_python_client.api_client import (
@@ -2658,6 +2658,7 @@ class DefaultApi:
     def undeploy_process_processes_process_id_delete(
         self,
         process_id: StrictStr,
+        force: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2676,6 +2677,8 @@ class DefaultApi:
 
         :param process_id: (required)
         :type process_id: str
+        :param force:
+        :type force: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2700,6 +2703,7 @@ class DefaultApi:
 
         _param = self._undeploy_process_processes_process_id_delete_serialize(
             process_id=process_id,
+            force=force,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2723,6 +2727,7 @@ class DefaultApi:
     def undeploy_process_processes_process_id_delete_with_http_info(
         self,
         process_id: StrictStr,
+        force: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2741,6 +2746,8 @@ class DefaultApi:
 
         :param process_id: (required)
         :type process_id: str
+        :param force:
+        :type force: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2765,6 +2772,7 @@ class DefaultApi:
 
         _param = self._undeploy_process_processes_process_id_delete_serialize(
             process_id=process_id,
+            force=force,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2788,6 +2796,7 @@ class DefaultApi:
     def undeploy_process_processes_process_id_delete_without_preload_content(
         self,
         process_id: StrictStr,
+        force: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2806,6 +2815,8 @@ class DefaultApi:
 
         :param process_id: (required)
         :type process_id: str
+        :param force:
+        :type force: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2830,6 +2841,7 @@ class DefaultApi:
 
         _param = self._undeploy_process_processes_process_id_delete_serialize(
             process_id=process_id,
+            force=force,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2848,6 +2860,7 @@ class DefaultApi:
     def _undeploy_process_processes_process_id_delete_serialize(
         self,
         process_id,
+        force,
         _request_auth,
         _content_type,
         _headers,
@@ -2869,6 +2882,10 @@ class DefaultApi:
         if process_id is not None:
             _path_params["process_id"] = process_id
         # process the query parameters
+        if force is not None:
+
+            _query_params.append(("force", force))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success_uri** | **str** |  |
-**in_progress_uri** | **str** |  | [optional]
 **failed_uri** | **str** |  | [optional]
+**in_progress_uri** | **str** |  | [optional]
+**success_uri** | **str** |  |
 
 ## Example
 

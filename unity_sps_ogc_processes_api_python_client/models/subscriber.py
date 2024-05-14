@@ -28,16 +28,16 @@ class Subscriber(BaseModel):
     Subscriber
     """  # noqa: E501
 
-    success_uri: Annotated[str, Field(min_length=1, strict=True)] = Field(
-        alias="successUri"
+    failed_uri: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
+        default=None, alias="failedUri"
     )
     in_progress_uri: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
         default=None, alias="inProgressUri"
     )
-    failed_uri: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(
-        default=None, alias="failedUri"
+    success_uri: Annotated[str, Field(min_length=1, strict=True)] = Field(
+        alias="successUri"
     )
-    __properties: ClassVar[List[str]] = ["successUri", "inProgressUri", "failedUri"]
+    __properties: ClassVar[List[str]] = ["failedUri", "inProgressUri", "successUri"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,15 +76,15 @@ class Subscriber(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if in_progress_uri (nullable) is None
-        # and model_fields_set contains the field
-        if self.in_progress_uri is None and "in_progress_uri" in self.model_fields_set:
-            _dict["inProgressUri"] = None
-
         # set to None if failed_uri (nullable) is None
         # and model_fields_set contains the field
         if self.failed_uri is None and "failed_uri" in self.model_fields_set:
             _dict["failedUri"] = None
+
+        # set to None if in_progress_uri (nullable) is None
+        # and model_fields_set contains the field
+        if self.in_progress_uri is None and "in_progress_uri" in self.model_fields_set:
+            _dict["inProgressUri"] = None
 
         return _dict
 
@@ -99,9 +99,9 @@ class Subscriber(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "successUri": obj.get("successUri"),
-                "inProgressUri": obj.get("inProgressUri"),
                 "failedUri": obj.get("failedUri"),
+                "inProgressUri": obj.get("inProgressUri"),
+                "successUri": obj.get("successUri"),
             }
         )
         return _obj

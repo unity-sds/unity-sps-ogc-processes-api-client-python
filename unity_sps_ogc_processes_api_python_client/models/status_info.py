@@ -33,31 +33,31 @@ class StatusInfo(BaseModel):
     StatusInfo
     """  # noqa: E501
 
-    process_id: Optional[StrictStr] = Field(default=None, alias="processID")
-    type: Optional[Any]
-    job_id: StrictStr = Field(alias="jobID")
-    status: StatusCode
-    message: Optional[StrictStr] = None
-    exception: Optional[Exception] = None
     created: Optional[datetime] = None
-    started: Optional[datetime] = None
+    exception: Optional[Exception] = None
     finished: Optional[datetime] = None
-    updated: Optional[datetime] = None
-    progress: Optional[Annotated[int, Field(le=100, strict=True, ge=0)]] = None
+    job_id: StrictStr = Field(alias="jobID")
     links: Optional[List[Link]] = None
+    message: Optional[StrictStr] = None
+    process_id: Optional[StrictStr] = Field(default=None, alias="processID")
+    progress: Optional[Annotated[int, Field(le=100, strict=True, ge=0)]] = None
+    started: Optional[datetime] = None
+    status: StatusCode
+    type: Optional[Any]
+    updated: Optional[datetime] = None
     __properties: ClassVar[List[str]] = [
-        "processID",
-        "type",
-        "jobID",
-        "status",
-        "message",
-        "exception",
         "created",
-        "started",
+        "exception",
         "finished",
-        "updated",
-        "progress",
+        "jobID",
         "links",
+        "message",
+        "processID",
+        "progress",
+        "started",
+        "status",
+        "type",
+        "updated",
     ]
 
     model_config = ConfigDict(
@@ -107,55 +107,55 @@ class StatusInfo(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["links"] = _items
-        # set to None if process_id (nullable) is None
+        # set to None if created (nullable) is None
         # and model_fields_set contains the field
-        if self.process_id is None and "process_id" in self.model_fields_set:
-            _dict["processID"] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict["type"] = None
-
-        # set to None if message (nullable) is None
-        # and model_fields_set contains the field
-        if self.message is None and "message" in self.model_fields_set:
-            _dict["message"] = None
+        if self.created is None and "created" in self.model_fields_set:
+            _dict["created"] = None
 
         # set to None if exception (nullable) is None
         # and model_fields_set contains the field
         if self.exception is None and "exception" in self.model_fields_set:
             _dict["exception"] = None
 
-        # set to None if created (nullable) is None
-        # and model_fields_set contains the field
-        if self.created is None and "created" in self.model_fields_set:
-            _dict["created"] = None
-
-        # set to None if started (nullable) is None
-        # and model_fields_set contains the field
-        if self.started is None and "started" in self.model_fields_set:
-            _dict["started"] = None
-
         # set to None if finished (nullable) is None
         # and model_fields_set contains the field
         if self.finished is None and "finished" in self.model_fields_set:
             _dict["finished"] = None
 
-        # set to None if updated (nullable) is None
+        # set to None if links (nullable) is None
         # and model_fields_set contains the field
-        if self.updated is None and "updated" in self.model_fields_set:
-            _dict["updated"] = None
+        if self.links is None and "links" in self.model_fields_set:
+            _dict["links"] = None
+
+        # set to None if message (nullable) is None
+        # and model_fields_set contains the field
+        if self.message is None and "message" in self.model_fields_set:
+            _dict["message"] = None
+
+        # set to None if process_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.process_id is None and "process_id" in self.model_fields_set:
+            _dict["processID"] = None
 
         # set to None if progress (nullable) is None
         # and model_fields_set contains the field
         if self.progress is None and "progress" in self.model_fields_set:
             _dict["progress"] = None
 
-        # set to None if links (nullable) is None
+        # set to None if started (nullable) is None
         # and model_fields_set contains the field
-        if self.links is None and "links" in self.model_fields_set:
-            _dict["links"] = None
+        if self.started is None and "started" in self.model_fields_set:
+            _dict["started"] = None
+
+        # set to None if type (nullable) is None
+        # and model_fields_set contains the field
+        if self.type is None and "type" in self.model_fields_set:
+            _dict["type"] = None
+
+        # set to None if updated (nullable) is None
+        # and model_fields_set contains the field
+        if self.updated is None and "updated" in self.model_fields_set:
+            _dict["updated"] = None
 
         return _dict
 
@@ -170,26 +170,26 @@ class StatusInfo(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "processID": obj.get("processID"),
-                "type": obj.get("type"),
-                "jobID": obj.get("jobID"),
-                "status": obj.get("status"),
-                "message": obj.get("message"),
+                "created": obj.get("created"),
                 "exception": (
                     Exception.from_dict(obj["exception"])
                     if obj.get("exception") is not None
                     else None
                 ),
-                "created": obj.get("created"),
-                "started": obj.get("started"),
                 "finished": obj.get("finished"),
-                "updated": obj.get("updated"),
-                "progress": obj.get("progress"),
+                "jobID": obj.get("jobID"),
                 "links": (
                     [Link.from_dict(_item) for _item in obj["links"]]
                     if obj.get("links") is not None
                     else None
                 ),
+                "message": obj.get("message"),
+                "processID": obj.get("processID"),
+                "progress": obj.get("progress"),
+                "started": obj.get("started"),
+                "status": obj.get("status"),
+                "type": obj.get("type"),
+                "updated": obj.get("updated"),
             }
         )
         return _obj

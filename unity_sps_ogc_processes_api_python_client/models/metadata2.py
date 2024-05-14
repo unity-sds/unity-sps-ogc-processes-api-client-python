@@ -30,11 +30,11 @@ class Metadata2(BaseModel):
     Metadata2
     """  # noqa: E501
 
+    lang: Optional[StrictStr] = None
     role: Optional[StrictStr] = None
     title: Optional[StrictStr] = None
-    lang: Optional[StrictStr] = None
     value: Optional[Value] = None
-    __properties: ClassVar[List[str]] = ["role", "title", "lang", "value"]
+    __properties: ClassVar[List[str]] = ["lang", "role", "title", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +76,11 @@ class Metadata2(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
             _dict["value"] = self.value.to_dict()
+        # set to None if lang (nullable) is None
+        # and model_fields_set contains the field
+        if self.lang is None and "lang" in self.model_fields_set:
+            _dict["lang"] = None
+
         # set to None if role (nullable) is None
         # and model_fields_set contains the field
         if self.role is None and "role" in self.model_fields_set:
@@ -85,11 +90,6 @@ class Metadata2(BaseModel):
         # and model_fields_set contains the field
         if self.title is None and "title" in self.model_fields_set:
             _dict["title"] = None
-
-        # set to None if lang (nullable) is None
-        # and model_fields_set contains the field
-        if self.lang is None and "lang" in self.model_fields_set:
-            _dict["lang"] = None
 
         # set to None if value (nullable) is None
         # and model_fields_set contains the field
@@ -109,9 +109,9 @@ class Metadata2(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "lang": obj.get("lang"),
                 "role": obj.get("role"),
                 "title": obj.get("title"),
-                "lang": obj.get("lang"),
                 "value": (
                     Value.from_dict(obj["value"])
                     if obj.get("value") is not None

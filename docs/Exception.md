@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **object** |  |
-**title** | [**Title**](Title.md) |  | [optional]
-**status** | [**Status**](Status.md) |  | [optional]
-**detail** | [**Detail**](Detail.md) |  | [optional]
-**instance** | [**Instance**](Instance.md) |  | [optional]
+**detail** | **str** |  | [optional]
+**instance** | **str** |  | [optional]
+**status** | **int** |  | [optional]
+**title** | **str** |  | [optional]
+**type** | **str** |  |
 
 ## Example
 

@@ -30,11 +30,11 @@ class LandingPage(BaseModel):
     LandingPage
     """  # noqa: E501
 
-    title: Optional[StrictStr] = None
-    description: Optional[StrictStr] = None
     attribution: Optional[StrictStr] = None
+    description: Optional[StrictStr] = None
     links: List[Link]
-    __properties: ClassVar[List[str]] = ["title", "description", "attribution", "links"]
+    title: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["attribution", "description", "links", "title"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,20 +80,20 @@ class LandingPage(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["links"] = _items
-        # set to None if title (nullable) is None
+        # set to None if attribution (nullable) is None
         # and model_fields_set contains the field
-        if self.title is None and "title" in self.model_fields_set:
-            _dict["title"] = None
+        if self.attribution is None and "attribution" in self.model_fields_set:
+            _dict["attribution"] = None
 
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict["description"] = None
 
-        # set to None if attribution (nullable) is None
+        # set to None if title (nullable) is None
         # and model_fields_set contains the field
-        if self.attribution is None and "attribution" in self.model_fields_set:
-            _dict["attribution"] = None
+        if self.title is None and "title" in self.model_fields_set:
+            _dict["title"] = None
 
         return _dict
 
@@ -108,14 +108,14 @@ class LandingPage(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "title": obj.get("title"),
-                "description": obj.get("description"),
                 "attribution": obj.get("attribution"),
+                "description": obj.get("description"),
                 "links": (
                     [Link.from_dict(_item) for _item in obj["links"]]
                     if obj.get("links") is not None
                     else None
                 ),
+                "title": obj.get("title"),
             }
         )
         return _obj

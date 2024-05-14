@@ -29,18 +29,18 @@ class Metadata1(BaseModel):
     """  # noqa: E501
 
     href: StrictStr
-    rel: Optional[StrictStr] = None
-    type: Optional[StrictStr] = None
     hreflang: Optional[StrictStr] = None
-    title: Optional[StrictStr] = None
+    rel: Optional[StrictStr] = None
     role: Optional[StrictStr] = None
+    title: Optional[StrictStr] = None
+    type: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
         "href",
-        "rel",
-        "type",
         "hreflang",
-        "title",
+        "rel",
         "role",
+        "title",
+        "type",
     ]
 
     model_config = ConfigDict(
@@ -80,30 +80,30 @@ class Metadata1(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if hreflang (nullable) is None
+        # and model_fields_set contains the field
+        if self.hreflang is None and "hreflang" in self.model_fields_set:
+            _dict["hreflang"] = None
+
         # set to None if rel (nullable) is None
         # and model_fields_set contains the field
         if self.rel is None and "rel" in self.model_fields_set:
             _dict["rel"] = None
 
-        # set to None if type (nullable) is None
+        # set to None if role (nullable) is None
         # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict["type"] = None
-
-        # set to None if hreflang (nullable) is None
-        # and model_fields_set contains the field
-        if self.hreflang is None and "hreflang" in self.model_fields_set:
-            _dict["hreflang"] = None
+        if self.role is None and "role" in self.model_fields_set:
+            _dict["role"] = None
 
         # set to None if title (nullable) is None
         # and model_fields_set contains the field
         if self.title is None and "title" in self.model_fields_set:
             _dict["title"] = None
 
-        # set to None if role (nullable) is None
+        # set to None if type (nullable) is None
         # and model_fields_set contains the field
-        if self.role is None and "role" in self.model_fields_set:
-            _dict["role"] = None
+        if self.type is None and "type" in self.model_fields_set:
+            _dict["type"] = None
 
         return _dict
 
@@ -119,11 +119,11 @@ class Metadata1(BaseModel):
         _obj = cls.model_validate(
             {
                 "href": obj.get("href"),
-                "rel": obj.get("rel"),
-                "type": obj.get("type"),
                 "hreflang": obj.get("hreflang"),
-                "title": obj.get("title"),
+                "rel": obj.get("rel"),
                 "role": obj.get("role"),
+                "title": obj.get("title"),
+                "type": obj.get("type"),
             }
         )
         return _obj
