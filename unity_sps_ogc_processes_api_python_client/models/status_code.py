@@ -13,8 +13,10 @@
 
 
 from __future__ import annotations
+
 import json
 from enum import Enum
+
 from typing_extensions import Self
 
 
@@ -26,15 +28,13 @@ class StatusCode(str, Enum):
     """
     allowed enum values
     """
-    ACCEPTED = 'accepted'
-    RUNNING = 'running'
-    SUCCESSFUL = 'successful'
-    FAILED = 'failed'
-    DISMISSED = 'dismissed'
+    ACCEPTED = "accepted"
+    RUNNING = "running"
+    SUCCESSFUL = "successful"
+    FAILED = "failed"
+    DISMISSED = "dismissed"
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of StatusCode from a JSON string"""
         return cls(json.loads(json_str))
-
-

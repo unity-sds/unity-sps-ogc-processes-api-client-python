@@ -14,7 +14,10 @@
 
 import unittest
 
-from unity_sps_ogc_processes_api_python_client.models.process_summary import ProcessSummary
+from unity_sps_ogc_processes_api_python_client.models.process_summary import (
+    ProcessSummary,
+)
+
 
 class TestProcessSummary(unittest.TestCase):
     """ProcessSummary unit test stubs"""
@@ -27,9 +30,9 @@ class TestProcessSummary(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ProcessSummary:
         """Test ProcessSummary
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included"""
         # uncomment below to create an instance of `ProcessSummary`
         """
         model = ProcessSummary()
@@ -50,10 +53,10 @@ class TestProcessSummary(unittest.TestCase):
                     ],
                 links = [
                     unity_sps_ogc_processes_api_python_client.models.link.Link(
-                        href = '', 
-                        rel = '', 
-                        type = '', 
-                        hreflang = '', 
+                        href = '',
+                        rel = '',
+                        type = '',
+                        hreflang = '',
                         title = '', )
                     ]
             )
@@ -69,5 +72,6 @@ class TestProcessSummary(unittest.TestCase):
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

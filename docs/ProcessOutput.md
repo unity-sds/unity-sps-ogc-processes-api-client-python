@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
-**keywords** | **List[str]** |  | [optional] 
-**metadata** | [**List[Metadata]**](Metadata.md) |  | [optional] 
-**id** | **str** |  | 
-**version** | **str** |  | 
-**job_control_options** | [**List[JobControlOptions]**](JobControlOptions.md) |  | [optional] 
-**links** | [**List[Link]**](Link.md) |  | [optional] 
-**inputs** | [**List[InputValueOutput]**](InputValueOutput.md) |  | [optional] 
-**outputs** | [**List[InputValueOutput]**](InputValueOutput.md) |  | [optional] 
+**description** | **str** |  | [optional]
+**id** | **str** |  |
+**inputs** | [**List[InputValueOutput]**](InputValueOutput.md) |  | [optional]
+**job_control_options** | [**List[JobControlOptions]**](JobControlOptions.md) |  | [optional]
+**keywords** | **List[str]** |  | [optional]
+**links** | [**List[Link]**](Link.md) |  | [optional]
+**metadata** | [**List[Metadata]**](Metadata.md) |  | [optional]
+**outputs** | [**List[InputValueOutput]**](InputValueOutput.md) |  | [optional]
+**title** | **str** |  | [optional]
+**version** | **str** |  |
 
 ## Example
 
@@ -34,5 +34,3 @@ process_output_dict = process_output_instance.to_dict()
 process_output_from_dict = ProcessOutput.from_dict(process_output_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

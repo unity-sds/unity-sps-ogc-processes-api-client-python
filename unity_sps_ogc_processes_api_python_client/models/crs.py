@@ -13,19 +13,19 @@
 
 
 from __future__ import annotations
-from inspect import getfullargspec
+
 import json
 import pprint
 import re  # noqa: F401
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
-from typing import Optional
-from typing_extensions import Annotated
+from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Union
+
+from pydantic import BaseModel, Field, ValidationError, field_validator
+from typing_extensions import Annotated, Self
+
 from unity_sps_ogc_processes_api_python_client.models.crs5 import Crs5
-from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
-from typing_extensions import Literal, Self
-from pydantic import Field
 
 CRS_ANY_OF_SCHEMAS = ["Crs5", "str"]
+
 
 class Crs(BaseModel):
     """
@@ -35,12 +35,14 @@ class Crs(BaseModel):
     # data type: Crs5
     anyof_schema_1_validator: Optional[Crs5] = None
     # data type: str
-    anyof_schema_2_validator: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    anyof_schema_2_validator: Optional[
+        Annotated[str, Field(min_length=1, strict=True)]
+    ] = None
     if TYPE_CHECKING:
         actual_instance: Optional[Union[Crs5, str]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "Crs5", "str" }
+    any_of_schemas: Set[str] = {"Crs5", "str"}
 
     model_config = {
         "validate_assignment": True,
@@ -50,14 +52,18 @@ class Crs(BaseModel):
     def __init__(self, *args, **kwargs) -> None:
         if args:
             if len(args) > 1:
-                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+                raise ValueError(
+                    "If a position argument is used, only 1 is allowed to set `actual_instance`"
+                )
             if kwargs:
-                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+                raise ValueError(
+                    "If a position argument is used, keyword arguments cannot be used."
+                )
             super().__init__(actual_instance=args[0])
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @field_validator("actual_instance")
     def actual_instance_must_validate_anyof(cls, v):
         if v is None:
             return v
@@ -78,7 +84,10 @@ class Crs(BaseModel):
             error_messages.append(str(e))
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in Crs with anyOf schemas: Crs5, str. Details: " + ", ".join(error_messages))
+            raise ValueError(
+                "No match found when setting the actual_instance in Crs with anyOf schemas: Crs5, str. Details: "
+                + ", ".join(error_messages)
+            )
         else:
             return v
 
@@ -99,7 +108,7 @@ class Crs(BaseModel):
             instance.actual_instance = Crs5.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
-             error_messages.append(str(e))
+            error_messages.append(str(e))
         # deserialize data into str
         try:
             # validation
@@ -112,7 +121,10 @@ class Crs(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Crs with anyOf schemas: Crs5, str. Details: " + ", ".join(error_messages))
+            raise ValueError(
+                "No match found when deserializing the JSON string into Crs with anyOf schemas: Crs5, str. Details: "
+                + ", ".join(error_messages)
+            )
         else:
             return instance
 
@@ -121,7 +133,9 @@ class Crs(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        if hasattr(self.actual_instance, "to_json") and callable(
+            self.actual_instance.to_json
+        ):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
@@ -131,7 +145,9 @@ class Crs(BaseModel):
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        if hasattr(self.actual_instance, "to_dict") and callable(
+            self.actual_instance.to_dict
+        ):
             return self.actual_instance.to_dict()
         else:
             return self.actual_instance
@@ -139,5 +155,3 @@ class Crs(BaseModel):
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
-
-

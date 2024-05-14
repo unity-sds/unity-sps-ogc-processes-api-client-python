@@ -13,8 +13,10 @@
 
 
 from __future__ import annotations
+
 import json
 from enum import Enum
+
 from typing_extensions import Self
 
 
@@ -26,12 +28,14 @@ class Crs5(str, Enum):
     """
     allowed enum values
     """
-    HTTP_COLON_SLASH_SLASH_WWW_DOT_OPENGIS_DOT_NET_SLASH_DEF_SLASH_CRS_SLASH_OGC_SLASH_1_DOT_3_SLASH_CRS84 = 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-    HTTP_COLON_SLASH_SLASH_WWW_DOT_OPENGIS_DOT_NET_SLASH_DEF_SLASH_CRS_SLASH_OGC_SLASH_0_SLASH_CRS84H = 'http://www.opengis.net/def/crs/OGC/0/CRS84h'
+    HTTP_COLON_SLASH_SLASH_WWW_DOT_OPENGIS_DOT_NET_SLASH_DEF_SLASH_CRS_SLASH_OGC_SLASH_1_DOT_3_SLASH_CRS84 = (
+        "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    )
+    HTTP_COLON_SLASH_SLASH_WWW_DOT_OPENGIS_DOT_NET_SLASH_DEF_SLASH_CRS_SLASH_OGC_SLASH_0_SLASH_CRS84H = (
+        "http://www.opengis.net/def/crs/OGC/0/CRS84h"
+    )
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of Crs5 from a JSON string"""
         return cls(json.loads(json_str))
-
-

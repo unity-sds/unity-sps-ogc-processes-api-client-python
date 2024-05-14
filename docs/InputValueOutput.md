@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bbox** | **List[object]** |  | 
-**crs** | [**Crs**](Crs.md) |  | [optional] 
+**bbox** | **List[object]** |  |
+**crs** | [**Crs**](Crs.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ input_value_output_dict = input_value_output_instance.to_dict()
 input_value_output_from_dict = InputValueOutput.from_dict(input_value_output_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

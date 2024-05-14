@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**href** | **str** |  | 
-**rel** | **str** |  | [optional] 
-**type** | **str** |  | [optional] 
-**hreflang** | **str** |  | [optional] 
-**title** | **str** |  | [optional] 
-**role** | **str** |  | [optional] 
-**lang** | **str** |  | [optional] 
-**value** | [**Value**](Value.md) |  | [optional] 
+**href** | **str** |  |
+**hreflang** | **str** |  | [optional]
+**rel** | **str** |  | [optional]
+**role** | **str** |  | [optional]
+**title** | **str** |  | [optional]
+**type** | **str** |  | [optional]
+**lang** | **str** |  | [optional]
+**value** | [**Value**](Value.md) |  | [optional]
 
 ## Example
 
@@ -32,5 +32,3 @@ metadata_dict = metadata_instance.to_dict()
 metadata_from_dict = Metadata.from_dict(metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

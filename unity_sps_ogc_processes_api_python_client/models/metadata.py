@@ -13,19 +13,20 @@
 
 
 from __future__ import annotations
-from inspect import getfullargspec
+
 import json
 import pprint
 import re  # noqa: F401
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
-from typing import Optional
+from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Union
+
+from pydantic import BaseModel, ValidationError, field_validator
+from typing_extensions import Self
+
 from unity_sps_ogc_processes_api_python_client.models.metadata1 import Metadata1
 from unity_sps_ogc_processes_api_python_client.models.metadata2 import Metadata2
-from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
-from typing_extensions import Literal, Self
-from pydantic import Field
 
 METADATA_ANY_OF_SCHEMAS = ["Metadata1", "Metadata2"]
+
 
 class Metadata(BaseModel):
     """
@@ -40,7 +41,7 @@ class Metadata(BaseModel):
         actual_instance: Optional[Union[Metadata1, Metadata2]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "Metadata1", "Metadata2" }
+    any_of_schemas: Set[str] = {"Metadata1", "Metadata2"}
 
     model_config = {
         "validate_assignment": True,
@@ -50,16 +51,20 @@ class Metadata(BaseModel):
     def __init__(self, *args, **kwargs) -> None:
         if args:
             if len(args) > 1:
-                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+                raise ValueError(
+                    "If a position argument is used, only 1 is allowed to set `actual_instance`"
+                )
             if kwargs:
-                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+                raise ValueError(
+                    "If a position argument is used, keyword arguments cannot be used."
+                )
             super().__init__(actual_instance=args[0])
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @field_validator("actual_instance")
     def actual_instance_must_validate_anyof(cls, v):
-        instance = Metadata.model_construct()
+        instance = Metadata.model_construct()  # noqa: F841
         error_messages = []
         # validate data type: Metadata1
         if not isinstance(v, Metadata1):
@@ -75,7 +80,10 @@ class Metadata(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in Metadata with anyOf schemas: Metadata1, Metadata2. Details: " + ", ".join(error_messages))
+            raise ValueError(
+                "No match found when setting the actual_instance in Metadata with anyOf schemas: Metadata1, Metadata2. Details: "
+                + ", ".join(error_messages)
+            )
         else:
             return v
 
@@ -93,17 +101,20 @@ class Metadata(BaseModel):
             instance.actual_instance = Metadata1.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
-             error_messages.append(str(e))
+            error_messages.append(str(e))
         # anyof_schema_2_validator: Optional[Metadata2] = None
         try:
             instance.actual_instance = Metadata2.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
-             error_messages.append(str(e))
+            error_messages.append(str(e))
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Metadata with anyOf schemas: Metadata1, Metadata2. Details: " + ", ".join(error_messages))
+            raise ValueError(
+                "No match found when deserializing the JSON string into Metadata with anyOf schemas: Metadata1, Metadata2. Details: "
+                + ", ".join(error_messages)
+            )
         else:
             return instance
 
@@ -112,7 +123,9 @@ class Metadata(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        if hasattr(self.actual_instance, "to_json") and callable(
+            self.actual_instance.to_json
+        ):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
@@ -122,7 +135,9 @@ class Metadata(BaseModel):
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        if hasattr(self.actual_instance, "to_dict") and callable(
+            self.actual_instance.to_dict
+        ):
             return self.actual_instance.to_dict()
         else:
             return self.actual_instance
@@ -130,5 +145,3 @@ class Metadata(BaseModel):
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
-
-

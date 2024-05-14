@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bbox** | **List[float]** |  | 
-**crs** | [**Crs**](Crs.md) |  | [optional] 
+**bbox** | **List[float]** |  |
+**crs** | [**Crs**](Crs.md) |  | [optional]
 
 ## Example
 
@@ -26,5 +26,3 @@ bbox_dict = bbox_instance.to_dict()
 bbox_from_dict = Bbox.from_dict(bbox_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

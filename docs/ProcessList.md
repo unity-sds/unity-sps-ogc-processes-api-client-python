@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**processes** | [**List[ProcessSummary]**](ProcessSummary.md) |  | 
-**links** | [**List[Link]**](Link.md) |  | 
+**links** | [**List[Link]**](Link.md) |  |
+**processes** | [**List[ProcessSummary]**](ProcessSummary.md) |  |
 
 ## Example
 
@@ -26,5 +26,3 @@ process_list_dict = process_list_instance.to_dict()
 process_list_from_dict = ProcessList.from_dict(process_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -24,5 +24,3 @@ status_dict = status_instance.to_dict()
 status_from_dict = Status.from_dict(status_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

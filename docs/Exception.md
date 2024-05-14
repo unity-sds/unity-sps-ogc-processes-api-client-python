@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **object** |  | 
-**title** | [**Title**](Title.md) |  | [optional] 
-**status** | [**Status**](Status.md) |  | [optional] 
-**detail** | [**Detail**](Detail.md) |  | [optional] 
-**instance** | [**Instance**](Instance.md) |  | [optional] 
+**detail** | **str** |  | [optional]
+**instance** | **str** |  | [optional]
+**status** | **int** |  | [optional]
+**title** | **str** |  | [optional]
+**type** | **str** |  |
 
 ## Example
 
@@ -29,5 +29,3 @@ exception_dict = exception_instance.to_dict()
 exception_from_dict = Exception.from_dict(exception_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

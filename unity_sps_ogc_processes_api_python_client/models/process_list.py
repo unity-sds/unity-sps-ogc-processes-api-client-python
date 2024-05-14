@@ -13,31 +13,35 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
-from unity_sps_ogc_processes_api_python_client.models.link import Link
-from unity_sps_ogc_processes_api_python_client.models.process_summary import ProcessSummary
-from typing import Optional, Set
 from typing_extensions import Self
+
+from unity_sps_ogc_processes_api_python_client.models.link import Link
+from unity_sps_ogc_processes_api_python_client.models.process_summary import (
+    ProcessSummary,
+)
+
 
 class ProcessList(BaseModel):
     """
     ProcessList
-    """ # noqa: E501
-    processes: List[ProcessSummary]
+    """  # noqa: E501
+
     links: List[Link]
-    __properties: ClassVar[List[str]] = ["processes", "links"]
+    processes: List[ProcessSummary]
+    __properties: ClassVar[List[str]] = ["links", "processes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,28 +67,27 @@ class ProcessList(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in processes (list)
-        _items = []
-        if self.processes:
-            for _item in self.processes:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['processes'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
             for _item in self.links:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['links'] = _items
+            _dict["links"] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in processes (list)
+        _items = []
+        if self.processes:
+            for _item in self.processes:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["processes"] = _items
         return _dict
 
     @classmethod
@@ -96,10 +99,18 @@ class ProcessList(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "processes": [ProcessSummary.from_dict(_item) for _item in obj["processes"]] if obj.get("processes") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "links": (
+                    [Link.from_dict(_item) for _item in obj["links"]]
+                    if obj.get("links") is not None
+                    else None
+                ),
+                "processes": (
+                    [ProcessSummary.from_dict(_item) for _item in obj["processes"]]
+                    if obj.get("processes") is not None
+                    else None
+                ),
+            }
+        )
         return _obj
-
-

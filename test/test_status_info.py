@@ -16,6 +16,7 @@ import unittest
 
 from unity_sps_ogc_processes_api_python_client.models.status_info import StatusInfo
 
+
 class TestStatusInfo(unittest.TestCase):
     """StatusInfo unit test stubs"""
 
@@ -27,9 +28,9 @@ class TestStatusInfo(unittest.TestCase):
 
     def make_instance(self, include_optional) -> StatusInfo:
         """Test StatusInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included"""
         # uncomment below to create an instance of `StatusInfo`
         """
         model = StatusInfo()
@@ -50,10 +51,10 @@ class TestStatusInfo(unittest.TestCase):
                 progress = 0.0,
                 links = [
                     unity_sps_ogc_processes_api_python_client.models.link.Link(
-                        href = '', 
-                        rel = '', 
-                        type = '', 
-                        hreflang = '', 
+                        href = '',
+                        rel = '',
+                        type = '',
+                        hreflang = '',
                         title = '', )
                     ]
             )
@@ -70,5 +71,6 @@ class TestStatusInfo(unittest.TestCase):
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
