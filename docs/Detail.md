@@ -24,5 +24,3 @@ detail_dict = detail_instance.to_dict()
 detail_from_dict = Detail.from_dict(detail_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

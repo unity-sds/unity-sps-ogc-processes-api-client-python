@@ -14,7 +14,6 @@
 
 import unittest
 
-from unity_sps_ogc_processes_api_python_client.models.status_code import StatusCode
 
 class TestStatusCode(unittest.TestCase):
     """StatusCode unit test stubs"""
@@ -29,5 +28,6 @@ class TestStatusCode(unittest.TestCase):
         """Test StatusCode"""
         # inst = StatusCode()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

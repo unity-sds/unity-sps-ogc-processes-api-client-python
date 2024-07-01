@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**conforms_to** | **List[str]** |  | 
+**conforms_to** | **List[str]** |  |
 
 ## Example
 
@@ -25,5 +25,3 @@ conf_classes_dict = conf_classes_instance.to_dict()
 conf_classes_from_dict = ConfClasses.from_dict(conf_classes_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

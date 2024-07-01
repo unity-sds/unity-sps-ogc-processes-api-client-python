@@ -14,7 +14,10 @@
 
 import unittest
 
-from unity_sps_ogc_processes_api_python_client.models.process_output import ProcessOutput
+from unity_sps_ogc_processes_api_python_client.models.process_output import (
+    ProcessOutput,
+)
+
 
 class TestProcessOutput(unittest.TestCase):
     """ProcessOutput unit test stubs"""
@@ -27,9 +30,9 @@ class TestProcessOutput(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ProcessOutput:
         """Test ProcessOutput
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included"""
         # uncomment below to create an instance of `ProcessOutput`
         """
         model = ProcessOutput()
@@ -50,10 +53,10 @@ class TestProcessOutput(unittest.TestCase):
                     ],
                 links = [
                     unity_sps_ogc_processes_api_python_client.models.link.Link(
-                        href = '', 
-                        rel = '', 
-                        type = '', 
-                        hreflang = '', 
+                        href = '',
+                        rel = '',
+                        type = '',
+                        hreflang = '',
                         title = '', )
                     ],
                 inputs = [
@@ -75,5 +78,6 @@ class TestProcessOutput(unittest.TestCase):
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

@@ -12,7 +12,7 @@
 """  # noqa: E501
 
 
-from setuptools import setup, find_packages  # noqa: H301
+from setuptools import find_packages, setup  # noqa: H301
 
 # To install the library, run the following
 #
@@ -37,11 +37,15 @@ setup(
     author="OpenAPI Generator community",
     author_email="team@openapitools.org",
     url="",
-    keywords=["OpenAPI", "OpenAPI-Generator", "Unity Processing API conforming to the OGC API - Processes - Part 1 standard"],
+    keywords=[
+        "OpenAPI",
+        "OpenAPI-Generator",
+        "Unity Processing API conforming to the OGC API - Processes - Part 1 standard",
+    ],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
     long_description="""\
     This document is an API definition document provided alongside the OGC API - Processes standard. The OGC API - Processes Standard specifies a processing interface to communicate over a RESTful protocol using JavaScript Object Notation (JSON) encodings. The specification allows for the wrapping of computational tasks into executable processes that can be offered by a server and be invoked by a client application.
     """,  # noqa: E501

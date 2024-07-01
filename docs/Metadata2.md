@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**role** | **str** |  | [optional] 
-**title** | **str** |  | [optional] 
-**lang** | **str** |  | [optional] 
-**value** | [**Value**](Value.md) |  | [optional] 
+**lang** | **str** |  | [optional]
+**role** | **str** |  | [optional]
+**title** | **str** |  | [optional]
+**value** | [**Value**](Value.md) |  | [optional]
 
 ## Example
 
@@ -28,5 +28,3 @@ metadata2_dict = metadata2_instance.to_dict()
 metadata2_from_dict = Metadata2.from_dict(metadata2_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

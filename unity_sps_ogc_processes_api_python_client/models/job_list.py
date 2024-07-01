@@ -13,21 +13,24 @@
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
+from typing_extensions import Self
+
 from unity_sps_ogc_processes_api_python_client.models.link import Link
 from unity_sps_ogc_processes_api_python_client.models.status_info import StatusInfo
-from typing import Optional, Set
-from typing_extensions import Self
+
 
 class JobList(BaseModel):
     """
     JobList
-    """ # noqa: E501
+    """  # noqa: E501
+
     jobs: List[StatusInfo]
     links: List[Link]
     __properties: ClassVar[List[str]] = ["jobs", "links"]
@@ -37,7 +40,6 @@ class JobList(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +65,7 @@ class JobList(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,14 +78,14 @@ class JobList(BaseModel):
             for _item in self.jobs:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['jobs'] = _items
+            _dict["jobs"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
             for _item in self.links:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['links'] = _items
+            _dict["links"] = _items
         return _dict
 
     @classmethod
@@ -96,10 +97,18 @@ class JobList(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "jobs": [StatusInfo.from_dict(_item) for _item in obj["jobs"]] if obj.get("jobs") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "jobs": (
+                    [StatusInfo.from_dict(_item) for _item in obj["jobs"]]
+                    if obj.get("jobs") is not None
+                    else None
+                ),
+                "links": (
+                    [Link.from_dict(_item) for _item in obj["links"]]
+                    if obj.get("links") is not None
+                    else None
+                ),
+            }
+        )
         return _obj
-
-

@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**conformance_declaration_conformance_get**](DefaultApi.md#conformance_declaration_conformance_get) | **GET** /conformance | Information about standards that this API conforms to
+[**deploy_process_processes_post**](DefaultApi.md#deploy_process_processes_post) | **POST** /processes | Deploy a process
 [**dismiss_jobs_job_id_delete**](DefaultApi.md#dismiss_jobs_job_id_delete) | **DELETE** /jobs/{job_id} | Cancel a job execution, remove a finished job
 [**execute_processes_process_id_execution_post**](DefaultApi.md#execute_processes_process_id_execution_post) | **POST** /processes/{process_id}/execution | Execute a process
 [**get_health_health_get**](DefaultApi.md#get_health_health_get) | **GET** /health | Perform a Health Check
@@ -12,10 +13,9 @@ Method | HTTP request | Description
 [**landing_page_get**](DefaultApi.md#landing_page_get) | **GET** / | Landing page of this API
 [**process_description_processes_process_id_get**](DefaultApi.md#process_description_processes_process_id_get) | **GET** /processes/{process_id} | Retrieve a process description
 [**process_list_processes_get**](DefaultApi.md#process_list_processes_get) | **GET** /processes | Retrieve the list of available processes
-[**register_process_processes_post**](DefaultApi.md#register_process_processes_post) | **POST** /processes | Register a process
 [**results_jobs_job_id_results_get**](DefaultApi.md#results_jobs_job_id_results_get) | **GET** /jobs/{job_id}/results | Retrieve the result(s) of a job
 [**status_jobs_job_id_get**](DefaultApi.md#status_jobs_job_id_get) | **GET** /jobs/{job_id} | Retrieve the status of a job
-[**unregister_process_processes_process_id_delete**](DefaultApi.md#unregister_process_processes_process_id_delete) | **DELETE** /processes/{process_id} | Unregister a process
+[**undeploy_process_processes_process_id_delete**](DefaultApi.md#undeploy_process_processes_process_id_delete) | **DELETE** /processes/{process_id} | Undeploy a process
 
 
 # **conformance_declaration_conformance_get**
@@ -27,6 +27,7 @@ A list of all conformance classes, specified in a standard, that the server conf
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -40,6 +41,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -67,7 +77,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -82,6 +92,86 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **deploy_process_processes_post**
+> ProcessOutput deploy_process_processes_post(process_input)
+
+Deploy a process
+
+Deploy a new process.  **Note:** This is not an officially supported endpoint in the OGC Processes specification.
+
+### Example
+
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import unity_sps_ogc_processes_api_python_client
+from unity_sps_ogc_processes_api_python_client.models.process_input import ProcessInput
+from unity_sps_ogc_processes_api_python_client.models.process_output import ProcessOutput
+from unity_sps_ogc_processes_api_python_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
+    process_input = unity_sps_ogc_processes_api_python_client.ProcessInput() # ProcessInput |
+
+    try:
+        # Deploy a process
+        api_response = api_instance.deploy_process_processes_post(process_input)
+        print("The response of DefaultApi->deploy_process_processes_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->deploy_process_processes_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **process_input** | [**ProcessInput**](ProcessInput.md)|  |
+
+### Return type
+
+[**ProcessOutput**](ProcessOutput.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **dismiss_jobs_job_id_delete**
 > StatusInfo dismiss_jobs_job_id_delete(job_id)
 
@@ -91,6 +181,7 @@ Cancel a job execution and remove it from the jobs list.  For more information, 
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -104,12 +195,21 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    job_id = 'job_id_example' # str | 
+    job_id = 'job_id_example' # str |
 
     try:
         # Cancel a job execution, remove a finished job
@@ -127,7 +227,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **job_id** | **str**|  | 
+ **job_id** | **str**|  |
 
 ### Return type
 
@@ -135,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -160,6 +260,7 @@ Create a new job.  For more information, see [Section 7.11](https://docs.ogc.org
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -174,13 +275,22 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    process_id = 'process_id_example' # str | 
-    execute = unity_sps_ogc_processes_api_python_client.Execute() # Execute | 
+    process_id = 'process_id_example' # str |
+    execute = unity_sps_ogc_processes_api_python_client.Execute() # Execute |
 
     try:
         # Execute a process
@@ -198,8 +308,8 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **process_id** | **str**|  | 
- **execute** | [**Execute**](Execute.md)|  | 
+ **process_id** | **str**|  |
+ **execute** | [**Execute**](Execute.md)|  |
 
 ### Return type
 
@@ -207,7 +317,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -232,6 +342,7 @@ Endpoint to perform a healthcheck on. This endpoint can primarily be used Docker
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -245,6 +356,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -272,7 +392,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -296,6 +416,7 @@ Lists available jobs.  For more information, see [Section 11](https://docs.ogc.o
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -309,6 +430,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -336,7 +466,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -360,6 +490,7 @@ The landing page provides links to the: - API Definition (no fixed path), - Conf
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -373,6 +504,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -400,7 +540,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -424,6 +564,7 @@ The process description contains information about inputs and outputs and a link
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -437,12 +578,21 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    process_id = 'process_id_example' # str | 
+    process_id = 'process_id_example' # str |
 
     try:
         # Retrieve a process description
@@ -460,7 +610,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **process_id** | **str**|  | 
+ **process_id** | **str**|  |
 
 ### Return type
 
@@ -468,7 +618,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -493,6 +643,7 @@ The list of processes contains a summary of each process the OGC API - Processes
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -506,6 +657,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -533,7 +693,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -548,76 +708,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **register_process_processes_post**
-> ProcessOutput register_process_processes_post(process_input)
-
-Register a process
-
-Register a new process.  **Note:** This is not an officially supported endpoint in the OGC Processes specification.
-
-### Example
-
-
-```python
-import unity_sps_ogc_processes_api_python_client
-from unity_sps_ogc_processes_api_python_client.models.process_input import ProcessInput
-from unity_sps_ogc_processes_api_python_client.models.process_output import ProcessOutput
-from unity_sps_ogc_processes_api_python_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = unity_sps_ogc_processes_api_python_client.Configuration(
-    host = "http://localhost"
-)
-
-
-# Enter a context with an instance of the API client
-with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    process_input = unity_sps_ogc_processes_api_python_client.ProcessInput() # ProcessInput | 
-
-    try:
-        # Register a process
-        api_response = api_instance.register_process_processes_post(process_input)
-        print("The response of DefaultApi->register_process_processes_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DefaultApi->register_process_processes_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **process_input** | [**ProcessInput**](ProcessInput.md)|  | 
-
-### Return type
-
-[**ProcessOutput**](ProcessOutput.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **results_jobs_job_id_results_get**
 > object results_jobs_job_id_results_get(job_id)
 
@@ -627,6 +717,7 @@ Lists available results of a job. In case of a failure, lists exceptions instead
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -639,12 +730,21 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    job_id = 'job_id_example' # str | 
+    job_id = 'job_id_example' # str |
 
     try:
         # Retrieve the result(s) of a job
@@ -662,7 +762,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **job_id** | **str**|  | 
+ **job_id** | **str**|  |
 
 ### Return type
 
@@ -670,7 +770,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -695,6 +795,7 @@ Shows the status of a job.  For more information, see [Section 7.12](https://doc
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -708,12 +809,21 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    job_id = 'job_id_example' # str | 
+    job_id = 'job_id_example' # str |
 
     try:
         # Retrieve the status of a job
@@ -731,7 +841,7 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **job_id** | **str**|  | 
+ **job_id** | **str**|  |
 
 ### Return type
 
@@ -739,7 +849,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -755,15 +865,16 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **unregister_process_processes_process_id_delete**
-> unregister_process_processes_process_id_delete(process_id)
+# **undeploy_process_processes_process_id_delete**
+> undeploy_process_processes_process_id_delete(process_id, force=force)
 
-Unregister a process
+Undeploy a process
 
-Unregister an existing process.  **Note:** This is not an officially supported endpoint in the OGC Processes specification.
+Undeploy an existing process.  **Note:** This is not an officially supported endpoint in the OGC Processes specification.
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -776,18 +887,28 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = unity_sps_ogc_processes_api_python_client.DefaultApi(api_client)
-    process_id = 'process_id_example' # str | 
+    process_id = 'process_id_example' # str |
+    force = False # bool |  (optional) (default to False)
 
     try:
-        # Unregister a process
-        api_instance.unregister_process_processes_process_id_delete(process_id)
+        # Undeploy a process
+        api_instance.undeploy_process_processes_process_id_delete(process_id, force=force)
     except Exception as e:
-        print("Exception when calling DefaultApi->unregister_process_processes_process_id_delete: %s\n" % e)
+        print("Exception when calling DefaultApi->undeploy_process_processes_process_id_delete: %s\n" % e)
 ```
 
 
@@ -797,7 +918,8 @@ with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_c
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **process_id** | **str**|  | 
+ **process_id** | **str**|  |
+ **force** | **bool**|  | [optional] [default to False]
 
 ### Return type
 
@@ -805,7 +927,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -820,4 +942,3 @@ No authorization required
 **422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

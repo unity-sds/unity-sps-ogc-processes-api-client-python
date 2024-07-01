@@ -24,5 +24,3 @@ instance_dict = instance_instance.to_dict()
 instance_from_dict = Instance.from_dict(instance_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

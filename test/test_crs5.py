@@ -14,7 +14,6 @@
 
 import unittest
 
-from unity_sps_ogc_processes_api_python_client.models.crs5 import Crs5
 
 class TestCrs5(unittest.TestCase):
     """Crs5 unit test stubs"""
@@ -29,5 +28,6 @@ class TestCrs5(unittest.TestCase):
         """Test Crs5"""
         # inst = Crs5()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

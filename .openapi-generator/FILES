@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/Bbox.md
@@ -9,7 +8,6 @@ docs/ConfClasses.md
 docs/Crs.md
 docs/Crs5.md
 docs/DefaultApi.md
-docs/Detail.md
 docs/Exception.md
 docs/Execute.md
 docs/HTTPValidationError.md
@@ -18,7 +16,6 @@ docs/InputValueInput.md
 docs/InputValueNoObjectInput.md
 docs/InputValueNoObjectOutput.md
 docs/InputValueOutput.md
-docs/Instance.md
 docs/JobControlOptions.md
 docs/JobList.md
 docs/LandingPage.md
@@ -30,11 +27,9 @@ docs/ProcessInput.md
 docs/ProcessList.md
 docs/ProcessOutput.md
 docs/ProcessSummary.md
-docs/Status.md
 docs/StatusCode.md
 docs/StatusInfo.md
 docs/Subscriber.md
-docs/Title.md
 docs/ValidationError.md
 docs/ValidationErrorLocInner.md
 docs/Value.md
@@ -58,7 +53,6 @@ unity_sps_ogc_processes_api_python_client/models/bbox.py
 unity_sps_ogc_processes_api_python_client/models/conf_classes.py
 unity_sps_ogc_processes_api_python_client/models/crs.py
 unity_sps_ogc_processes_api_python_client/models/crs5.py
-unity_sps_ogc_processes_api_python_client/models/detail.py
 unity_sps_ogc_processes_api_python_client/models/exception.py
 unity_sps_ogc_processes_api_python_client/models/execute.py
 unity_sps_ogc_processes_api_python_client/models/health_check.py
@@ -67,7 +61,6 @@ unity_sps_ogc_processes_api_python_client/models/input_value_input.py
 unity_sps_ogc_processes_api_python_client/models/input_value_no_object_input.py
 unity_sps_ogc_processes_api_python_client/models/input_value_no_object_output.py
 unity_sps_ogc_processes_api_python_client/models/input_value_output.py
-unity_sps_ogc_processes_api_python_client/models/instance.py
 unity_sps_ogc_processes_api_python_client/models/job_control_options.py
 unity_sps_ogc_processes_api_python_client/models/job_list.py
 unity_sps_ogc_processes_api_python_client/models/landing_page.py
@@ -79,11 +72,9 @@ unity_sps_ogc_processes_api_python_client/models/process_input.py
 unity_sps_ogc_processes_api_python_client/models/process_list.py
 unity_sps_ogc_processes_api_python_client/models/process_output.py
 unity_sps_ogc_processes_api_python_client/models/process_summary.py
-unity_sps_ogc_processes_api_python_client/models/status.py
 unity_sps_ogc_processes_api_python_client/models/status_code.py
 unity_sps_ogc_processes_api_python_client/models/status_info.py
 unity_sps_ogc_processes_api_python_client/models/subscriber.py
-unity_sps_ogc_processes_api_python_client/models/title.py
 unity_sps_ogc_processes_api_python_client/models/validation_error.py
 unity_sps_ogc_processes_api_python_client/models/validation_error_loc_inner.py
 unity_sps_ogc_processes_api_python_client/models/value.py

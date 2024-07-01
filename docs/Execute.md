@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**inputs** | [**AnyOf**](AnyOf.md) |  | [optional] 
-**outputs** | [**AnyOf**](AnyOf.md) |  | [optional] 
-**subscriber** | [**Subscriber**](Subscriber.md) |  | [optional] 
+**inputs** | [**AnyOf**](AnyOf.md) |  | [optional]
+**outputs** | [**AnyOf**](AnyOf.md) |  | [optional]
+**subscriber** | [**Subscriber**](Subscriber.md) |  | [optional]
 
 ## Example
 
@@ -27,5 +27,3 @@ execute_dict = execute_instance.to_dict()
 execute_from_dict = Execute.from_dict(execute_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
