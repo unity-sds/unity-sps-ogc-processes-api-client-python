@@ -5,7 +5,13 @@
 
 name: unity_sps_ogc_processes_api_python_client Python package
 
-on: [push, pull_request]
+on: 
+  push:
+    paths:
+    - 'libs/unity-sps-ogc-processes-api-client-python/**' 
+  pull_request:
+    paths: 'libs/unity-sps-ogc-processes-api-client-python/**'
+    -  
 
 jobs:
   build:
