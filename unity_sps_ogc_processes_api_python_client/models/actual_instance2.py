@@ -22,10 +22,6 @@ from typing import TYPE_CHECKING, Any, Dict, List, Optional, Set, Union
 from pydantic import BaseModel, ValidationError, field_validator
 from typing_extensions import Self
 
-from unity_sps_ogc_processes_api_python_client.models.inline_or_ref_data_workflows import (
-    InlineOrRefDataWorkflows,
-)
-
 ACTUALINSTANCE2_ANY_OF_SCHEMAS = [
     "InlineOrRefDataWorkflows",
     "List[InlineOrRefDataWorkflows]",
@@ -170,6 +166,10 @@ class ActualInstance2(BaseModel):
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
 
+
+from unity_sps_ogc_processes_api_python_client.models.inline_or_ref_data_workflows import (
+    InlineOrRefDataWorkflows,
+)
 
 # TODO: Rewrite to not use raise_errors
 ActualInstance2.model_rebuild(raise_errors=False)

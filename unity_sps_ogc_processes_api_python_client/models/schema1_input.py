@@ -22,13 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
-from unity_sps_ogc_processes_api_python_client.models.actual_instance3 import (
-    ActualInstance3,
-)
 from unity_sps_ogc_processes_api_python_client.models.reference import Reference
-from unity_sps_ogc_processes_api_python_client.models.schema_one_of_input import (
-    SchemaOneOfInput,
-)
 
 
 class Schema1Input(BaseModel):
@@ -147,6 +141,13 @@ class Schema1Input(BaseModel):
         )
         return _obj
 
+
+from unity_sps_ogc_processes_api_python_client.models.actual_instance3 import (
+    ActualInstance3,
+)
+from unity_sps_ogc_processes_api_python_client.models.schema_one_of_input import (
+    SchemaOneOfInput,
+)
 
 # TODO: Rewrite to not use raise_errors
 Schema1Input.model_rebuild(raise_errors=False)

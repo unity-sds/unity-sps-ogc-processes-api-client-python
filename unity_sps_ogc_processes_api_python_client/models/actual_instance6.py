@@ -22,10 +22,6 @@ from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Union
 from pydantic import BaseModel, StrictBool, ValidationError, field_validator
 from typing_extensions import Self
 
-from unity_sps_ogc_processes_api_python_client.models.schema1_output import (
-    Schema1Output,
-)
-
 ACTUALINSTANCE6_ANY_OF_SCHEMAS = ["Schema1Output", "bool"]
 
 
@@ -158,6 +154,10 @@ class ActualInstance6(BaseModel):
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
 
+
+from unity_sps_ogc_processes_api_python_client.models.schema1_output import (
+    Schema1Output,
+)
 
 # TODO: Rewrite to not use raise_errors
 ActualInstance6.model_rebuild(raise_errors=False)

@@ -26,9 +26,6 @@ from unity_sps_ogc_processes_api_python_client.models.fields_modifiers_propertie
     FieldsModifiersProperties,
 )
 from unity_sps_ogc_processes_api_python_client.models.format_schema import FormatSchema
-from unity_sps_ogc_processes_api_python_client.models.input_value_workflows import (
-    InputValueWorkflows,
-)
 
 
 class QualifiedInputValueWorkflows(BaseModel):
@@ -165,6 +162,10 @@ class QualifiedInputValueWorkflows(BaseModel):
         )
         return _obj
 
+
+from unity_sps_ogc_processes_api_python_client.models.input_value_workflows import (
+    InputValueWorkflows,
+)
 
 # TODO: Rewrite to not use raise_errors
 QualifiedInputValueWorkflows.model_rebuild(raise_errors=False)

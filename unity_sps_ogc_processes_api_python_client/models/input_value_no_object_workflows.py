@@ -22,9 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing_extensions import Self
 
-from unity_sps_ogc_processes_api_python_client.models.actual_instance1 import (
-    ActualInstance1,
-)
 from unity_sps_ogc_processes_api_python_client.models.bbox1 import Bbox1
 from unity_sps_ogc_processes_api_python_client.models.input_collection import (
     InputCollection,
@@ -32,7 +29,6 @@ from unity_sps_ogc_processes_api_python_client.models.input_collection import (
 from unity_sps_ogc_processes_api_python_client.models.input_parameterized import (
     InputParameterized,
 )
-from unity_sps_ogc_processes_api_python_client.models.input_process import InputProcess
 from unity_sps_ogc_processes_api_python_client.models.oneof_schema2_validator import (
     OneofSchema2Validator,
 )
@@ -275,6 +271,11 @@ class InputValueNoObjectWorkflows(BaseModel):
         )
         return _obj
 
+
+from unity_sps_ogc_processes_api_python_client.models.actual_instance1 import (
+    ActualInstance1,
+)
+from unity_sps_ogc_processes_api_python_client.models.input_process import InputProcess
 
 # TODO: Rewrite to not use raise_errors
 InputValueNoObjectWorkflows.model_rebuild(raise_errors=False)

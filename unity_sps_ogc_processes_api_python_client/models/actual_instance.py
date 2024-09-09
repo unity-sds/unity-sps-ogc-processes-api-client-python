@@ -22,13 +22,7 @@ from typing import TYPE_CHECKING, Any, Dict, Optional, Set, Union
 from pydantic import BaseModel, ValidationError, field_validator
 from typing_extensions import Self
 
-from unity_sps_ogc_processes_api_python_client.models.input_value_no_object_workflows import (
-    InputValueNoObjectWorkflows,
-)
 from unity_sps_ogc_processes_api_python_client.models.link import Link
-from unity_sps_ogc_processes_api_python_client.models.qualified_input_value_workflows import (
-    QualifiedInputValueWorkflows,
-)
 
 ACTUALINSTANCE_ANY_OF_SCHEMAS = [
     "InputValueNoObjectWorkflows",
@@ -194,6 +188,13 @@ class ActualInstance(BaseModel):
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
 
+
+from unity_sps_ogc_processes_api_python_client.models.input_value_no_object_workflows import (
+    InputValueNoObjectWorkflows,
+)
+from unity_sps_ogc_processes_api_python_client.models.qualified_input_value_workflows import (
+    QualifiedInputValueWorkflows,
+)
 
 # TODO: Rewrite to not use raise_errors
 ActualInstance.model_rebuild(raise_errors=False)

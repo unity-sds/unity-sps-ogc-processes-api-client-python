@@ -25,9 +25,6 @@ from typing_extensions import Self
 from unity_sps_ogc_processes_api_python_client.models.fields_modifiers_properties import (
     FieldsModifiersProperties,
 )
-from unity_sps_ogc_processes_api_python_client.models.input_workflows1 import (
-    InputWorkflows1,
-)
 from unity_sps_ogc_processes_api_python_client.models.output_workflows1 import (
     OutputWorkflows1,
 )
@@ -191,6 +188,10 @@ class InputProcess(BaseModel):
         )
         return _obj
 
+
+from unity_sps_ogc_processes_api_python_client.models.input_workflows1 import (
+    InputWorkflows1,
+)
 
 # TODO: Rewrite to not use raise_errors
 InputProcess.model_rebuild(raise_errors=False)

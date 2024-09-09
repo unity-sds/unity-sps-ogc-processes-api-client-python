@@ -45,7 +45,8 @@ repos:
       - id: ruff
         args: [
                 "--fix",
-                "--unsafe-fixes"
+                "--unsafe-fixes",
+                "--ignore", "E402"
               ]
 
   - repo: https://github.com/PyCQA/bandit

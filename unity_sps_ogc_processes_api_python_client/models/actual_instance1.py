@@ -37,7 +37,6 @@ from unity_sps_ogc_processes_api_python_client.models.input_collection import (
 from unity_sps_ogc_processes_api_python_client.models.input_parameterized import (
     InputParameterized,
 )
-from unity_sps_ogc_processes_api_python_client.models.input_process import InputProcess
 
 ACTUALINSTANCE1_ANY_OF_SCHEMAS = [
     "Bbox1",
@@ -332,6 +331,8 @@ class ActualInstance1(BaseModel):
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
 
+
+from unity_sps_ogc_processes_api_python_client.models.input_process import InputProcess
 
 # TODO: Rewrite to not use raise_errors
 ActualInstance1.model_rebuild(raise_errors=False)

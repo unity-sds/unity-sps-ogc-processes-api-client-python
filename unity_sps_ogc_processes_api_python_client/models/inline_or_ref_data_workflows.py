@@ -22,16 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
-from unity_sps_ogc_processes_api_python_client.models.actual_instance import (
-    ActualInstance,
-)
-from unity_sps_ogc_processes_api_python_client.models.input_value_no_object_workflows import (
-    InputValueNoObjectWorkflows,
-)
 from unity_sps_ogc_processes_api_python_client.models.link import Link
-from unity_sps_ogc_processes_api_python_client.models.qualified_input_value_workflows import (
-    QualifiedInputValueWorkflows,
-)
 
 
 class InlineOrRefDataWorkflows(BaseModel):
@@ -172,6 +163,16 @@ class InlineOrRefDataWorkflows(BaseModel):
         )
         return _obj
 
+
+from unity_sps_ogc_processes_api_python_client.models.actual_instance import (
+    ActualInstance,
+)
+from unity_sps_ogc_processes_api_python_client.models.input_value_no_object_workflows import (
+    InputValueNoObjectWorkflows,
+)
+from unity_sps_ogc_processes_api_python_client.models.qualified_input_value_workflows import (
+    QualifiedInputValueWorkflows,
+)
 
 # TODO: Rewrite to not use raise_errors
 InlineOrRefDataWorkflows.model_rebuild(raise_errors=False)

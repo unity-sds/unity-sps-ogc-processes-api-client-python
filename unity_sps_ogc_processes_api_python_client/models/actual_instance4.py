@@ -23,9 +23,6 @@ from pydantic import BaseModel, ValidationError, field_validator
 from typing_extensions import Self
 
 from unity_sps_ogc_processes_api_python_client.models.reference import Reference
-from unity_sps_ogc_processes_api_python_client.models.schema_one_of_output import (
-    SchemaOneOfOutput,
-)
 
 ACTUALINSTANCE4_ANY_OF_SCHEMAS = ["Reference", "SchemaOneOfOutput"]
 
@@ -156,6 +153,10 @@ class ActualInstance4(BaseModel):
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
 
+
+from unity_sps_ogc_processes_api_python_client.models.schema_one_of_output import (
+    SchemaOneOfOutput,
+)
 
 # TODO: Rewrite to not use raise_errors
 ActualInstance4.model_rebuild(raise_errors=False)

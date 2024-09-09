@@ -22,10 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
-from unity_sps_ogc_processes_api_python_client.models.input_value_no_object_workflows import (
-    InputValueNoObjectWorkflows,
-)
-
 
 class InputValueWorkflows(BaseModel):
     """
@@ -138,6 +134,10 @@ class InputValueWorkflows(BaseModel):
         )
         return _obj
 
+
+from unity_sps_ogc_processes_api_python_client.models.input_value_no_object_workflows import (
+    InputValueNoObjectWorkflows,
+)
 
 # TODO: Rewrite to not use raise_errors
 InputValueWorkflows.model_rebuild(raise_errors=False)

@@ -25,12 +25,6 @@ from typing_extensions import Annotated, Self
 from unity_sps_ogc_processes_api_python_client.models.maximum import Maximum
 from unity_sps_ogc_processes_api_python_client.models.minimum import Minimum
 from unity_sps_ogc_processes_api_python_client.models.multipleof import Multipleof
-from unity_sps_ogc_processes_api_python_client.models.schema1_output import (
-    Schema1Output,
-)
-from unity_sps_ogc_processes_api_python_client.models.schema_one_of_additional_properties_output import (
-    SchemaOneOfAdditionalPropertiesOutput,
-)
 
 
 class SchemaOneOfOutput(BaseModel):
@@ -501,6 +495,13 @@ class SchemaOneOfOutput(BaseModel):
         )
         return _obj
 
+
+from unity_sps_ogc_processes_api_python_client.models.schema1_output import (
+    Schema1Output,
+)
+from unity_sps_ogc_processes_api_python_client.models.schema_one_of_additional_properties_output import (
+    SchemaOneOfAdditionalPropertiesOutput,
+)
 
 # TODO: Rewrite to not use raise_errors
 SchemaOneOfOutput.model_rebuild(raise_errors=False)
