@@ -6,8 +6,8 @@ ProcessList
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**processes** | [**List[ProcessSummaryOutput]**](ProcessSummaryOutput.md) |  |
 **links** | [**List[Link]**](Link.md) |  |
+**processes** | [**List[ProcessSummaryOutput]**](ProcessSummaryOutput.md) |  |
 
 ## Example
 

@@ -35,17 +35,17 @@ class OutputDescriptionInput(BaseModel):
     OutputDescription
     """  # noqa: E501
 
-    title: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
     keywords: Optional[List[StrictStr]] = None
     metadata: Optional[List[MetadataInput]] = None
     var_schema: ModelSchemaInput = Field(alias="schema")
+    title: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
-        "title",
         "description",
         "keywords",
         "metadata",
         "schema",
+        "title",
     ]
 
     model_config = ConfigDict(
@@ -95,11 +95,6 @@ class OutputDescriptionInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict["schema"] = self.var_schema.to_dict()
-        # set to None if title (nullable) is None
-        # and model_fields_set contains the field
-        if self.title is None and "title" in self.model_fields_set:
-            _dict["title"] = None
-
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -115,6 +110,11 @@ class OutputDescriptionInput(BaseModel):
         if self.metadata is None and "metadata" in self.model_fields_set:
             _dict["metadata"] = None
 
+        # set to None if title (nullable) is None
+        # and model_fields_set contains the field
+        if self.title is None and "title" in self.model_fields_set:
+            _dict["title"] = None
+
         return _dict
 
     @classmethod
@@ -128,7 +128,6 @@ class OutputDescriptionInput(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "title": obj.get("title"),
                 "description": obj.get("description"),
                 "keywords": obj.get("keywords"),
                 "metadata": (
@@ -141,6 +140,7 @@ class OutputDescriptionInput(BaseModel):
                     if obj.get("schema") is not None
                     else None
                 ),
+                "title": obj.get("title"),
             }
         )
         return _obj

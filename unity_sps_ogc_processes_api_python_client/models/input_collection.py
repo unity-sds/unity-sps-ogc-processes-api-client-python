@@ -32,11 +32,11 @@ class InputCollection(BaseModel):
     InputCollection
     """  # noqa: E501
 
+    collection: StrictStr
     filter: Optional[StrictStr] = None
     properties: Optional[FieldsModifiersProperties] = None
     sort_by: Optional[List[StrictStr]] = Field(default=None, alias="sortBy")
-    collection: StrictStr
-    __properties: ClassVar[List[str]] = ["filter", "properties", "sortBy", "collection"]
+    __properties: ClassVar[List[str]] = ["collection", "filter", "properties", "sortBy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +106,7 @@ class InputCollection(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "collection": obj.get("collection"),
                 "filter": obj.get("filter"),
                 "properties": (
                     FieldsModifiersProperties.from_dict(obj["properties"])
@@ -113,7 +114,6 @@ class InputCollection(BaseModel):
                     else None
                 ),
                 "sortBy": obj.get("sortBy"),
-                "collection": obj.get("collection"),
             }
         )
         return _obj

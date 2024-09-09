@@ -6,8 +6,8 @@ Format
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**media_type** | **str** |  | [optional]
 **encoding** | **str** |  | [optional]
+**media_type** | **str** |  | [optional]
 **var_schema** | [**FormatSchema**](FormatSchema.md) |  | [optional]
 
 ## Example

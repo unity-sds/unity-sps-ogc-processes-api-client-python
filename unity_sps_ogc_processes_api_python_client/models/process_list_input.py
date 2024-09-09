@@ -33,9 +33,9 @@ class ProcessListInput(BaseModel):
     ProcessList
     """  # noqa: E501
 
-    processes: List[ProcessSummaryInput]
     links: List[Link]
-    __properties: ClassVar[List[str]] = ["processes", "links"]
+    processes: List[ProcessSummaryInput]
+    __properties: ClassVar[List[str]] = ["links", "processes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,13 +74,6 @@ class ProcessListInput(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in processes (list)
-        _items = []
-        if self.processes:
-            for _item in self.processes:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["processes"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -88,6 +81,13 @@ class ProcessListInput(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["links"] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in processes (list)
+        _items = []
+        if self.processes:
+            for _item in self.processes:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["processes"] = _items
         return _dict
 
     @classmethod
@@ -101,14 +101,14 @@ class ProcessListInput(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "processes": (
-                    [ProcessSummaryInput.from_dict(_item) for _item in obj["processes"]]
-                    if obj.get("processes") is not None
-                    else None
-                ),
                 "links": (
                     [Link.from_dict(_item) for _item in obj["links"]]
                     if obj.get("links") is not None
+                    else None
+                ),
+                "processes": (
+                    [ProcessSummaryInput.from_dict(_item) for _item in obj["processes"]]
+                    if obj.get("processes") is not None
                     else None
                 ),
             }

@@ -30,9 +30,9 @@ class OutputWorkflows1(BaseModel):
     OutputWorkflows1
     """  # noqa: E501
 
-    format: Optional[Format] = None
     output: Optional[StrictStr] = Field(default=None, alias="$output")
-    __properties: ClassVar[List[str]] = ["format", "$output"]
+    format: Optional[Format] = None
+    __properties: ClassVar[List[str]] = ["$output", "format"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,15 +74,15 @@ class OutputWorkflows1(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of format
         if self.format:
             _dict["format"] = self.format.to_dict()
-        # set to None if format (nullable) is None
-        # and model_fields_set contains the field
-        if self.format is None and "format" in self.model_fields_set:
-            _dict["format"] = None
-
         # set to None if output (nullable) is None
         # and model_fields_set contains the field
         if self.output is None and "output" in self.model_fields_set:
             _dict["$output"] = None
+
+        # set to None if format (nullable) is None
+        # and model_fields_set contains the field
+        if self.format is None and "format" in self.model_fields_set:
+            _dict["format"] = None
 
         return _dict
 
@@ -97,12 +97,12 @@ class OutputWorkflows1(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "$output": obj.get("$output"),
                 "format": (
                     Format.from_dict(obj["format"])
                     if obj.get("format") is not None
                     else None
                 ),
-                "$output": obj.get("$output"),
             }
         )
         return _obj

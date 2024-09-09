@@ -6,18 +6,18 @@ StatusInfo
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**process_id** | **str** |  | [optional]
-**type** | **str** |  |
-**job_id** | **str** |  |
-**status** | [**StatusCode**](StatusCode.md) |  |
-**message** | **str** |  | [optional]
-**exception** | [**Exception**](Exception.md) |  | [optional]
 **created** | **datetime** |  | [optional]
-**started** | **datetime** |  | [optional]
+**exception** | [**Exception**](Exception.md) |  | [optional]
 **finished** | **datetime** |  | [optional]
-**updated** | **datetime** |  | [optional]
-**progress** | **int** |  | [optional]
+**job_id** | **str** |  |
 **links** | [**List[Link]**](Link.md) |  | [optional]
+**message** | **str** |  | [optional]
+**process_id** | **str** |  | [optional]
+**progress** | **int** |  | [optional]
+**started** | **datetime** |  | [optional]
+**status** | [**StatusCode**](StatusCode.md) |  |
+**type** | **str** |  |
+**updated** | **datetime** |  | [optional]
 
 ## Example
 

@@ -6,11 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  |
-**rel** | **str** |  | [optional]
-**type** | **str** |  | [optional]
 **hreflang** | **str** |  | [optional]
-**title** | **str** |  | [optional]
+**rel** | **str** |  | [optional]
 **role** | **str** |  | [optional]
+**title** | **str** |  | [optional]
+**type** | **str** |  | [optional]
 **lang** | **str** |  | [optional]
 **value** | [**MetadataOneOf1Value**](MetadataOneOf1Value.md) |  | [optional]
 

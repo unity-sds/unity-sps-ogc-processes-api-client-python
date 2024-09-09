@@ -28,15 +28,15 @@ class BboxDefCrs(BaseModel):
     BboxDefCrs
     """  # noqa: E501
 
-    anyof_schema_1_validator: Optional[StrictStr] = None
-    anyof_schema_2_validator: Optional[StrictStr] = None
     actual_instance: Optional[Any] = None
     any_of_schemas: Optional[List[StrictStr]] = None
+    anyof_schema_1_validator: Optional[StrictStr] = None
+    anyof_schema_2_validator: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
-        "anyof_schema_1_validator",
-        "anyof_schema_2_validator",
         "actual_instance",
         "any_of_schemas",
+        "anyof_schema_1_validator",
+        "anyof_schema_2_validator",
     ]
 
     model_config = ConfigDict(
@@ -76,6 +76,11 @@ class BboxDefCrs(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if actual_instance (nullable) is None
+        # and model_fields_set contains the field
+        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
+            _dict["actual_instance"] = None
+
         # set to None if anyof_schema_1_validator (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -92,11 +97,6 @@ class BboxDefCrs(BaseModel):
         ):
             _dict["anyof_schema_2_validator"] = None
 
-        # set to None if actual_instance (nullable) is None
-        # and model_fields_set contains the field
-        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
-            _dict["actual_instance"] = None
-
         return _dict
 
     @classmethod
@@ -110,10 +110,10 @@ class BboxDefCrs(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "anyof_schema_1_validator": obj.get("anyof_schema_1_validator"),
-                "anyof_schema_2_validator": obj.get("anyof_schema_2_validator"),
                 "actual_instance": obj.get("actual_instance"),
                 "any_of_schemas": obj.get("any_of_schemas"),
+                "anyof_schema_1_validator": obj.get("anyof_schema_1_validator"),
+                "anyof_schema_2_validator": obj.get("anyof_schema_2_validator"),
             }
         )
         return _obj

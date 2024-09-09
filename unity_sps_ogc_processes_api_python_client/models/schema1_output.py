@@ -36,15 +36,15 @@ class Schema1Output(BaseModel):
     Schema1
     """  # noqa: E501
 
-    oneof_schema_1_validator: Optional[Reference] = None
-    oneof_schema_2_validator: Optional[SchemaOneOfOutput] = None
     actual_instance: Optional[ActualInstance4] = None
     one_of_schemas: Optional[List[StrictStr]] = None
+    oneof_schema_1_validator: Optional[Reference] = None
+    oneof_schema_2_validator: Optional[SchemaOneOfOutput] = None
     __properties: ClassVar[List[str]] = [
-        "oneof_schema_1_validator",
-        "oneof_schema_2_validator",
         "actual_instance",
         "one_of_schemas",
+        "oneof_schema_1_validator",
+        "oneof_schema_2_validator",
     ]
 
     model_config = ConfigDict(
@@ -84,15 +84,20 @@ class Schema1Output(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of actual_instance
+        if self.actual_instance:
+            _dict["actual_instance"] = self.actual_instance.to_dict()
         # override the default output from pydantic by calling `to_dict()` of oneof_schema_1_validator
         if self.oneof_schema_1_validator:
             _dict["oneof_schema_1_validator"] = self.oneof_schema_1_validator.to_dict()
         # override the default output from pydantic by calling `to_dict()` of oneof_schema_2_validator
         if self.oneof_schema_2_validator:
             _dict["oneof_schema_2_validator"] = self.oneof_schema_2_validator.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of actual_instance
-        if self.actual_instance:
-            _dict["actual_instance"] = self.actual_instance.to_dict()
+        # set to None if actual_instance (nullable) is None
+        # and model_fields_set contains the field
+        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
+            _dict["actual_instance"] = None
+
         # set to None if oneof_schema_1_validator (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -109,11 +114,6 @@ class Schema1Output(BaseModel):
         ):
             _dict["oneof_schema_2_validator"] = None
 
-        # set to None if actual_instance (nullable) is None
-        # and model_fields_set contains the field
-        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
-            _dict["actual_instance"] = None
-
         return _dict
 
     @classmethod
@@ -127,6 +127,12 @@ class Schema1Output(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "actual_instance": (
+                    ActualInstance4.from_dict(obj["actual_instance"])
+                    if obj.get("actual_instance") is not None
+                    else None
+                ),
+                "one_of_schemas": obj.get("one_of_schemas"),
                 "oneof_schema_1_validator": (
                     Reference.from_dict(obj["oneof_schema_1_validator"])
                     if obj.get("oneof_schema_1_validator") is not None
@@ -137,12 +143,6 @@ class Schema1Output(BaseModel):
                     if obj.get("oneof_schema_2_validator") is not None
                     else None
                 ),
-                "actual_instance": (
-                    ActualInstance4.from_dict(obj["actual_instance"])
-                    if obj.get("actual_instance") is not None
-                    else None
-                ),
-                "one_of_schemas": obj.get("one_of_schemas"),
             }
         )
         return _obj

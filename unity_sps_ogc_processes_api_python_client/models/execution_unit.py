@@ -32,19 +32,19 @@ class ExecutionUnit(BaseModel):
     Resource containing an executable or runtime information for executing the process.
     """  # noqa: E501
 
-    type: StrictStr = Field(description="Type of execution unit.")
+    additional_properties: Optional[Dict[str, Any]] = None
+    config: Optional[ExecutionUnitConfig] = None
+    deployment: Optional[StrictStr] = None
     image: StrictStr = Field(
         description="Container image reference for the execution unit."
     )
-    deployment: Optional[StrictStr] = None
-    config: Optional[ExecutionUnitConfig] = None
-    additional_properties: Optional[Dict[str, Any]] = None
+    type: StrictStr = Field(description="Type of execution unit.")
     __properties: ClassVar[List[str]] = [
-        "type",
-        "image",
-        "deployment",
-        "config",
         "additional_properties",
+        "config",
+        "deployment",
+        "image",
+        "type",
     ]
 
     model_config = ConfigDict(
@@ -87,15 +87,15 @@ class ExecutionUnit(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of config
         if self.config:
             _dict["config"] = self.config.to_dict()
-        # set to None if deployment (nullable) is None
-        # and model_fields_set contains the field
-        if self.deployment is None and "deployment" in self.model_fields_set:
-            _dict["deployment"] = None
-
         # set to None if config (nullable) is None
         # and model_fields_set contains the field
         if self.config is None and "config" in self.model_fields_set:
             _dict["config"] = None
+
+        # set to None if deployment (nullable) is None
+        # and model_fields_set contains the field
+        if self.deployment is None and "deployment" in self.model_fields_set:
+            _dict["deployment"] = None
 
         return _dict
 
@@ -110,15 +110,15 @@ class ExecutionUnit(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "type": obj.get("type"),
-                "image": obj.get("image"),
-                "deployment": obj.get("deployment"),
+                "additional_properties": obj.get("additional_properties"),
                 "config": (
                     ExecutionUnitConfig.from_dict(obj["config"])
                     if obj.get("config") is not None
                     else None
                 ),
-                "additional_properties": obj.get("additional_properties"),
+                "deployment": obj.get("deployment"),
+                "image": obj.get("image"),
+                "type": obj.get("type"),
             }
         )
         return _obj

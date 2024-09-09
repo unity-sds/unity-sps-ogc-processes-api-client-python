@@ -36,19 +36,19 @@ class QualifiedInputValueWorkflows(BaseModel):
     QualifiedInputValueWorkflows
     """  # noqa: E501
 
-    media_type: Optional[StrictStr] = Field(default=None, alias="mediaType")
     encoding: Optional[StrictStr] = None
-    var_schema: Optional[FormatSchema] = Field(default=None, alias="schema")
     filter: Optional[StrictStr] = None
+    media_type: Optional[StrictStr] = Field(default=None, alias="mediaType")
     properties: Optional[FieldsModifiersProperties] = None
+    var_schema: Optional[FormatSchema] = Field(default=None, alias="schema")
     sort_by: Optional[List[StrictStr]] = Field(default=None, alias="sortBy")
     value: InputValueWorkflows
     __properties: ClassVar[List[str]] = [
-        "mediaType",
         "encoding",
-        "schema",
         "filter",
+        "mediaType",
         "properties",
+        "schema",
         "sortBy",
         "value",
     ]
@@ -90,39 +90,39 @@ class QualifiedInputValueWorkflows(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of properties
         if self.properties:
             _dict["properties"] = self.properties.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
             _dict["value"] = self.value.to_dict()
-        # set to None if media_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.media_type is None and "media_type" in self.model_fields_set:
-            _dict["mediaType"] = None
-
         # set to None if encoding (nullable) is None
         # and model_fields_set contains the field
         if self.encoding is None and "encoding" in self.model_fields_set:
             _dict["encoding"] = None
-
-        # set to None if var_schema (nullable) is None
-        # and model_fields_set contains the field
-        if self.var_schema is None and "var_schema" in self.model_fields_set:
-            _dict["schema"] = None
 
         # set to None if filter (nullable) is None
         # and model_fields_set contains the field
         if self.filter is None and "filter" in self.model_fields_set:
             _dict["filter"] = None
 
+        # set to None if media_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.media_type is None and "media_type" in self.model_fields_set:
+            _dict["mediaType"] = None
+
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
             _dict["properties"] = None
+
+        # set to None if var_schema (nullable) is None
+        # and model_fields_set contains the field
+        if self.var_schema is None and "var_schema" in self.model_fields_set:
+            _dict["schema"] = None
 
         # set to None if sort_by (nullable) is None
         # and model_fields_set contains the field
@@ -142,17 +142,17 @@ class QualifiedInputValueWorkflows(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "mediaType": obj.get("mediaType"),
                 "encoding": obj.get("encoding"),
-                "schema": (
-                    FormatSchema.from_dict(obj["schema"])
-                    if obj.get("schema") is not None
-                    else None
-                ),
                 "filter": obj.get("filter"),
+                "mediaType": obj.get("mediaType"),
                 "properties": (
                     FieldsModifiersProperties.from_dict(obj["properties"])
                     if obj.get("properties") is not None
+                    else None
+                ),
+                "schema": (
+                    FormatSchema.from_dict(obj["schema"])
+                    if obj.get("schema") is not None
                     else None
                 ),
                 "sortBy": obj.get("sortBy"),

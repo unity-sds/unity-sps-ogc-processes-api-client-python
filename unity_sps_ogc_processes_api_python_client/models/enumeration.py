@@ -28,9 +28,9 @@ class Enumeration(BaseModel):
     Enumeration
     """  # noqa: E501
 
-    type: StrictStr
     enum: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["type", "enum"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["enum", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,5 +80,5 @@ class Enumeration(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"type": obj.get("type"), "enum": obj.get("enum")})
+        _obj = cls.model_validate({"enum": obj.get("enum"), "type": obj.get("type")})
         return _obj

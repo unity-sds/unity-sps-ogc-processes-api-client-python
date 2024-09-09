@@ -46,6 +46,9 @@ class InputValueNoObjectWorkflows(BaseModel):
     InputValueNoObjectWorkflows
     """  # noqa: E501
 
+    actual_instance: Optional[ActualInstance1] = None
+    one_of_schemas: Optional[List[StrictStr]] = None
+    oneof_schema_10_validator: Optional[InputParameterized] = None
     oneof_schema_1_validator: Optional[StrictStr] = None
     oneof_schema_2_validator: Optional[OneofSchema2Validator] = None
     oneof_schema_3_validator: Optional[StrictInt] = None
@@ -55,10 +58,10 @@ class InputValueNoObjectWorkflows(BaseModel):
     oneof_schema_7_validator: Optional[Bbox1] = None
     oneof_schema_8_validator: Optional[InputCollection] = None
     oneof_schema_9_validator: Optional[InputProcess] = None
-    oneof_schema_10_validator: Optional[InputParameterized] = None
-    actual_instance: Optional[ActualInstance1] = None
-    one_of_schemas: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = [
+        "actual_instance",
+        "one_of_schemas",
+        "oneof_schema_10_validator",
         "oneof_schema_1_validator",
         "oneof_schema_2_validator",
         "oneof_schema_3_validator",
@@ -68,9 +71,6 @@ class InputValueNoObjectWorkflows(BaseModel):
         "oneof_schema_7_validator",
         "oneof_schema_8_validator",
         "oneof_schema_9_validator",
-        "oneof_schema_10_validator",
-        "actual_instance",
-        "one_of_schemas",
     ]
 
     model_config = ConfigDict(
@@ -110,6 +110,14 @@ class InputValueNoObjectWorkflows(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of actual_instance
+        if self.actual_instance:
+            _dict["actual_instance"] = self.actual_instance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of oneof_schema_10_validator
+        if self.oneof_schema_10_validator:
+            _dict["oneof_schema_10_validator"] = (
+                self.oneof_schema_10_validator.to_dict()
+            )
         # override the default output from pydantic by calling `to_dict()` of oneof_schema_2_validator
         if self.oneof_schema_2_validator:
             _dict["oneof_schema_2_validator"] = self.oneof_schema_2_validator.to_dict()
@@ -125,14 +133,19 @@ class InputValueNoObjectWorkflows(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of oneof_schema_9_validator
         if self.oneof_schema_9_validator:
             _dict["oneof_schema_9_validator"] = self.oneof_schema_9_validator.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of oneof_schema_10_validator
-        if self.oneof_schema_10_validator:
-            _dict["oneof_schema_10_validator"] = (
-                self.oneof_schema_10_validator.to_dict()
-            )
-        # override the default output from pydantic by calling `to_dict()` of actual_instance
-        if self.actual_instance:
-            _dict["actual_instance"] = self.actual_instance.to_dict()
+        # set to None if actual_instance (nullable) is None
+        # and model_fields_set contains the field
+        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
+            _dict["actual_instance"] = None
+
+        # set to None if oneof_schema_10_validator (nullable) is None
+        # and model_fields_set contains the field
+        if (
+            self.oneof_schema_10_validator is None
+            and "oneof_schema_10_validator" in self.model_fields_set
+        ):
+            _dict["oneof_schema_10_validator"] = None
+
         # set to None if oneof_schema_1_validator (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -205,19 +218,6 @@ class InputValueNoObjectWorkflows(BaseModel):
         ):
             _dict["oneof_schema_9_validator"] = None
 
-        # set to None if oneof_schema_10_validator (nullable) is None
-        # and model_fields_set contains the field
-        if (
-            self.oneof_schema_10_validator is None
-            and "oneof_schema_10_validator" in self.model_fields_set
-        ):
-            _dict["oneof_schema_10_validator"] = None
-
-        # set to None if actual_instance (nullable) is None
-        # and model_fields_set contains the field
-        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
-            _dict["actual_instance"] = None
-
         return _dict
 
     @classmethod
@@ -231,6 +231,17 @@ class InputValueNoObjectWorkflows(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "actual_instance": (
+                    ActualInstance1.from_dict(obj["actual_instance"])
+                    if obj.get("actual_instance") is not None
+                    else None
+                ),
+                "one_of_schemas": obj.get("one_of_schemas"),
+                "oneof_schema_10_validator": (
+                    InputParameterized.from_dict(obj["oneof_schema_10_validator"])
+                    if obj.get("oneof_schema_10_validator") is not None
+                    else None
+                ),
                 "oneof_schema_1_validator": obj.get("oneof_schema_1_validator"),
                 "oneof_schema_2_validator": (
                     OneofSchema2Validator.from_dict(obj["oneof_schema_2_validator"])
@@ -260,17 +271,6 @@ class InputValueNoObjectWorkflows(BaseModel):
                     if obj.get("oneof_schema_9_validator") is not None
                     else None
                 ),
-                "oneof_schema_10_validator": (
-                    InputParameterized.from_dict(obj["oneof_schema_10_validator"])
-                    if obj.get("oneof_schema_10_validator") is not None
-                    else None
-                ),
-                "actual_instance": (
-                    ActualInstance1.from_dict(obj["actual_instance"])
-                    if obj.get("actual_instance") is not None
-                    else None
-                ),
-                "one_of_schemas": obj.get("one_of_schemas"),
             }
         )
         return _obj

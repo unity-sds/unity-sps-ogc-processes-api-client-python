@@ -39,23 +39,23 @@ class InputProcess(BaseModel):
     InputProcess
     """  # noqa: E501
 
+    filter: Optional[StrictStr] = None
+    inputs: Optional[Dict[str, InputWorkflows1]] = None
+    outputs: Optional[Dict[str, OutputWorkflows1]] = None
     process: StrictStr = Field(
         description="URI to the process execution end point (i.e., `.../processes/{processId}/execution`)"
     )
-    inputs: Optional[Dict[str, InputWorkflows1]] = None
-    outputs: Optional[Dict[str, OutputWorkflows1]] = None
-    subscriber: Optional[Subscriber] = None
-    filter: Optional[StrictStr] = None
     properties: Optional[FieldsModifiersProperties] = None
     sort_by: Optional[List[StrictStr]] = Field(default=None, alias="sortBy")
+    subscriber: Optional[Subscriber] = None
     __properties: ClassVar[List[str]] = [
-        "process",
+        "filter",
         "inputs",
         "outputs",
-        "subscriber",
-        "filter",
+        "process",
         "properties",
         "sortBy",
+        "subscriber",
     ]
 
     model_config = ConfigDict(
@@ -109,12 +109,17 @@ class InputProcess(BaseModel):
                 if self.outputs[_key]:
                     _field_dict[_key] = self.outputs[_key].to_dict()
             _dict["outputs"] = _field_dict
-        # override the default output from pydantic by calling `to_dict()` of subscriber
-        if self.subscriber:
-            _dict["subscriber"] = self.subscriber.to_dict()
         # override the default output from pydantic by calling `to_dict()` of properties
         if self.properties:
             _dict["properties"] = self.properties.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of subscriber
+        if self.subscriber:
+            _dict["subscriber"] = self.subscriber.to_dict()
+        # set to None if filter (nullable) is None
+        # and model_fields_set contains the field
+        if self.filter is None and "filter" in self.model_fields_set:
+            _dict["filter"] = None
+
         # set to None if inputs (nullable) is None
         # and model_fields_set contains the field
         if self.inputs is None and "inputs" in self.model_fields_set:
@@ -125,16 +130,6 @@ class InputProcess(BaseModel):
         if self.outputs is None and "outputs" in self.model_fields_set:
             _dict["outputs"] = None
 
-        # set to None if subscriber (nullable) is None
-        # and model_fields_set contains the field
-        if self.subscriber is None and "subscriber" in self.model_fields_set:
-            _dict["subscriber"] = None
-
-        # set to None if filter (nullable) is None
-        # and model_fields_set contains the field
-        if self.filter is None and "filter" in self.model_fields_set:
-            _dict["filter"] = None
-
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
@@ -144,6 +139,11 @@ class InputProcess(BaseModel):
         # and model_fields_set contains the field
         if self.sort_by is None and "sort_by" in self.model_fields_set:
             _dict["sortBy"] = None
+
+        # set to None if subscriber (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscriber is None and "subscriber" in self.model_fields_set:
+            _dict["subscriber"] = None
 
         return _dict
 
@@ -158,7 +158,7 @@ class InputProcess(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "process": obj.get("process"),
+                "filter": obj.get("filter"),
                 "inputs": (
                     dict(
                         (_k, InputWorkflows1.from_dict(_v))
@@ -175,18 +175,18 @@ class InputProcess(BaseModel):
                     if obj.get("outputs") is not None
                     else None
                 ),
-                "subscriber": (
-                    Subscriber.from_dict(obj["subscriber"])
-                    if obj.get("subscriber") is not None
-                    else None
-                ),
-                "filter": obj.get("filter"),
+                "process": obj.get("process"),
                 "properties": (
                     FieldsModifiersProperties.from_dict(obj["properties"])
                     if obj.get("properties") is not None
                     else None
                 ),
                 "sortBy": obj.get("sortBy"),
+                "subscriber": (
+                    Subscriber.from_dict(obj["subscriber"])
+                    if obj.get("subscriber") is not None
+                    else None
+                ),
             }
         )
         return _obj

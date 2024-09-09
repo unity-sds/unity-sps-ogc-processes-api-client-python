@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **bbox** | [**List[BboxBboxInner]**](BboxBboxInner.md) |  |
 **crs** | [**BboxDefCrs**](BboxDefCrs.md) |  | [optional]
 **href** | **str** |  |
-**rel** | **str** |  | [optional]
-**type** | **str** |  | [optional]
 **hreflang** | **str** |  | [optional]
+**rel** | **str** |  | [optional]
 **title** | **str** |  | [optional]
-**media_type** | **str** |  | [optional]
+**type** | **str** |  | [optional]
 **encoding** | **str** |  | [optional]
+**media_type** | **str** |  | [optional]
 **var_schema** | [**FormatSchema**](FormatSchema.md) |  | [optional]
 **value** | [**InputValueInput**](InputValueInput.md) |  |
 

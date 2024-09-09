@@ -6,14 +6,14 @@ Hardware requirements and configuration properties for executing the process.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cpu_min** | [**Cpumin**](Cpumin.md) |  | [optional]
-**cpu_max** | [**Cpumax**](Cpumax.md) |  | [optional]
-**memory_min** | [**Memorymin**](Memorymin.md) |  | [optional]
-**memory_max** | [**Memorymax**](Memorymax.md) |  | [optional]
-**storage_temp_min** | [**Storagetempmin**](Storagetempmin.md) |  | [optional]
-**storage_outputs_min** | [**Storageoutputsmin**](Storageoutputsmin.md) |  | [optional]
-**job_timeout** | [**Jobtimeout**](Jobtimeout.md) |  | [optional]
 **additional_properties** | **object** |  | [optional]
+**cpu_max** | [**Cpumax**](Cpumax.md) |  | [optional]
+**cpu_min** | [**Cpumin**](Cpumin.md) |  | [optional]
+**job_timeout** | [**Jobtimeout**](Jobtimeout.md) |  | [optional]
+**memory_max** | [**Memorymax**](Memorymax.md) |  | [optional]
+**memory_min** | [**Memorymin**](Memorymin.md) |  | [optional]
+**storage_outputs_min** | [**Storageoutputsmin**](Storageoutputsmin.md) |  | [optional]
+**storage_temp_min** | [**Storagetempmin**](Storagetempmin.md) |  | [optional]
 
 ## Example
 

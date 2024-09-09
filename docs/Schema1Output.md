@@ -6,10 +6,10 @@ Schema1
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**oneof_schema_1_validator** | [**Reference**](Reference.md) |  | [optional]
-**oneof_schema_2_validator** | [**SchemaOneOfOutput**](SchemaOneOfOutput.md) |  | [optional]
 **actual_instance** | [**ActualInstance4**](ActualInstance4.md) |  | [optional]
 **one_of_schemas** | **List[str]** |  | [optional]
+**oneof_schema_1_validator** | [**Reference**](Reference.md) |  | [optional]
+**oneof_schema_2_validator** | [**SchemaOneOfOutput**](SchemaOneOfOutput.md) |  | [optional]
 
 ## Example
 

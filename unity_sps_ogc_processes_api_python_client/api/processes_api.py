@@ -125,8 +125,8 @@ class ProcessesApi:
             "201": "StatusInfo",
             "303": None,
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -216,8 +216,8 @@ class ProcessesApi:
             "201": "StatusInfo",
             "303": None,
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -307,8 +307,8 @@ class ProcessesApi:
             "201": "StatusInfo",
             "303": None,
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -371,7 +371,7 @@ class ProcessesApi:
                 _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="POST",
@@ -617,7 +617,7 @@ class ProcessesApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="GET",
@@ -842,7 +842,7 @@ class ProcessesApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="GET",

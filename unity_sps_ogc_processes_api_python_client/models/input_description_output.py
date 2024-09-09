@@ -35,22 +35,22 @@ class InputDescriptionOutput(BaseModel):
     InputDescription
     """  # noqa: E501
 
-    title: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
     keywords: Optional[List[StrictStr]] = None
-    metadata: Optional[List[MetadataOutput]] = None
-    var_schema: ModelSchemaOutput = Field(alias="schema")
-    min_occurs: Optional[StrictInt] = Field(default=None, alias="minOccurs")
     max_occurs: Optional[StrictInt] = Field(alias="maxOccurs")
+    metadata: Optional[List[MetadataOutput]] = None
+    min_occurs: Optional[StrictInt] = Field(default=None, alias="minOccurs")
+    var_schema: ModelSchemaOutput = Field(alias="schema")
+    title: Optional[StrictStr] = None
     value_passing: Optional[List[StrictStr]] = Field(default=None, alias="valuePassing")
     __properties: ClassVar[List[str]] = [
-        "title",
         "description",
         "keywords",
-        "metadata",
-        "schema",
-        "minOccurs",
         "maxOccurs",
+        "metadata",
+        "minOccurs",
+        "schema",
+        "title",
         "valuePassing",
     ]
 
@@ -101,11 +101,6 @@ class InputDescriptionOutput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict["schema"] = self.var_schema.to_dict()
-        # set to None if title (nullable) is None
-        # and model_fields_set contains the field
-        if self.title is None and "title" in self.model_fields_set:
-            _dict["title"] = None
-
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -115,6 +110,11 @@ class InputDescriptionOutput(BaseModel):
         # and model_fields_set contains the field
         if self.keywords is None and "keywords" in self.model_fields_set:
             _dict["keywords"] = None
+
+        # set to None if max_occurs (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_occurs is None and "max_occurs" in self.model_fields_set:
+            _dict["maxOccurs"] = None
 
         # set to None if metadata (nullable) is None
         # and model_fields_set contains the field
@@ -126,10 +126,10 @@ class InputDescriptionOutput(BaseModel):
         if self.min_occurs is None and "min_occurs" in self.model_fields_set:
             _dict["minOccurs"] = None
 
-        # set to None if max_occurs (nullable) is None
+        # set to None if title (nullable) is None
         # and model_fields_set contains the field
-        if self.max_occurs is None and "max_occurs" in self.model_fields_set:
-            _dict["maxOccurs"] = None
+        if self.title is None and "title" in self.model_fields_set:
+            _dict["title"] = None
 
         # set to None if value_passing (nullable) is None
         # and model_fields_set contains the field
@@ -149,21 +149,21 @@ class InputDescriptionOutput(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "title": obj.get("title"),
                 "description": obj.get("description"),
                 "keywords": obj.get("keywords"),
+                "maxOccurs": obj.get("maxOccurs"),
                 "metadata": (
                     [MetadataOutput.from_dict(_item) for _item in obj["metadata"]]
                     if obj.get("metadata") is not None
                     else None
                 ),
+                "minOccurs": obj.get("minOccurs"),
                 "schema": (
                     ModelSchemaOutput.from_dict(obj["schema"])
                     if obj.get("schema") is not None
                     else None
                 ),
-                "minOccurs": obj.get("minOccurs"),
-                "maxOccurs": obj.get("maxOccurs"),
+                "title": obj.get("title"),
                 "valuePassing": obj.get("valuePassing"),
             }
         )

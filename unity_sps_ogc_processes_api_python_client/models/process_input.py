@@ -42,29 +42,29 @@ class ProcessInput(BaseModel):
     Process
     """  # noqa: E501
 
-    title: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
-    keywords: Optional[List[StrictStr]] = None
-    metadata: Optional[List[MetadataInput]] = None
     id: StrictStr
-    version: StrictStr
+    inputs: Optional[Dict[str, InputDescriptionInput]] = None
     job_control_options: Optional[List[JobControlOptions]] = Field(
         default=None, alias="jobControlOptions"
     )
+    keywords: Optional[List[StrictStr]] = None
     links: Optional[List[Link]] = None
-    inputs: Optional[Dict[str, InputDescriptionInput]] = None
+    metadata: Optional[List[MetadataInput]] = None
     outputs: Optional[Dict[str, OutputDescriptionInput]] = None
+    title: Optional[StrictStr] = None
+    version: StrictStr
     __properties: ClassVar[List[str]] = [
-        "title",
         "description",
-        "keywords",
-        "metadata",
         "id",
-        "version",
-        "jobControlOptions",
-        "links",
         "inputs",
+        "jobControlOptions",
+        "keywords",
+        "links",
+        "metadata",
         "outputs",
+        "title",
+        "version",
     ]
 
     model_config = ConfigDict(
@@ -104,20 +104,6 @@ class ProcessInput(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in metadata (list)
-        _items = []
-        if self.metadata:
-            for _item in self.metadata:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["metadata"] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
-        _items = []
-        if self.links:
-            for _item in self.links:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["links"] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in inputs (dict)
         _field_dict = {}
         if self.inputs:
@@ -125,6 +111,20 @@ class ProcessInput(BaseModel):
                 if self.inputs[_key]:
                     _field_dict[_key] = self.inputs[_key].to_dict()
             _dict["inputs"] = _field_dict
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["links"] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in metadata (list)
+        _items = []
+        if self.metadata:
+            for _item in self.metadata:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["metadata"] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in outputs (dict)
         _field_dict = {}
         if self.outputs:
@@ -132,25 +132,15 @@ class ProcessInput(BaseModel):
                 if self.outputs[_key]:
                     _field_dict[_key] = self.outputs[_key].to_dict()
             _dict["outputs"] = _field_dict
-        # set to None if title (nullable) is None
-        # and model_fields_set contains the field
-        if self.title is None and "title" in self.model_fields_set:
-            _dict["title"] = None
-
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict["description"] = None
 
-        # set to None if keywords (nullable) is None
+        # set to None if inputs (nullable) is None
         # and model_fields_set contains the field
-        if self.keywords is None and "keywords" in self.model_fields_set:
-            _dict["keywords"] = None
-
-        # set to None if metadata (nullable) is None
-        # and model_fields_set contains the field
-        if self.metadata is None and "metadata" in self.model_fields_set:
-            _dict["metadata"] = None
+        if self.inputs is None and "inputs" in self.model_fields_set:
+            _dict["inputs"] = None
 
         # set to None if job_control_options (nullable) is None
         # and model_fields_set contains the field
@@ -160,20 +150,30 @@ class ProcessInput(BaseModel):
         ):
             _dict["jobControlOptions"] = None
 
+        # set to None if keywords (nullable) is None
+        # and model_fields_set contains the field
+        if self.keywords is None and "keywords" in self.model_fields_set:
+            _dict["keywords"] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
             _dict["links"] = None
 
-        # set to None if inputs (nullable) is None
+        # set to None if metadata (nullable) is None
         # and model_fields_set contains the field
-        if self.inputs is None and "inputs" in self.model_fields_set:
-            _dict["inputs"] = None
+        if self.metadata is None and "metadata" in self.model_fields_set:
+            _dict["metadata"] = None
 
         # set to None if outputs (nullable) is None
         # and model_fields_set contains the field
         if self.outputs is None and "outputs" in self.model_fields_set:
             _dict["outputs"] = None
+
+        # set to None if title (nullable) is None
+        # and model_fields_set contains the field
+        if self.title is None and "title" in self.model_fields_set:
+            _dict["title"] = None
 
         return _dict
 
@@ -188,28 +188,26 @@ class ProcessInput(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "title": obj.get("title"),
                 "description": obj.get("description"),
-                "keywords": obj.get("keywords"),
-                "metadata": (
-                    [MetadataInput.from_dict(_item) for _item in obj["metadata"]]
-                    if obj.get("metadata") is not None
-                    else None
-                ),
                 "id": obj.get("id"),
-                "version": obj.get("version"),
-                "jobControlOptions": obj.get("jobControlOptions"),
-                "links": (
-                    [Link.from_dict(_item) for _item in obj["links"]]
-                    if obj.get("links") is not None
-                    else None
-                ),
                 "inputs": (
                     dict(
                         (_k, InputDescriptionInput.from_dict(_v))
                         for _k, _v in obj["inputs"].items()
                     )
                     if obj.get("inputs") is not None
+                    else None
+                ),
+                "jobControlOptions": obj.get("jobControlOptions"),
+                "keywords": obj.get("keywords"),
+                "links": (
+                    [Link.from_dict(_item) for _item in obj["links"]]
+                    if obj.get("links") is not None
+                    else None
+                ),
+                "metadata": (
+                    [MetadataInput.from_dict(_item) for _item in obj["metadata"]]
+                    if obj.get("metadata") is not None
                     else None
                 ),
                 "outputs": (
@@ -220,6 +218,8 @@ class ProcessInput(BaseModel):
                     if obj.get("outputs") is not None
                     else None
                 ),
+                "title": obj.get("title"),
+                "version": obj.get("version"),
             }
         )
         return _obj

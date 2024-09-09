@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bbox** | [**List[BboxBboxInner]**](BboxBboxInner.md) |  |
 **crs** | [**BboxDefCrs**](BboxDefCrs.md) |  | [optional]
+**collection** | **str** |  |
 **filter** | **str** |  | [optional]
 **properties** | [**FieldsModifiersProperties**](FieldsModifiersProperties.md) |  | [optional]
 **sort_by** | **List[str]** |  | [optional]
-**collection** | **str** |  |
 **input** | **str** |  |
-**process** | **str** | URI to the process execution end point (i.e., &#x60;.../processes/{processId}/execution&#x60;) |
 **inputs** | [**Dict[str, InputWorkflows1]**](InputWorkflows1.md) |  | [optional]
 **outputs** | [**Dict[str, OutputWorkflows1]**](OutputWorkflows1.md) |  | [optional]
+**process** | **str** | URI to the process execution end point (i.e., &#x60;.../processes/{processId}/execution&#x60;) |
 **subscriber** | [**Subscriber**](Subscriber.md) |  | [optional]
 
 ## Example

@@ -7,10 +7,10 @@ Link
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  |
-**rel** | **str** |  | [optional]
-**type** | **str** |  | [optional]
 **hreflang** | **str** |  | [optional]
+**rel** | **str** |  | [optional]
 **title** | **str** |  | [optional]
+**type** | **str** |  | [optional]
 
 ## Example
 

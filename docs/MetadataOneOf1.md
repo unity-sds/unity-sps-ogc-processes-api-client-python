@@ -6,9 +6,9 @@ MetadataOneOf1
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**lang** | **str** |  | [optional]
 **role** | **str** |  | [optional]
 **title** | **str** |  | [optional]
-**lang** | **str** |  | [optional]
 **value** | [**MetadataOneOf1Value**](MetadataOneOf1Value.md) |  | [optional]
 
 ## Example

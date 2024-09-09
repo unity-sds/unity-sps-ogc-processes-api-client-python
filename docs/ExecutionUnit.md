@@ -6,11 +6,11 @@ Resource containing an executable or runtime information for executing the proce
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | Type of execution unit. |
-**image** | **str** | Container image reference for the execution unit. |
-**deployment** | **str** |  | [optional]
-**config** | [**ExecutionUnitConfig**](ExecutionUnitConfig.md) |  | [optional]
 **additional_properties** | **object** |  | [optional]
+**config** | [**ExecutionUnitConfig**](ExecutionUnitConfig.md) |  | [optional]
+**deployment** | **str** |  | [optional]
+**image** | **str** | Container image reference for the execution unit. |
+**type** | **str** | Type of execution unit. |
 
 ## Example
 

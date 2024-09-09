@@ -5,17 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  |
-**image** | **str** | Container image reference for the execution unit. |
-**deployment** | **str** |  | [optional]
-**config** | [**ExecutionUnitConfig**](ExecutionUnitConfig.md) |  | [optional]
 **additional_properties** | **object** |  | [optional]
+**config** | [**ExecutionUnitConfig**](ExecutionUnitConfig.md) |  | [optional]
+**deployment** | **str** |  | [optional]
+**image** | **str** | Container image reference for the execution unit. |
+**type** | **str** |  |
 **href** | **str** |  |
-**rel** | **str** |  | [optional]
 **hreflang** | **str** |  | [optional]
+**rel** | **str** |  | [optional]
 **title** | **str** |  | [optional]
-**media_type** | **str** |  | [optional]
 **encoding** | **str** |  | [optional]
+**media_type** | **str** |  | [optional]
 **var_schema** | [**FormatSchema**](FormatSchema.md) |  | [optional]
 **value** | [**InputValueInput**](InputValueInput.md) |  |
 

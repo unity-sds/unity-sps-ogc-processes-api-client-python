@@ -14,6 +14,7 @@ Retrieve the OGC API landing page for this service.
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -27,6 +28,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -58,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -71,7 +81,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | The landing page provides links to the API definition (link relation &amp;#x60;service-desc&amp;#x60;, in this case path &amp;#x60;/api&amp;#x60;), to the Conformance declaration (path &amp;#x60;/conformance&amp;#x60;, link relation &amp;#x60;http://www.opengis.net/def/rel/ogc/1.0/conformance&amp;#x60;), and to other resources. |  -  |
 **406** | Content negotiation failed. For example, the &amp;#x60;Accept&amp;#x60; header submitted in the request did not support any of the media types supported by the server for the requested resource. |  -  |
-**500** | A server error occurred. |  -  |
 **422** | Validation Error |  -  |
+**500** | A server error occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -18,6 +18,8 @@ Executes a process (this may result in the creation of a job resource e.g., for 
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
+
 ```python
 import unity_sps_ogc_processes_api_python_client
 from unity_sps_ogc_processes_api_python_client.models.execute200_response_input import Execute200ResponseInput
@@ -31,6 +33,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -65,12 +76,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+* **Content-Type**: application/json
+* **Accept**: application/json
 
 ### HTTP response details
 
@@ -80,8 +91,8 @@ No authorization required
 **201** | Started asynchronous execution. Created job. |  -  |
 **303** | For *Collection Output* execution, redirection to an OGC API landing page or collection. |  -  |
 **404** | The requested resource does not exist on the server. For example, a path parameter had an incorrect value. |  -  |
-**500** | A server error occurred. |  -  |
 **422** | Validation Error |  -  |
+**500** | A server error occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -95,6 +106,8 @@ The process description contains information about inputs and outputs and a link
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
+
 ```python
 import unity_sps_ogc_processes_api_python_client
 from unity_sps_ogc_processes_api_python_client.models.process_input import ProcessInput
@@ -107,6 +120,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -135,12 +157,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+* **Content-Type**: Not defined
+* **Accept**: application/json
 
 ### HTTP response details
 
@@ -162,6 +184,8 @@ The list of processes contains a summary of each process the OGC API - Processes
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
+
 ```python
 import unity_sps_ogc_processes_api_python_client
 from unity_sps_ogc_processes_api_python_client.models.process_list_input import ProcessListInput
@@ -174,6 +198,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -199,12 +232,12 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+* **Content-Type**: Not defined
+* **Accept**: application/json
 
 ### HTTP response details
 

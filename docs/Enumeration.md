@@ -6,8 +6,8 @@ Enumeration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  |
 **enum** | **List[str]** |  |
+**type** | **str** |  |
 
 ## Example
 

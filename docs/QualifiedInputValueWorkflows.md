@@ -6,11 +6,11 @@ QualifiedInputValueWorkflows
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**media_type** | **str** |  | [optional]
 **encoding** | **str** |  | [optional]
-**var_schema** | [**FormatSchema**](FormatSchema.md) |  | [optional]
 **filter** | **str** |  | [optional]
+**media_type** | **str** |  | [optional]
 **properties** | [**FieldsModifiersProperties**](FieldsModifiersProperties.md) |  | [optional]
+**var_schema** | [**FormatSchema**](FormatSchema.md) |  | [optional]
 **sort_by** | **List[str]** |  | [optional]
 **value** | [**InputValueWorkflows**](InputValueWorkflows.md) |  |
 

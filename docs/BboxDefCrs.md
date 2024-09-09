@@ -6,10 +6,10 @@ BboxDefCrs
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**anyof_schema_1_validator** | **str** |  | [optional]
-**anyof_schema_2_validator** | **str** |  | [optional]
 **actual_instance** | **object** |  | [optional]
 **any_of_schemas** | **List[str]** |  | [optional]
+**anyof_schema_1_validator** | **str** |  | [optional]
+**anyof_schema_2_validator** | **str** |  | [optional]
 
 ## Example
 

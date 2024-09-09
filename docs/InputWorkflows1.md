@@ -6,10 +6,10 @@ InputWorkflows1
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**oneof_schema_1_validator** | [**InlineOrRefDataWorkflows**](InlineOrRefDataWorkflows.md) |  | [optional]
-**oneof_schema_2_validator** | [**List[InlineOrRefDataWorkflows]**](InlineOrRefDataWorkflows.md) |  | [optional]
 **actual_instance** | [**ActualInstance2**](ActualInstance2.md) |  | [optional]
 **one_of_schemas** | **List[str]** |  | [optional]
+**oneof_schema_1_validator** | [**InlineOrRefDataWorkflows**](InlineOrRefDataWorkflows.md) |  | [optional]
+**oneof_schema_2_validator** | [**List[InlineOrRefDataWorkflows]**](InlineOrRefDataWorkflows.md) |  | [optional]
 
 ## Example
 

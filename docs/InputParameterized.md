@@ -6,10 +6,10 @@ InputParameterized
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**input** | **str** |  |
 **filter** | **str** |  | [optional]
 **properties** | [**FieldsModifiersProperties**](FieldsModifiersProperties.md) |  | [optional]
 **sort_by** | **List[str]** |  | [optional]
-**input** | **str** |  |
 
 ## Example
 

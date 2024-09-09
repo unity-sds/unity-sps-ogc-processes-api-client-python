@@ -32,11 +32,11 @@ class InputParameterized(BaseModel):
     InputParameterized
     """  # noqa: E501
 
+    input: StrictStr = Field(alias="$input")
     filter: Optional[StrictStr] = None
     properties: Optional[FieldsModifiersProperties] = None
     sort_by: Optional[List[StrictStr]] = Field(default=None, alias="sortBy")
-    input: StrictStr = Field(alias="$input")
-    __properties: ClassVar[List[str]] = ["filter", "properties", "sortBy", "$input"]
+    __properties: ClassVar[List[str]] = ["$input", "filter", "properties", "sortBy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +106,7 @@ class InputParameterized(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "$input": obj.get("$input"),
                 "filter": obj.get("filter"),
                 "properties": (
                     FieldsModifiersProperties.from_dict(obj["properties"])
@@ -113,7 +114,6 @@ class InputParameterized(BaseModel):
                     else None
                 ),
                 "sortBy": obj.get("sortBy"),
-                "$input": obj.get("$input"),
             }
         )
         return _obj

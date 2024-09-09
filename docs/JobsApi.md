@@ -19,6 +19,7 @@ Cancel a job execution and remove it from the jobs list.  For more information, 
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -32,6 +33,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -63,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -76,8 +86,8 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | The status of a job. |  -  |
 **404** | The requested resource does not exist on the server. For example, a path parameter had an incorrect value. |  -  |
-**500** | A server error occurred. |  -  |
 **422** | Validation Error |  -  |
+**500** | A server error occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -90,6 +100,7 @@ Lists available jobs.  For more information, see [Section 12](https://docs.ogc.o
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -103,6 +114,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -130,7 +150,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -155,6 +175,7 @@ Lists available results of a job. In case of a failure, lists exceptions instead
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -168,6 +189,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -201,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -214,8 +244,8 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | The processing results of a job. |  -  |
 **404** | The requested resource does not exist on the server. For example, a path parameter had an incorrect value. |  -  |
-**500** | A server error occurred. |  -  |
 **422** | Validation Error |  -  |
+**500** | A server error occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -228,6 +258,7 @@ Shows the status of a job.   For more information, see [Section 7.10](https://do
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -241,6 +272,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -272,7 +312,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -285,7 +325,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | The status of a job. |  -  |
 **404** | The requested resource does not exist on the server. For example, a path parameter had an incorrect value. |  -  |
-**500** | A server error occurred. |  -  |
 **422** | Validation Error |  -  |
+**500** | A server error occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

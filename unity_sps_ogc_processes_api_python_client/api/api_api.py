@@ -96,8 +96,8 @@ class APIApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "object",
             "406": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -167,8 +167,8 @@ class APIApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "object",
             "406": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -238,8 +238,8 @@ class APIApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "object",
             "406": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -283,7 +283,7 @@ class APIApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="GET",
@@ -360,8 +360,8 @@ class APIApi:
             "200": "Enumeration",
             "404": "Exception",
             "406": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -432,8 +432,8 @@ class APIApi:
             "200": "Enumeration",
             "404": "Exception",
             "406": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -504,8 +504,8 @@ class APIApi:
             "200": "Enumeration",
             "404": "Exception",
             "406": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -549,7 +549,7 @@ class APIApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="GET",

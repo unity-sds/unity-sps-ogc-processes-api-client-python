@@ -6,10 +6,10 @@ InputValueWorkflows
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**oneof_schema_1_validator** | [**InputValueNoObjectWorkflows**](InputValueNoObjectWorkflows.md) |  | [optional]
-**oneof_schema_2_validator** | **object** |  | [optional]
 **actual_instance** | [**InputValueNoObjectWorkflows**](InputValueNoObjectWorkflows.md) |  | [optional]
 **one_of_schemas** | **List[str]** |  | [optional]
+**oneof_schema_1_validator** | [**InputValueNoObjectWorkflows**](InputValueNoObjectWorkflows.md) |  | [optional]
+**oneof_schema_2_validator** | **object** |  | [optional]
 
 ## Example
 

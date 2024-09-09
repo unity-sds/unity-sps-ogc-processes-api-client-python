@@ -28,19 +28,19 @@ class Exception(BaseModel):
     JSON schema for exceptions based on RFC 7807
     """  # noqa: E501
 
-    type: StrictStr
-    title: Optional[StrictStr] = None
-    status: Optional[StrictInt] = None
+    additional_properties: Optional[Dict[str, Any]] = None
     detail: Optional[StrictStr] = None
     instance: Optional[StrictStr] = None
-    additional_properties: Optional[Dict[str, Any]] = None
+    status: Optional[StrictInt] = None
+    title: Optional[StrictStr] = None
+    type: StrictStr
     __properties: ClassVar[List[str]] = [
-        "type",
-        "title",
-        "status",
+        "additional_properties",
         "detail",
         "instance",
-        "additional_properties",
+        "status",
+        "title",
+        "type",
     ]
 
     model_config = ConfigDict(
@@ -80,16 +80,6 @@ class Exception(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if title (nullable) is None
-        # and model_fields_set contains the field
-        if self.title is None and "title" in self.model_fields_set:
-            _dict["title"] = None
-
-        # set to None if status (nullable) is None
-        # and model_fields_set contains the field
-        if self.status is None and "status" in self.model_fields_set:
-            _dict["status"] = None
-
         # set to None if detail (nullable) is None
         # and model_fields_set contains the field
         if self.detail is None and "detail" in self.model_fields_set:
@@ -99,6 +89,16 @@ class Exception(BaseModel):
         # and model_fields_set contains the field
         if self.instance is None and "instance" in self.model_fields_set:
             _dict["instance"] = None
+
+        # set to None if status (nullable) is None
+        # and model_fields_set contains the field
+        if self.status is None and "status" in self.model_fields_set:
+            _dict["status"] = None
+
+        # set to None if title (nullable) is None
+        # and model_fields_set contains the field
+        if self.title is None and "title" in self.model_fields_set:
+            _dict["title"] = None
 
         return _dict
 
@@ -113,12 +113,12 @@ class Exception(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "type": obj.get("type"),
-                "title": obj.get("title"),
-                "status": obj.get("status"),
+                "additional_properties": obj.get("additional_properties"),
                 "detail": obj.get("detail"),
                 "instance": obj.get("instance"),
-                "additional_properties": obj.get("additional_properties"),
+                "status": obj.get("status"),
+                "title": obj.get("title"),
+                "type": obj.get("type"),
             }
         )
         return _obj

@@ -7,11 +7,11 @@ ExecuteWorkflows
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **filter** | **str** |  | [optional]
-**properties** | [**FieldsModifiersProperties**](FieldsModifiersProperties.md) |  | [optional]
-**sort_by** | **List[str]** |  | [optional]
-**process** | **str** |  | [optional]
 **inputs** | [**Dict[str, InputWorkflows]**](InputWorkflows.md) |  | [optional]
 **outputs** | [**Dict[str, OutputWorkflows]**](OutputWorkflows.md) |  | [optional]
+**process** | **str** |  | [optional]
+**properties** | [**FieldsModifiersProperties**](FieldsModifiersProperties.md) |  | [optional]
+**sort_by** | **List[str]** |  | [optional]
 **subscriber** | [**Subscriber**](Subscriber.md) |  | [optional]
 
 ## Example

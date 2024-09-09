@@ -40,27 +40,27 @@ class ExecutionUnitConfig(BaseModel):
     Hardware requirements and configuration properties for executing the process.
     """  # noqa: E501
 
-    cpu_min: Optional[Cpumin] = Field(default=None, alias="cpuMin")
+    additional_properties: Optional[Dict[str, Any]] = None
     cpu_max: Optional[Cpumax] = Field(default=None, alias="cpuMax")
-    memory_min: Optional[Memorymin] = Field(default=None, alias="memoryMin")
+    cpu_min: Optional[Cpumin] = Field(default=None, alias="cpuMin")
+    job_timeout: Optional[Jobtimeout] = Field(default=None, alias="jobTimeout")
     memory_max: Optional[Memorymax] = Field(default=None, alias="memoryMax")
-    storage_temp_min: Optional[Storagetempmin] = Field(
-        default=None, alias="storageTempMin"
-    )
+    memory_min: Optional[Memorymin] = Field(default=None, alias="memoryMin")
     storage_outputs_min: Optional[Storageoutputsmin] = Field(
         default=None, alias="storageOutputsMin"
     )
-    job_timeout: Optional[Jobtimeout] = Field(default=None, alias="jobTimeout")
-    additional_properties: Optional[Dict[str, Any]] = None
+    storage_temp_min: Optional[Storagetempmin] = Field(
+        default=None, alias="storageTempMin"
+    )
     __properties: ClassVar[List[str]] = [
-        "cpuMin",
-        "cpuMax",
-        "memoryMin",
-        "memoryMax",
-        "storageTempMin",
-        "storageOutputsMin",
-        "jobTimeout",
         "additional_properties",
+        "cpuMax",
+        "cpuMin",
+        "jobTimeout",
+        "memoryMax",
+        "memoryMin",
+        "storageOutputsMin",
+        "storageTempMin",
     ]
 
     model_config = ConfigDict(
@@ -100,54 +100,51 @@ class ExecutionUnitConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of cpu_min
-        if self.cpu_min:
-            _dict["cpuMin"] = self.cpu_min.to_dict()
         # override the default output from pydantic by calling `to_dict()` of cpu_max
         if self.cpu_max:
             _dict["cpuMax"] = self.cpu_max.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of memory_min
-        if self.memory_min:
-            _dict["memoryMin"] = self.memory_min.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of memory_max
-        if self.memory_max:
-            _dict["memoryMax"] = self.memory_max.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of storage_temp_min
-        if self.storage_temp_min:
-            _dict["storageTempMin"] = self.storage_temp_min.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of storage_outputs_min
-        if self.storage_outputs_min:
-            _dict["storageOutputsMin"] = self.storage_outputs_min.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cpu_min
+        if self.cpu_min:
+            _dict["cpuMin"] = self.cpu_min.to_dict()
         # override the default output from pydantic by calling `to_dict()` of job_timeout
         if self.job_timeout:
             _dict["jobTimeout"] = self.job_timeout.to_dict()
-        # set to None if cpu_min (nullable) is None
-        # and model_fields_set contains the field
-        if self.cpu_min is None and "cpu_min" in self.model_fields_set:
-            _dict["cpuMin"] = None
-
+        # override the default output from pydantic by calling `to_dict()` of memory_max
+        if self.memory_max:
+            _dict["memoryMax"] = self.memory_max.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of memory_min
+        if self.memory_min:
+            _dict["memoryMin"] = self.memory_min.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of storage_outputs_min
+        if self.storage_outputs_min:
+            _dict["storageOutputsMin"] = self.storage_outputs_min.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of storage_temp_min
+        if self.storage_temp_min:
+            _dict["storageTempMin"] = self.storage_temp_min.to_dict()
         # set to None if cpu_max (nullable) is None
         # and model_fields_set contains the field
         if self.cpu_max is None and "cpu_max" in self.model_fields_set:
             _dict["cpuMax"] = None
 
-        # set to None if memory_min (nullable) is None
+        # set to None if cpu_min (nullable) is None
         # and model_fields_set contains the field
-        if self.memory_min is None and "memory_min" in self.model_fields_set:
-            _dict["memoryMin"] = None
+        if self.cpu_min is None and "cpu_min" in self.model_fields_set:
+            _dict["cpuMin"] = None
+
+        # set to None if job_timeout (nullable) is None
+        # and model_fields_set contains the field
+        if self.job_timeout is None and "job_timeout" in self.model_fields_set:
+            _dict["jobTimeout"] = None
 
         # set to None if memory_max (nullable) is None
         # and model_fields_set contains the field
         if self.memory_max is None and "memory_max" in self.model_fields_set:
             _dict["memoryMax"] = None
 
-        # set to None if storage_temp_min (nullable) is None
+        # set to None if memory_min (nullable) is None
         # and model_fields_set contains the field
-        if (
-            self.storage_temp_min is None
-            and "storage_temp_min" in self.model_fields_set
-        ):
-            _dict["storageTempMin"] = None
+        if self.memory_min is None and "memory_min" in self.model_fields_set:
+            _dict["memoryMin"] = None
 
         # set to None if storage_outputs_min (nullable) is None
         # and model_fields_set contains the field
@@ -157,10 +154,13 @@ class ExecutionUnitConfig(BaseModel):
         ):
             _dict["storageOutputsMin"] = None
 
-        # set to None if job_timeout (nullable) is None
+        # set to None if storage_temp_min (nullable) is None
         # and model_fields_set contains the field
-        if self.job_timeout is None and "job_timeout" in self.model_fields_set:
-            _dict["jobTimeout"] = None
+        if (
+            self.storage_temp_min is None
+            and "storage_temp_min" in self.model_fields_set
+        ):
+            _dict["storageTempMin"] = None
 
         return _dict
 
@@ -175,34 +175,15 @@ class ExecutionUnitConfig(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "cpuMin": (
-                    Cpumin.from_dict(obj["cpuMin"])
-                    if obj.get("cpuMin") is not None
-                    else None
-                ),
+                "additional_properties": obj.get("additional_properties"),
                 "cpuMax": (
                     Cpumax.from_dict(obj["cpuMax"])
                     if obj.get("cpuMax") is not None
                     else None
                 ),
-                "memoryMin": (
-                    Memorymin.from_dict(obj["memoryMin"])
-                    if obj.get("memoryMin") is not None
-                    else None
-                ),
-                "memoryMax": (
-                    Memorymax.from_dict(obj["memoryMax"])
-                    if obj.get("memoryMax") is not None
-                    else None
-                ),
-                "storageTempMin": (
-                    Storagetempmin.from_dict(obj["storageTempMin"])
-                    if obj.get("storageTempMin") is not None
-                    else None
-                ),
-                "storageOutputsMin": (
-                    Storageoutputsmin.from_dict(obj["storageOutputsMin"])
-                    if obj.get("storageOutputsMin") is not None
+                "cpuMin": (
+                    Cpumin.from_dict(obj["cpuMin"])
+                    if obj.get("cpuMin") is not None
                     else None
                 ),
                 "jobTimeout": (
@@ -210,7 +191,26 @@ class ExecutionUnitConfig(BaseModel):
                     if obj.get("jobTimeout") is not None
                     else None
                 ),
-                "additional_properties": obj.get("additional_properties"),
+                "memoryMax": (
+                    Memorymax.from_dict(obj["memoryMax"])
+                    if obj.get("memoryMax") is not None
+                    else None
+                ),
+                "memoryMin": (
+                    Memorymin.from_dict(obj["memoryMin"])
+                    if obj.get("memoryMin") is not None
+                    else None
+                ),
+                "storageOutputsMin": (
+                    Storageoutputsmin.from_dict(obj["storageOutputsMin"])
+                    if obj.get("storageOutputsMin") is not None
+                    else None
+                ),
+                "storageTempMin": (
+                    Storagetempmin.from_dict(obj["storageTempMin"])
+                    if obj.get("storageTempMin") is not None
+                    else None
+                ),
             }
         )
         return _obj

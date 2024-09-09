@@ -32,15 +32,15 @@ class InputValueInput(BaseModel):
     InputValue
     """  # noqa: E501
 
-    anyof_schema_1_validator: Optional[InputValueNoObjectInput] = None
-    anyof_schema_2_validator: Optional[Dict[str, Any]] = None
     actual_instance: Optional[Any] = None
     any_of_schemas: Optional[List[StrictStr]] = None
+    anyof_schema_1_validator: Optional[InputValueNoObjectInput] = None
+    anyof_schema_2_validator: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = [
-        "anyof_schema_1_validator",
-        "anyof_schema_2_validator",
         "actual_instance",
         "any_of_schemas",
+        "anyof_schema_1_validator",
+        "anyof_schema_2_validator",
     ]
 
     model_config = ConfigDict(
@@ -83,6 +83,11 @@ class InputValueInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of anyof_schema_1_validator
         if self.anyof_schema_1_validator:
             _dict["anyof_schema_1_validator"] = self.anyof_schema_1_validator.to_dict()
+        # set to None if actual_instance (nullable) is None
+        # and model_fields_set contains the field
+        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
+            _dict["actual_instance"] = None
+
         # set to None if anyof_schema_1_validator (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -99,11 +104,6 @@ class InputValueInput(BaseModel):
         ):
             _dict["anyof_schema_2_validator"] = None
 
-        # set to None if actual_instance (nullable) is None
-        # and model_fields_set contains the field
-        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
-            _dict["actual_instance"] = None
-
         return _dict
 
     @classmethod
@@ -117,14 +117,14 @@ class InputValueInput(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "actual_instance": obj.get("actual_instance"),
+                "any_of_schemas": obj.get("any_of_schemas"),
                 "anyof_schema_1_validator": (
                     InputValueNoObjectInput.from_dict(obj["anyof_schema_1_validator"])
                     if obj.get("anyof_schema_1_validator") is not None
                     else None
                 ),
                 "anyof_schema_2_validator": obj.get("anyof_schema_2_validator"),
-                "actual_instance": obj.get("actual_instance"),
-                "any_of_schemas": obj.get("any_of_schemas"),
             }
         )
         return _obj

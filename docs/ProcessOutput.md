@@ -6,16 +6,16 @@ Process
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **str** |  | [optional]
 **description** | **str** |  | [optional]
-**keywords** | **List[str]** |  | [optional]
-**metadata** | [**List[MetadataOutput]**](MetadataOutput.md) |  | [optional]
 **id** | **str** |  |
-**version** | **str** |  |
-**job_control_options** | [**List[JobControlOptions]**](JobControlOptions.md) |  | [optional]
-**links** | [**List[Link]**](Link.md) |  | [optional]
 **inputs** | [**Dict[str, InputDescriptionOutput]**](InputDescriptionOutput.md) |  | [optional]
+**job_control_options** | [**List[JobControlOptions]**](JobControlOptions.md) |  | [optional]
+**keywords** | **List[str]** |  | [optional]
+**links** | [**List[Link]**](Link.md) |  | [optional]
+**metadata** | [**List[MetadataOutput]**](MetadataOutput.md) |  | [optional]
 **outputs** | [**Dict[str, OutputDescriptionOutput]**](OutputDescriptionOutput.md) |  | [optional]
+**title** | **str** |  | [optional]
+**version** | **str** |  |
 
 ## Example
 

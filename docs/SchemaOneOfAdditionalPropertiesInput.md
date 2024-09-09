@@ -6,10 +6,10 @@ SchemaOneOfAdditionalProperties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**oneof_schema_1_validator** | [**Schema1Input**](Schema1Input.md) |  | [optional]
-**oneof_schema_2_validator** | **bool** |  | [optional]
 **actual_instance** | [**ActualInstance5**](ActualInstance5.md) |  | [optional]
 **one_of_schemas** | **List[str]** |  | [optional]
+**oneof_schema_1_validator** | [**Schema1Input**](Schema1Input.md) |  | [optional]
+**oneof_schema_2_validator** | **bool** |  | [optional]
 
 ## Example
 

@@ -6,10 +6,10 @@ InputCollection
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**collection** | **str** |  |
 **filter** | **str** |  | [optional]
 **properties** | [**FieldsModifiersProperties**](FieldsModifiersProperties.md) |  | [optional]
 **sort_by** | **List[str]** |  | [optional]
-**collection** | **str** |  |
 
 ## Example
 

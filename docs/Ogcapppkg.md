@@ -6,8 +6,8 @@ Ogcapppkg
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**process_description** | [**ProcessInput**](ProcessInput.md) |  |
 **execution_unit** | [**OgcapppkgExecutionUnit**](OgcapppkgExecutionUnit.md) |  |
+**process_description** | [**ProcessInput**](ProcessInput.md) |  |
 
 ## Example
 

@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**oneof_schema_1_validator** | [**Reference**](Reference.md) |  | [optional]
-**oneof_schema_2_validator** | [**SchemaOneOfInput**](SchemaOneOfInput.md) |  | [optional]
 **actual_instance** | [**ActualInstance3**](ActualInstance3.md) |  | [optional]
 **one_of_schemas** | **List[str]** |  | [optional]
+**oneof_schema_1_validator** | [**Reference**](Reference.md) |  | [optional]
+**oneof_schema_2_validator** | [**SchemaOneOfInput**](SchemaOneOfInput.md) |  | [optional]
 
 ## Example
 

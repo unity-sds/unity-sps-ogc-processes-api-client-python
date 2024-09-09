@@ -36,25 +36,25 @@ class ProcessSummaryOutput(BaseModel):
     ProcessSummary
     """  # noqa: E501
 
-    title: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
-    keywords: Optional[List[StrictStr]] = None
-    metadata: Optional[List[MetadataOutput]] = None
     id: StrictStr
-    version: StrictStr
     job_control_options: Optional[List[JobControlOptions]] = Field(
         default=None, alias="jobControlOptions"
     )
+    keywords: Optional[List[StrictStr]] = None
     links: Optional[List[Link]] = None
+    metadata: Optional[List[MetadataOutput]] = None
+    title: Optional[StrictStr] = None
+    version: StrictStr
     __properties: ClassVar[List[str]] = [
-        "title",
         "description",
-        "keywords",
-        "metadata",
         "id",
-        "version",
         "jobControlOptions",
+        "keywords",
         "links",
+        "metadata",
+        "title",
+        "version",
     ]
 
     model_config = ConfigDict(
@@ -94,13 +94,6 @@ class ProcessSummaryOutput(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in metadata (list)
-        _items = []
-        if self.metadata:
-            for _item in self.metadata:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict["metadata"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -108,25 +101,17 @@ class ProcessSummaryOutput(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict["links"] = _items
-        # set to None if title (nullable) is None
-        # and model_fields_set contains the field
-        if self.title is None and "title" in self.model_fields_set:
-            _dict["title"] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in metadata (list)
+        _items = []
+        if self.metadata:
+            for _item in self.metadata:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict["metadata"] = _items
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict["description"] = None
-
-        # set to None if keywords (nullable) is None
-        # and model_fields_set contains the field
-        if self.keywords is None and "keywords" in self.model_fields_set:
-            _dict["keywords"] = None
-
-        # set to None if metadata (nullable) is None
-        # and model_fields_set contains the field
-        if self.metadata is None and "metadata" in self.model_fields_set:
-            _dict["metadata"] = None
 
         # set to None if job_control_options (nullable) is None
         # and model_fields_set contains the field
@@ -136,10 +121,25 @@ class ProcessSummaryOutput(BaseModel):
         ):
             _dict["jobControlOptions"] = None
 
+        # set to None if keywords (nullable) is None
+        # and model_fields_set contains the field
+        if self.keywords is None and "keywords" in self.model_fields_set:
+            _dict["keywords"] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
             _dict["links"] = None
+
+        # set to None if metadata (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata is None and "metadata" in self.model_fields_set:
+            _dict["metadata"] = None
+
+        # set to None if title (nullable) is None
+        # and model_fields_set contains the field
+        if self.title is None and "title" in self.model_fields_set:
+            _dict["title"] = None
 
         return _dict
 
@@ -154,22 +154,22 @@ class ProcessSummaryOutput(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "title": obj.get("title"),
                 "description": obj.get("description"),
-                "keywords": obj.get("keywords"),
-                "metadata": (
-                    [MetadataOutput.from_dict(_item) for _item in obj["metadata"]]
-                    if obj.get("metadata") is not None
-                    else None
-                ),
                 "id": obj.get("id"),
-                "version": obj.get("version"),
                 "jobControlOptions": obj.get("jobControlOptions"),
+                "keywords": obj.get("keywords"),
                 "links": (
                     [Link.from_dict(_item) for _item in obj["links"]]
                     if obj.get("links") is not None
                     else None
                 ),
+                "metadata": (
+                    [MetadataOutput.from_dict(_item) for _item in obj["metadata"]]
+                    if obj.get("metadata") is not None
+                    else None
+                ),
+                "title": obj.get("title"),
+                "version": obj.get("version"),
             }
         )
         return _obj

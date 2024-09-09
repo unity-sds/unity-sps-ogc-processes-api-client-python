@@ -6,13 +6,13 @@ InputDescription
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **str** |  | [optional]
 **description** | **str** |  | [optional]
 **keywords** | **List[str]** |  | [optional]
-**metadata** | [**List[MetadataOutput]**](MetadataOutput.md) |  | [optional]
-**var_schema** | [**ModelSchemaOutput**](ModelSchemaOutput.md) |  |
-**min_occurs** | **int** |  | [optional]
 **max_occurs** | **int** |  |
+**metadata** | [**List[MetadataOutput]**](MetadataOutput.md) |  | [optional]
+**min_occurs** | **int** |  | [optional]
+**var_schema** | [**ModelSchemaOutput**](ModelSchemaOutput.md) |  |
+**title** | **str** |  | [optional]
 **value_passing** | **List[str]** |  | [optional]
 
 ## Example

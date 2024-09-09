@@ -96,8 +96,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "StatusInfo",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -163,8 +163,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "StatusInfo",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -230,8 +230,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "StatusInfo",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -273,7 +273,7 @@ class JobsApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="DELETE",
@@ -501,7 +501,7 @@ class JobsApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="GET",
@@ -582,8 +582,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Dict[str, InlineOrRefDataInput]",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -658,8 +658,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Dict[str, InlineOrRefDataInput]",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -734,8 +734,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "Dict[str, InlineOrRefDataInput]",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -780,7 +780,7 @@ class JobsApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="GET",
@@ -852,8 +852,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "StatusInfo",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -919,8 +919,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "StatusInfo",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -986,8 +986,8 @@ class JobsApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "StatusInfo",
             "404": "Exception",
-            "500": "Exception",
             "422": "HTTPValidationError",
+            "500": "Exception",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1029,7 +1029,7 @@ class JobsApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["bearerAuth"]
 
         return self.api_client.param_serialize(
             method="GET",

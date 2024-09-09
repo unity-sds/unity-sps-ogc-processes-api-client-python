@@ -39,17 +39,17 @@ class InlineOrRefDataWorkflows(BaseModel):
     InlineOrRefDataWorkflows
     """  # noqa: E501
 
+    actual_instance: Optional[ActualInstance] = None
+    one_of_schemas: Optional[List[StrictStr]] = None
     oneof_schema_1_validator: Optional[InputValueNoObjectWorkflows] = None
     oneof_schema_2_validator: Optional[QualifiedInputValueWorkflows] = None
     oneof_schema_3_validator: Optional[Link] = None
-    actual_instance: Optional[ActualInstance] = None
-    one_of_schemas: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = [
+        "actual_instance",
+        "one_of_schemas",
         "oneof_schema_1_validator",
         "oneof_schema_2_validator",
         "oneof_schema_3_validator",
-        "actual_instance",
-        "one_of_schemas",
     ]
 
     model_config = ConfigDict(
@@ -89,6 +89,9 @@ class InlineOrRefDataWorkflows(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of actual_instance
+        if self.actual_instance:
+            _dict["actual_instance"] = self.actual_instance.to_dict()
         # override the default output from pydantic by calling `to_dict()` of oneof_schema_1_validator
         if self.oneof_schema_1_validator:
             _dict["oneof_schema_1_validator"] = self.oneof_schema_1_validator.to_dict()
@@ -98,9 +101,11 @@ class InlineOrRefDataWorkflows(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of oneof_schema_3_validator
         if self.oneof_schema_3_validator:
             _dict["oneof_schema_3_validator"] = self.oneof_schema_3_validator.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of actual_instance
-        if self.actual_instance:
-            _dict["actual_instance"] = self.actual_instance.to_dict()
+        # set to None if actual_instance (nullable) is None
+        # and model_fields_set contains the field
+        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
+            _dict["actual_instance"] = None
+
         # set to None if oneof_schema_1_validator (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -125,11 +130,6 @@ class InlineOrRefDataWorkflows(BaseModel):
         ):
             _dict["oneof_schema_3_validator"] = None
 
-        # set to None if actual_instance (nullable) is None
-        # and model_fields_set contains the field
-        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
-            _dict["actual_instance"] = None
-
         return _dict
 
     @classmethod
@@ -143,6 +143,12 @@ class InlineOrRefDataWorkflows(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "actual_instance": (
+                    ActualInstance.from_dict(obj["actual_instance"])
+                    if obj.get("actual_instance") is not None
+                    else None
+                ),
+                "one_of_schemas": obj.get("one_of_schemas"),
                 "oneof_schema_1_validator": (
                     InputValueNoObjectWorkflows.from_dict(
                         obj["oneof_schema_1_validator"]
@@ -162,12 +168,6 @@ class InlineOrRefDataWorkflows(BaseModel):
                     if obj.get("oneof_schema_3_validator") is not None
                     else None
                 ),
-                "actual_instance": (
-                    ActualInstance.from_dict(obj["actual_instance"])
-                    if obj.get("actual_instance") is not None
-                    else None
-                ),
-                "one_of_schemas": obj.get("one_of_schemas"),
             }
         )
         return _obj

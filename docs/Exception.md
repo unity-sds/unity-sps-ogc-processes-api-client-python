@@ -6,12 +6,12 @@ JSON schema for exceptions based on RFC 7807
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  |
-**title** | **str** |  | [optional]
-**status** | **int** |  | [optional]
+**additional_properties** | **object** |  | [optional]
 **detail** | **str** |  | [optional]
 **instance** | **str** |  | [optional]
-**additional_properties** | **object** |  | [optional]
+**status** | **int** |  | [optional]
+**title** | **str** |  | [optional]
+**type** | **str** |  |
 
 ## Example
 

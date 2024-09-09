@@ -36,6 +36,8 @@ class InputValueNoObjectInput(BaseModel):
     InputValueNoObject
     """  # noqa: E501
 
+    actual_instance: Optional[Any] = None
+    one_of_schemas: Optional[List[StrictStr]] = None
     oneof_schema_1_validator: Optional[StrictStr] = None
     oneof_schema_2_validator: Optional[OneofSchema2Validator] = None
     oneof_schema_3_validator: Optional[StrictInt] = None
@@ -43,9 +45,9 @@ class InputValueNoObjectInput(BaseModel):
     oneof_schema_5_validator: Optional[List[Dict[str, Any]]] = None
     oneof_schema_6_validator: Optional[OneofSchema6Validator] = None
     oneof_schema_7_validator: Optional[Bbox] = None
-    actual_instance: Optional[Any] = None
-    one_of_schemas: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = [
+        "actual_instance",
+        "one_of_schemas",
         "oneof_schema_1_validator",
         "oneof_schema_2_validator",
         "oneof_schema_3_validator",
@@ -53,8 +55,6 @@ class InputValueNoObjectInput(BaseModel):
         "oneof_schema_5_validator",
         "oneof_schema_6_validator",
         "oneof_schema_7_validator",
-        "actual_instance",
-        "one_of_schemas",
     ]
 
     model_config = ConfigDict(
@@ -103,6 +103,11 @@ class InputValueNoObjectInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of oneof_schema_7_validator
         if self.oneof_schema_7_validator:
             _dict["oneof_schema_7_validator"] = self.oneof_schema_7_validator.to_dict()
+        # set to None if actual_instance (nullable) is None
+        # and model_fields_set contains the field
+        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
+            _dict["actual_instance"] = None
+
         # set to None if oneof_schema_1_validator (nullable) is None
         # and model_fields_set contains the field
         if (
@@ -151,11 +156,6 @@ class InputValueNoObjectInput(BaseModel):
         ):
             _dict["oneof_schema_7_validator"] = None
 
-        # set to None if actual_instance (nullable) is None
-        # and model_fields_set contains the field
-        if self.actual_instance is None and "actual_instance" in self.model_fields_set:
-            _dict["actual_instance"] = None
-
         return _dict
 
     @classmethod
@@ -169,6 +169,8 @@ class InputValueNoObjectInput(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "actual_instance": obj.get("actual_instance"),
+                "one_of_schemas": obj.get("one_of_schemas"),
                 "oneof_schema_1_validator": obj.get("oneof_schema_1_validator"),
                 "oneof_schema_2_validator": (
                     OneofSchema2Validator.from_dict(obj["oneof_schema_2_validator"])
@@ -188,8 +190,6 @@ class InputValueNoObjectInput(BaseModel):
                     if obj.get("oneof_schema_7_validator") is not None
                     else None
                 ),
-                "actual_instance": obj.get("actual_instance"),
-                "one_of_schemas": obj.get("one_of_schemas"),
             }
         )
         return _obj

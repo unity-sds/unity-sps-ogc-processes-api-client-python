@@ -6,13 +6,13 @@ InputProcess
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**process** | **str** | URI to the process execution end point (i.e., &#x60;.../processes/{processId}/execution&#x60;) |
+**filter** | **str** |  | [optional]
 **inputs** | [**Dict[str, InputWorkflows1]**](InputWorkflows1.md) |  | [optional]
 **outputs** | [**Dict[str, OutputWorkflows1]**](OutputWorkflows1.md) |  | [optional]
-**subscriber** | [**Subscriber**](Subscriber.md) |  | [optional]
-**filter** | **str** |  | [optional]
+**process** | **str** | URI to the process execution end point (i.e., &#x60;.../processes/{processId}/execution&#x60;) |
 **properties** | [**FieldsModifiersProperties**](FieldsModifiersProperties.md) |  | [optional]
 **sort_by** | **List[str]** |  | [optional]
+**subscriber** | [**Subscriber**](Subscriber.md) |  | [optional]
 
 ## Example
 

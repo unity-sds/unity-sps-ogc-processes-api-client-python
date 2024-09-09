@@ -6,6 +6,9 @@ InputValueNoObjectWorkflows
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**actual_instance** | [**ActualInstance1**](ActualInstance1.md) |  | [optional]
+**one_of_schemas** | **List[str]** |  | [optional]
+**oneof_schema_10_validator** | [**InputParameterized**](InputParameterized.md) |  | [optional]
 **oneof_schema_1_validator** | **str** |  | [optional]
 **oneof_schema_2_validator** | [**OneofSchema2Validator**](OneofSchema2Validator.md) |  | [optional]
 **oneof_schema_3_validator** | **int** |  | [optional]
@@ -15,9 +18,6 @@ Name | Type | Description | Notes
 **oneof_schema_7_validator** | [**Bbox1**](Bbox1.md) |  | [optional]
 **oneof_schema_8_validator** | [**InputCollection**](InputCollection.md) |  | [optional]
 **oneof_schema_9_validator** | [**InputProcess**](InputProcess.md) |  | [optional]
-**oneof_schema_10_validator** | [**InputParameterized**](InputParameterized.md) |  | [optional]
-**actual_instance** | [**ActualInstance1**](ActualInstance1.md) |  | [optional]
-**one_of_schemas** | **List[str]** |  | [optional]
 
 ## Example
 

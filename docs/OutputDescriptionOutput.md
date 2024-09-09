@@ -6,11 +6,11 @@ OutputDescription
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **str** |  | [optional]
 **description** | **str** |  | [optional]
 **keywords** | **List[str]** |  | [optional]
 **metadata** | [**List[MetadataOutput]**](MetadataOutput.md) |  | [optional]
 **var_schema** | [**ModelSchemaOutput**](ModelSchemaOutput.md) |  |
+**title** | **str** |  | [optional]
 
 ## Example
 

@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**actual_instance** | [**ActualInstance**](ActualInstance.md) |  | [optional]
+**one_of_schemas** | **List[str]** |  | [optional]
 **oneof_schema_1_validator** | [**InputValueNoObjectWorkflows**](InputValueNoObjectWorkflows.md) |  | [optional]
 **oneof_schema_2_validator** | [**QualifiedInputValueWorkflows**](QualifiedInputValueWorkflows.md) |  | [optional]
 **oneof_schema_3_validator** | [**Link**](Link.md) |  | [optional]
-**actual_instance** | [**ActualInstance**](ActualInstance.md) |  | [optional]
-**one_of_schemas** | **List[str]** |  | [optional]
 
 ## Example
 

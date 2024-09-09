@@ -30,10 +30,10 @@ class Format(BaseModel):
     Format
     """  # noqa: E501
 
-    media_type: Optional[StrictStr] = Field(default=None, alias="mediaType")
     encoding: Optional[StrictStr] = None
+    media_type: Optional[StrictStr] = Field(default=None, alias="mediaType")
     var_schema: Optional[FormatSchema] = Field(default=None, alias="schema")
-    __properties: ClassVar[List[str]] = ["mediaType", "encoding", "schema"]
+    __properties: ClassVar[List[str]] = ["encoding", "mediaType", "schema"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,15 +75,15 @@ class Format(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict["schema"] = self.var_schema.to_dict()
-        # set to None if media_type (nullable) is None
-        # and model_fields_set contains the field
-        if self.media_type is None and "media_type" in self.model_fields_set:
-            _dict["mediaType"] = None
-
         # set to None if encoding (nullable) is None
         # and model_fields_set contains the field
         if self.encoding is None and "encoding" in self.model_fields_set:
             _dict["encoding"] = None
+
+        # set to None if media_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.media_type is None and "media_type" in self.model_fields_set:
+            _dict["mediaType"] = None
 
         # set to None if var_schema (nullable) is None
         # and model_fields_set contains the field
@@ -103,8 +103,8 @@ class Format(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "mediaType": obj.get("mediaType"),
                 "encoding": obj.get("encoding"),
+                "mediaType": obj.get("mediaType"),
                 "schema": (
                     FormatSchema.from_dict(obj["schema"])
                     if obj.get("schema") is not None

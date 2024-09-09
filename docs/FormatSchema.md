@@ -6,10 +6,10 @@ FormatSchema
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**oneof_schema_1_validator** | **str** |  | [optional]
-**oneof_schema_2_validator** | **object** |  | [optional]
 **actual_instance** | **str** |  | [optional]
 **one_of_schemas** | **List[str]** |  | [optional]
+**oneof_schema_1_validator** | **str** |  | [optional]
+**oneof_schema_2_validator** | **object** |  | [optional]
 
 ## Example
 

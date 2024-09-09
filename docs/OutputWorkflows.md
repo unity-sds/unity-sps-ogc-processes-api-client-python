@@ -6,8 +6,8 @@ OutputWorkflows
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**format** | [**Format**](Format.md) |  | [optional]
 **output** | **str** |  | [optional]
+**format** | [**Format**](Format.md) |  | [optional]
 
 ## Example
 

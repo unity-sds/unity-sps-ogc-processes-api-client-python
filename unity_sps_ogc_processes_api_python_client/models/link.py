@@ -29,11 +29,11 @@ class Link(BaseModel):
     """  # noqa: E501
 
     href: StrictStr
-    rel: Optional[StrictStr] = None
-    type: Optional[StrictStr] = None
     hreflang: Optional[StrictStr] = None
+    rel: Optional[StrictStr] = None
     title: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["href", "rel", "type", "hreflang", "title"]
+    type: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["href", "hreflang", "rel", "title", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,25 +72,25 @@ class Link(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if rel (nullable) is None
-        # and model_fields_set contains the field
-        if self.rel is None and "rel" in self.model_fields_set:
-            _dict["rel"] = None
-
-        # set to None if type (nullable) is None
-        # and model_fields_set contains the field
-        if self.type is None and "type" in self.model_fields_set:
-            _dict["type"] = None
-
         # set to None if hreflang (nullable) is None
         # and model_fields_set contains the field
         if self.hreflang is None and "hreflang" in self.model_fields_set:
             _dict["hreflang"] = None
 
+        # set to None if rel (nullable) is None
+        # and model_fields_set contains the field
+        if self.rel is None and "rel" in self.model_fields_set:
+            _dict["rel"] = None
+
         # set to None if title (nullable) is None
         # and model_fields_set contains the field
         if self.title is None and "title" in self.model_fields_set:
             _dict["title"] = None
+
+        # set to None if type (nullable) is None
+        # and model_fields_set contains the field
+        if self.type is None and "type" in self.model_fields_set:
+            _dict["type"] = None
 
         return _dict
 
@@ -106,10 +106,10 @@ class Link(BaseModel):
         _obj = cls.model_validate(
             {
                 "href": obj.get("href"),
-                "rel": obj.get("rel"),
-                "type": obj.get("type"),
                 "hreflang": obj.get("hreflang"),
+                "rel": obj.get("rel"),
                 "title": obj.get("title"),
+                "type": obj.get("type"),
             }
         )
         return _obj

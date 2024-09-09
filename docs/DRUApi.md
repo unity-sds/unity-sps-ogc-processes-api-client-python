@@ -18,6 +18,7 @@ Deploys a process.  For more information, see [Section 6.3](http://docs.ogc.org/
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -31,6 +32,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -64,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -79,8 +89,8 @@ No authorization required
 **201** | Created |  -  |
 **403** | the processes is not mutable |  -  |
 **409** | the processes being added is already deployed (i.e. duplicate) |  -  |
-**500** | A server error occurred. |  -  |
 **422** | Validation Error |  -  |
+**500** | A server error occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -93,6 +103,7 @@ Replaces a process.  For more information, see [Section 6.4](http://docs.ogc.org
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -106,6 +117,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -139,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -155,8 +175,8 @@ No authorization required
 **403** | the processes is not mutable |  -  |
 **404** | The requested resource does not exist on the server. For example, a path parameter had an incorrect value. |  -  |
 **409** | the processes being added is already deployed (i.e. duplicate) |  -  |
-**500** | A server error occurred. |  -  |
 **422** | Validation Error |  -  |
+**500** | A server error occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -169,6 +189,7 @@ Undeploys a process. For more information, see [Section 6.5](http://docs.ogc.org
 
 ### Example
 
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import unity_sps_ogc_processes_api_python_client
@@ -181,6 +202,15 @@ configuration = unity_sps_ogc_processes_api_python_client.Configuration(
     host = "http://localhost"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = unity_sps_ogc_processes_api_python_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 with unity_sps_ogc_processes_api_python_client.ApiClient(configuration) as api_client:
@@ -214,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -230,7 +260,7 @@ No authorization required
 **403** | the processes is not mutable |  -  |
 **404** | The requested resource does not exist on the server. For example, a path parameter had an incorrect value. |  -  |
 **409** | The process has active DAG runs and force is not set to true. |  -  |
-**500** | A server error occurred. |  -  |
 **422** | Validation Error |  -  |
+**500** | A server error occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

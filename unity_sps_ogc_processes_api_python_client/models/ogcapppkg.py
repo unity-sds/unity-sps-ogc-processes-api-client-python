@@ -33,9 +33,9 @@ class Ogcapppkg(BaseModel):
     Ogcapppkg
     """  # noqa: E501
 
-    process_description: ProcessInput = Field(alias="processDescription")
     execution_unit: OgcapppkgExecutionUnit = Field(alias="executionUnit")
-    __properties: ClassVar[List[str]] = ["processDescription", "executionUnit"]
+    process_description: ProcessInput = Field(alias="processDescription")
+    __properties: ClassVar[List[str]] = ["executionUnit", "processDescription"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,12 +74,12 @@ class Ogcapppkg(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of process_description
-        if self.process_description:
-            _dict["processDescription"] = self.process_description.to_dict()
         # override the default output from pydantic by calling `to_dict()` of execution_unit
         if self.execution_unit:
             _dict["executionUnit"] = self.execution_unit.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of process_description
+        if self.process_description:
+            _dict["processDescription"] = self.process_description.to_dict()
         return _dict
 
     @classmethod
@@ -93,14 +93,14 @@ class Ogcapppkg(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "processDescription": (
-                    ProcessInput.from_dict(obj["processDescription"])
-                    if obj.get("processDescription") is not None
-                    else None
-                ),
                 "executionUnit": (
                     OgcapppkgExecutionUnit.from_dict(obj["executionUnit"])
                     if obj.get("executionUnit") is not None
+                    else None
+                ),
+                "processDescription": (
+                    ProcessInput.from_dict(obj["processDescription"])
+                    if obj.get("processDescription") is not None
                     else None
                 ),
             }
