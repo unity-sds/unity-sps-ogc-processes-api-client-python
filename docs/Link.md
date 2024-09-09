@@ -1,15 +1,16 @@
 # Link
 
+Link
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  |
-**hreflang** | **str** |  | [optional]
 **rel** | **str** |  | [optional]
-**title** | **str** |  | [optional]
 **type** | **str** |  | [optional]
+**hreflang** | **str** |  | [optional]
+**title** | **str** |  | [optional]
 
 ## Example
 

@@ -1,22 +1,23 @@
 # StatusInfo
 
+StatusInfo
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created** | **datetime** |  | [optional]
-**exception** | [**Exception**](Exception.md) |  | [optional]
-**finished** | **datetime** |  | [optional]
-**job_id** | **str** |  |
-**links** | [**List[Link]**](Link.md) |  | [optional]
-**message** | **str** |  | [optional]
 **process_id** | **str** |  | [optional]
-**progress** | **int** |  | [optional]
-**started** | **datetime** |  | [optional]
+**type** | **str** |  |
+**job_id** | **str** |  |
 **status** | [**StatusCode**](StatusCode.md) |  |
-**type** | **object** |  |
+**message** | **str** |  | [optional]
+**exception** | [**Exception**](Exception.md) |  | [optional]
+**created** | **datetime** |  | [optional]
+**started** | **datetime** |  | [optional]
+**finished** | **datetime** |  | [optional]
 **updated** | **datetime** |  | [optional]
+**progress** | **int** |  | [optional]
+**links** | [**List[Link]**](Link.md) |  | [optional]
 
 ## Example
 

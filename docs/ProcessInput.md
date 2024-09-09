@@ -1,20 +1,21 @@
 # ProcessInput
 
+Process
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**description** | **str** |  | [optional]
-**id** | **str** |  |
-**inputs** | [**List[InputValueInput]**](InputValueInput.md) |  | [optional]
-**job_control_options** | [**List[JobControlOptions]**](JobControlOptions.md) |  | [optional]
-**keywords** | **List[str]** |  | [optional]
-**links** | [**List[Link]**](Link.md) |  | [optional]
-**metadata** | [**List[Metadata]**](Metadata.md) |  | [optional]
-**outputs** | [**List[InputValueInput]**](InputValueInput.md) |  | [optional]
 **title** | **str** |  | [optional]
+**description** | **str** |  | [optional]
+**keywords** | **List[str]** |  | [optional]
+**metadata** | [**List[MetadataInput]**](MetadataInput.md) |  | [optional]
+**id** | **str** |  |
 **version** | **str** |  |
+**job_control_options** | [**List[JobControlOptions]**](JobControlOptions.md) |  | [optional]
+**links** | [**List[Link]**](Link.md) |  | [optional]
+**inputs** | [**Dict[str, InputDescriptionInput]**](InputDescriptionInput.md) |  | [optional]
+**outputs** | [**Dict[str, OutputDescriptionInput]**](OutputDescriptionInput.md) |  | [optional]
 
 ## Example
 

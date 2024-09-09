@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "unity_sps_ogc_processes_api_python_client"
 version = "1.0.0"
-description = "Unity Processing API conforming to the OGC API - Processes - Part 1 standard"
+description = "Unity Processing API conforming to the Draft of OGC API - Processes - Part 2: Deploy, Replace, Undeploy"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
 readme = "README.md"
 repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Unity Processing API conforming to the OGC API - Processes - Part 1 standard"]
+keywords = ["OpenAPI", "OpenAPI-Generator", "Unity Processing API conforming to the Draft of OGC API - Processes - Part 2: Deploy, Replace, Undeploy"]
 include = ["unity_sps_ogc_processes_api_python_client/py.typed"]
 
 [tool.poetry.dependencies]

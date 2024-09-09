@@ -1,14 +1,15 @@
 # LandingPage
 
+LandingPage
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attribution** | **str** |  | [optional]
-**description** | **str** |  | [optional]
-**links** | [**List[Link]**](Link.md) |  |
 **title** | **str** |  | [optional]
+**description** | **str** |  | [optional]
+**attribution** | **str** |  | [optional]
+**links** | [**List[Link]**](Link.md) |  |
 
 ## Example
 

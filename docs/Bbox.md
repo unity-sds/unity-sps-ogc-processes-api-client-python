@@ -1,12 +1,13 @@
 # Bbox
 
+Bbox
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bbox** | **List[float]** |  |
-**crs** | [**Crs**](Crs.md) |  | [optional]
+**bbox** | [**List[BboxBboxInner]**](BboxBboxInner.md) |  |
+**crs** | [**BboxDefCrs**](BboxDefCrs.md) |  | [optional]
 
 ## Example
 
