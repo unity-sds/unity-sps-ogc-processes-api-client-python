@@ -1,12 +1,20 @@
 # InputValueNoObjectInput
 
+InputValueNoObject
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bbox** | **List[object]** |  |
-**crs** | [**Crs**](Crs.md) |  | [optional]
+**actual_instance** | **object** |  | [optional]
+**one_of_schemas** | **List[str]** |  | [optional]
+**oneof_schema_1_validator** | **str** |  | [optional]
+**oneof_schema_2_validator** | [**OneofSchema2Validator**](OneofSchema2Validator.md) |  | [optional]
+**oneof_schema_3_validator** | **int** |  | [optional]
+**oneof_schema_4_validator** | **bool** |  | [optional]
+**oneof_schema_5_validator** | **List[object]** |  | [optional]
+**oneof_schema_6_validator** | [**OneofSchema6Validator**](OneofSchema6Validator.md) |  | [optional]
+**oneof_schema_7_validator** | [**Bbox**](Bbox.md) |  | [optional]
 
 ## Example
 

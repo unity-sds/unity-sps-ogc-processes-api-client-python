@@ -1,5 +1,6 @@
 # StatusInfo
 
+StatusInfo
 
 ## Properties
 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 **progress** | **int** |  | [optional]
 **started** | **datetime** |  | [optional]
 **status** | [**StatusCode**](StatusCode.md) |  |
-**type** | **object** |  |
+**type** | **str** |  |
 **updated** | **datetime** |  | [optional]
 
 ## Example

@@ -1,10 +1,12 @@
 # Exception
 
+JSON schema for exceptions based on RFC 7807
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**additional_properties** | **object** |  | [optional]
 **detail** | **str** |  | [optional]
 **instance** | **str** |  | [optional]
 **status** | **int** |  | [optional]
