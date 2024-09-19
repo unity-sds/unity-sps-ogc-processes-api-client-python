@@ -1,12 +1,15 @@
 # InputValueInput
 
+InputValue
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bbox** | **List[object]** |  |
-**crs** | [**Crs**](Crs.md) |  | [optional]
+**actual_instance** | **object** |  | [optional]
+**any_of_schemas** | **List[str]** |  | [optional]
+**anyof_schema_1_validator** | [**InputValueNoObjectInput**](InputValueNoObjectInput.md) |  | [optional]
+**anyof_schema_2_validator** | **object** |  | [optional]
 
 ## Example
 

@@ -1,5 +1,6 @@
 # Subscriber
 
+Optional URIs for callbacks for this job.  Support for this parameter is not required and the parameter may be removed from the API definition, if conformance class **'callback'** is not listed in the conformance declaration under `/conformance`.
 
 ## Properties
 

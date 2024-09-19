@@ -1,5 +1,6 @@
 # ProcessInput
 
+Process
 
 ## Properties
 
@@ -7,12 +8,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional]
 **id** | **str** |  |
-**inputs** | [**List[InputValueInput]**](InputValueInput.md) |  | [optional]
+**inputs** | [**Dict[str, InputDescriptionInput]**](InputDescriptionInput.md) |  | [optional]
 **job_control_options** | [**List[JobControlOptions]**](JobControlOptions.md) |  | [optional]
 **keywords** | **List[str]** |  | [optional]
 **links** | [**List[Link]**](Link.md) |  | [optional]
-**metadata** | [**List[Metadata]**](Metadata.md) |  | [optional]
-**outputs** | [**List[InputValueInput]**](InputValueInput.md) |  | [optional]
+**metadata** | [**List[MetadataInput]**](MetadataInput.md) |  | [optional]
+**outputs** | [**Dict[str, OutputDescriptionInput]**](OutputDescriptionInput.md) |  | [optional]
 **title** | **str** |  | [optional]
 **version** | **str** |  |
 

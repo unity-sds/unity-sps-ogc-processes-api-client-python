@@ -1,12 +1,11 @@
 # HealthCheck
 
-Response model to validate and return when performing a health check.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **str** |  | [optional] [default to 'OK']
+**status** | **object** |  |
 
 ## Example
 
