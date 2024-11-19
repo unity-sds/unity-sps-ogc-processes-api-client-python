@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "unity_sps_ogc_processes_api_python_client"
-version = "1.0.0"
+version = "2.0.1"
 description = "Unity Processing API conforming to the Draft of OGC API - Processes - Part 2: Deploy, Replace, Undeploy"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
