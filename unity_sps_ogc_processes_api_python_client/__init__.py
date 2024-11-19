@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.0"
+__version__ = "2.0.1"
 
 # import apis into sdk package
 from unity_sps_ogc_processes_api_python_client.api.api_api import APIApi
